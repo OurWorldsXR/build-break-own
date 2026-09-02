@@ -1,0 +1,11 @@
+[Unit]
+Description=Sovereign Weather Station
+After=local-fs.target
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/sws/station/station.py
+Restart=always
+RestartSec=10
+Nice=5
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Sovereign Weather Station first boot: make this board unique
+ConditionPathExists=!/data/.firstboot-done
+Before=station.service ssh.service
+[Service]
+Type=oneshot
+ExecStart=/opt/sws/bin/sws-firstboot
+RemainAfterExit=yes
+[Install]
+WantedBy=multi-user.target

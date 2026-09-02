@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Build It, Break It, Own It. worksheet</title>
+<style>
+  :root{ --ink:#111; --mid:#555; --faint:#9a9a9a; --rule:#d4d4d4;
+         --accent:#B8481A; --box:#f4f2ee; }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#8a8a8a;
+    font-family:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sheet{width:210mm;min-height:297mm;padding:14mm 15mm 16mm;margin:8mm auto;
+    background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.3);position:relative}
+  h1{font-size:19pt;margin:0 0 1mm;letter-spacing:-.01em}
+  h2{font-size:12.5pt;margin:7mm 0 2.5mm;padding-bottom:1.5mm;
+     border-bottom:1.5px solid var(--ink)}
+  h3{font-size:10pt;margin:4mm 0 1.5mm}
+  p,li{font-size:9.5pt;line-height:1.45;margin:0 0 2mm}
+  .sub{font-size:9pt;color:var(--mid);margin:0 0 4mm}
+  .foot{position:absolute;bottom:8mm;left:15mm;right:15mm;font-size:7.5pt;
+    color:var(--faint);display:flex;justify-content:space-between;
+    border-top:1px solid var(--rule);padding-top:2mm}
+  .kick{font-size:8pt;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);font-weight:700;margin-bottom:1mm}
+  /* steps */
+  .step{display:flex;gap:4mm;margin:0 0 3.5mm;break-inside:avoid}
+  .step .n{flex:0 0 8mm;height:8mm;border:1.5px solid var(--ink);border-radius:50%;
+    font-weight:700;font-size:10pt;display:flex;align-items:center;
+    justify-content:center}
+  .step .b{flex:1}
+  .step .b b{font-size:10pt}
+  .step .b span{display:block;font-size:9pt;color:var(--mid);line-height:1.4}
+  .tick{flex:0 0 6mm;height:6mm;border:1.5px solid var(--ink);margin-top:1mm}
+  .warn{background:var(--box);border-left:3px solid var(--accent);
+    padding:3mm 4mm;margin:3mm 0;font-size:9pt}
+  /* writing space */
+  .lines{margin:1.5mm 0 4mm}
+  .lines div{border-bottom:1px solid var(--rule);height:7mm}
+  .q{break-inside:avoid;margin-bottom:5mm}
+  .q .head{display:flex;gap:3mm;align-items:baseline}
+  .q .num{font-weight:700;font-size:15pt;color:var(--accent);min-width:8mm}
+  .q .txt{font-size:10pt;font-weight:600;line-height:1.35}
+  .q .can{font-size:8pt;color:var(--faint);margin:1mm 0 0 11mm;font-style:italic}
+  table{width:100%;border-collapse:collapse;margin:2mm 0 4mm;font-size:9pt}
+  th,td{border:1px solid var(--rule);padding:2.5mm 2mm;text-align:left;
+    vertical-align:top}
+  th{background:var(--box);font-size:8pt;letter-spacing:.06em;
+    text-transform:uppercase}
+  td.fill{height:13mm}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+  .consent{border:1.5px solid var(--ink);padding:4mm;margin-top:4mm;font-size:9pt}
+  .consent .cb{display:inline-block;width:5mm;height:5mm;border:1.5px solid var(--ink);
+    vertical-align:-1mm;margin-right:2mm}
+  svg{display:block;max-width:100%}
+  .cap{font-size:8pt;color:var(--faint);margin-top:1mm}
+  @media print{
+    html,body{background:#fff}
+    .sheet{margin:0;box-shadow:none;page-break-after:always}
+    .sheet:last-child{page-break-after:auto}
+  }
+</style></head><body>
+
+<!-- ============ PAGE 1: the build ============ -->
+<div class="sheet">
+  <div class="kick">OurWorlds &middot; AISES 2026</div>
+  <h1>Build It, Break It, Own It</h1>
+  <p class="sub">A weather station that has no way to send your data anywhere.
+     Work in fours. Nothing here breaks if you get it wrong.</p>
+
+  <table style="margin-top:4mm">
+    <tr><th style="width:26%">Your name</th><td class="fill" style="height:9mm"></td>
+        <th style="width:20%">Nation / school</th><td class="fill" style="height:9mm"></td></tr>
+    <tr><th>Station ID</th><td class="fill" style="height:9mm"></td>
+        <th>Date</th><td class="fill" style="height:9mm"></td></tr>
+  </table>
+
+  <h2>What is in the bag</h2>
+  <p>Tip it out and count before you start. If something is missing, get it now.</p>
+  <table>
+    <tr><th>#</th><th>Part</th><th>What it does</th><th>Got it</th></tr>
+    <tr><td>1</td><td>PocketBeagle 2</td><td>the computer. 56 &times; 35 mm. runs Linux.</td><td></td></tr>
+    <tr><td>1</td><td>microSD card</td><td>the operating system and every reading</td><td></td></tr>
+    <tr><td>1</td><td>BME280 sensor</td><td>reads temperature, humidity, pressure</td><td></td></tr>
+    <tr><td>1</td><td>SSD1306 screen</td><td>shows you what the sensor found</td><td></td></tr>
+    <tr><td>1</td><td>push button</td><td>changes the page on the screen</td><td></td></tr>
+    <tr><td>8</td><td>jumper wires</td><td>four for the sensor, four for the screen</td><td></td></tr>
+  </table>
+
+  <h2>Finding pin 14</h2>
+  <p>Both long edges have 36 pins. They look identical. Pin 1 is at the end
+     nearest the USB socket, and the numbers zig-zag: odds on one row, evens on
+     the other.</p>
+
+  <svg viewBox="0 0 640 150" role="img" aria-label="Pin numbering diagram">
+    <rect x="8" y="34" width="624" height="84" fill="#eceae5" stroke="#111" stroke-width="1.5"/>
+    <rect x="0" y="60" width="14" height="32" fill="#777"/>
+    <text x="22" y="28" font-size="10" fill="#555" font-family="monospace">USB END</text>
+    <!-- pins drawn explicitly so the sheet prints identically everywhere -->
+    <g>
+      <!-- odds (top) 1..17 -->
+      <g fill="#333">
+        <circle cx="40" cy="56" r="5"/><circle cx="74" cy="56" r="5"/>
+        <circle cx="108" cy="56" r="5"/><circle cx="142" cy="56" r="5"/>
+        <circle cx="176" cy="56" r="5"/><circle cx="210" cy="56" r="5"/>
+        <circle cx="244" cy="56" r="5"/>
+        <circle cx="278" cy="56" r="7" fill="#B8481A"/>
+        <circle cx="312" cy="56" r="5"/><circle cx="346" cy="56" r="5"/>
+        <circle cx="380" cy="56" r="5"/><circle cx="414" cy="56" r="5"/>
+        <circle cx="448" cy="56" r="5"/><circle cx="482" cy="56" r="5"/>
+        <circle cx="516" cy="56" r="5"/><circle cx="550" cy="56" r="5"/>
+        <circle cx="584" cy="56" r="5"/>
+      </g>
+      <!-- evens (bottom) 2..18 -->
+      <g fill="#333">
+        <circle cx="40" cy="96" r="5"/><circle cx="74" cy="96" r="5"/>
+        <circle cx="108" cy="96" r="5"/><circle cx="142" cy="96" r="5"/>
+        <circle cx="176" cy="96" r="5"/><circle cx="210" cy="96" r="5"/>
+        <circle cx="244" cy="96" r="7" fill="#B8481A"/>
+        <circle cx="278" cy="96" r="5"/><circle cx="312" cy="96" r="5"/>
+        <circle cx="346" cy="96" r="5"/><circle cx="380" cy="96" r="5"/>
+        <circle cx="414" cy="96" r="5"/>
+        <circle cx="448" cy="96" r="7" fill="#B8481A"/>
+        <circle cx="482" cy="96" r="5"/>
+        <circle cx="516" cy="96" r="7" fill="#B8481A"/>
+        <circle cx="550" cy="96" r="5"/><circle cx="584" cy="96" r="5"/>
+      </g>
+      <g font-family="monospace" font-size="9" fill="#666" text-anchor="middle">
+        <text x="40" y="46">1</text><text x="108" y="46">5</text>
+        <text x="176" y="46">9</text><text x="244" y="46">13</text>
+        <text x="278" y="44" font-size="10" fill="#B8481A" font-weight="bold">15</text>
+        <text x="380" y="46">21</text><text x="482" y="46">27</text>
+        <text x="584" y="46">33</text>
+        <text x="40" y="115">2</text><text x="108" y="115">6</text>
+        <text x="176" y="115">10</text>
+        <text x="244" y="117" font-size="10" fill="#B8481A" font-weight="bold">14</text>
+        <text x="312" y="115">18</text>
+        <text x="448" y="117" font-size="10" fill="#B8481A" font-weight="bold">26</text>
+        <text x="516" y="117" font-size="10" fill="#B8481A" font-weight="bold">28</text>
+        <text x="584" y="115">34</text>
+      </g>
+    </g>
+    <g font-family="monospace" font-size="10" fill="#B8481A">
+      <text x="215" y="140">14 = 3V3</text><text x="300" y="140">15 = GND</text>
+      <text x="410" y="140">26 = SDA</text><text x="500" y="140">28 = SCL</text>
+    </g>
+  </svg>
+  <p class="cap">Count in pairs along the bottom row: 2, 4, 6, 8, 10, 12, 14.
+     Seven pairs. Count out loud. Count twice.</p>
+
+  <div class="warn"><b>Pin numbers here are inherited from the original PocketBeagle.</b>
+    Check them against the PocketBeagle 2 diagram before you wire anything.</div>
+
+  <div class="foot"><span>Build It, Break It, Own It &middot; OurWorlds</span><span>1 of 4</span></div>
+</div>
+
+<!-- ============ PAGE 2: steps ============ -->
+<div class="sheet">
+  <h2 style="margin-top:0">Ten steps</h2>
+  <p class="sub">Tick each one as you finish it. If a step will not work, go to
+     the troubleshooting list before you undo anything.</p>
+
+  <div class="step"><div class="n">1</div><div class="b"><b>Count the parts</b>
+    <span>Six kinds of thing. Eight wires, not seven.</span></div><div class="tick"></div></div>
+  <div class="step"><div class="n">2</div><div class="b"><b>Card in first</b>
+    <span>Short edge, opposite the USB socket. Contacts face the board. It sits almost flush.</span></div><div class="tick"></div></div>
+  <div class="step"><div class="n">3</div><div class="b"><b>Plug in and wait</b>
+    <span>Four lights come on. One flickers unevenly, which is good. Then nothing visible for about 30 seconds. That is normal.</span></div><div class="tick"></div></div>
+  <div class="step"><div class="n">4</div><div class="b"><b>Unplug again</b>
+    <span>Never move a wire while the board has power.</span></div><div class="tick"></div></div>
+  <div class="step"><div class="n">5</div><div class="b"><b>Find pin 14 and pin 15</b>
+    <span>Use the diagram on page 1. Count out loud, in pairs, twice.</span></div><div class="tick"></div></div>
+  <div class="step"><div class="n">6</div><div class="b"><b>Wire power and ground</b>
+    <span>14 &rarr; 3V3. 15 &rarr; GND. On the sensor and on the screen.</span></div><div class="tick"></div></div>
+  <div class="step"><div class="n">7</div><div class="b"><b>Wire data and clock</b>
+    <span>26 &rarr; SDA. 28 &rarr; SCL. Same two pins serve both devices.</span></div><div class="tick"></div></div>
+  <div class="step"><div class="n">8</div><div class="b"><b>Power up and scan the bus</b>
+    <span>Run <code>sudo i2cdetect -y &lt;bus&gt;</code>. Look for 76 and 3c.</span></div><div class="tick"></div></div>
+  <div class="step"><div class="n">9</div><div class="b"><b>Check the chip</b>
+    <span>Run <code>sws-check</code>. It reads the sensor's ID register and tells you what you actually have.</span></div><div class="tick"></div></div>
+  <div class="step"><div class="n">10</div><div class="b"><b>Read your own weather</b>
+    <span>Press the button to cycle the three pages on the screen.</span></div><div class="tick"></div></div>
+
+  <h2>When nothing shows up</h2>
+  <p>This happens to everybody, including people who have done it a hundred
+     times. Work down in order and tick what you tried.</p>
+  <table>
+    <tr><th style="width:8%"></th><th>Check</th><th>Why</th></tr>
+    <tr><td></td><td>Are the lights on?</td><td>if not, it is the cable or the socket</td></tr>
+    <tr><td></td><td>Press every wire home again</td><td>half-seated looks exactly like fully seated</td></tr>
+    <tr><td></td><td>Recount the pins from pin 1, out loud</td><td>swapped power and ground is the most common mistake</td></tr>
+    <tr><td></td><td>Try address 0x77 instead of 0x76</td><td>some sensors ship answering there</td></tr>
+  </table>
+
+  <h3>Question 3 lives here</h3>
+  <p>Write one troubleshooting step, in your own words, for the next student
+     who sits at this table.</p>
+  <div class="lines"><div></div><div></div><div></div></div>
+
+  <div class="foot"><span>Build It, Break It, Own It &middot; OurWorlds</span><span>2 of 4</span></div>
+</div>
+
+<!-- ============ PAGE 3: the trace ============ -->
+<div class="sheet">
+  <h2 style="margin-top:0">Who controls this?</h2>
+  <p class="sub">Fill in both columns. Then look at which one has gaps.</p>
+
+  <table>
+    <tr><th style="width:16%">Layer</th>
+        <th style="width:42%">Your station</th>
+        <th style="width:42%">Your phone</th></tr>
+    <tr><td><b>Chip</b><br><span style="font-size:8pt;color:#777">who made it, where are they</span></td>
+        <td class="fill"></td><td class="fill"></td></tr>
+    <tr><td><b>Firmware</b><br><span style="font-size:8pt;color:#777">can you read it</span></td>
+        <td class="fill"></td><td class="fill"></td></tr>
+    <tr><td><b>Operating system</b><br><span style="font-size:8pt;color:#777">who decides what it does</span></td>
+        <td class="fill"></td><td class="fill"></td></tr>
+    <tr><td><b>Application</b><br><span style="font-size:8pt;color:#777">who wrote it, who profits</span></td>
+        <td class="fill"></td><td class="fill"></td></tr>
+    <tr><td><b>Your data</b><br><span style="font-size:8pt;color:#777">where does it physically sit</span></td>
+        <td class="fill"></td><td class="fill"></td></tr>
+  </table>
+
+  <div class="warn">Now pick <b>one</b> layer and redesign it with sovereignty as
+    the requirement. What changes? What does that cost?</div>
+  <div class="lines"><div></div><div></div><div></div><div></div></div>
+
+  <h2>The chip ID check</h2>
+  <div class="two">
+    <div>
+      <p>Ask register <code>0xD0</code>. The answer is one byte, and the chip
+         cannot lie about it.</p>
+      <table>
+        <tr><th>Reply</th><th>Means</th></tr>
+        <tr><td><b>0x60</b></td><td>a real BME280. humidity works.</td></tr>
+        <tr><td><b>0x58</b></td><td>a BMP280. no humidity sensor inside.</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>Yours said</h3>
+      <div style="border:1.5px solid #111;height:22mm"></div>
+      <p class="cap">Write the value, then what it means for your readings.</p>
+    </div>
+  </div>
+
+  <div class="foot"><span>Build It, Break It, Own It &middot; OurWorlds</span><span>3 of 4</span></div>
+</div>
+
+<!-- ============ PAGE 4: the twelve ============ -->
+<div class="sheet">
+  <h2 style="margin-top:0">Twelve questions</h2>
+  <p class="sub">The last three have no answer key. Nobody has agreed on them
+     yet, which is why we are asking you. An unfinished answer is still evidence
+     that you looked.</p>
+
+  <div class="q"><div class="head"><div class="num">1</div><div class="txt">Which pin carries 3.3 volts, and what happens if you connect 5?</div></div>
+    <div class="can">proves you can read a spec</div><div class="lines"><div></div></div></div>
+  <div class="q"><div class="head"><div class="num">2</div><div class="txt">Which two addresses answered on the bus? Say what each one is.</div></div>
+    <div class="can">proves you can address a device</div><div class="lines"><div></div></div></div>
+  <div class="q"><div class="head"><div class="num">3</div><div class="txt">Written on page 2.</div></div></div>
+  <div class="q"><div class="head"><div class="num">4</div><div class="txt">What did register 0xD0 report, and what does that mean for your readings?</div></div>
+    <div class="can">proves you can verify a part</div><div class="lines"><div></div></div></div>
+  <div class="q"><div class="head"><div class="num">5</div><div class="txt">In 1918 the wire was tapped but the message was safe. Explain why.</div></div>
+    <div class="can">proves you can tell reading from having</div><div class="lines"><div></div><div></div></div></div>
+  <div class="q"><div class="head"><div class="num">6</div><div class="txt">For 126 years, who held the rights to the Passamaquoddy recordings?</div></div>
+    <div class="can">proves you can follow a chain of rights</div><div class="lines"><div></div></div></div>
+  <div class="q"><div class="head"><div class="num">7</div><div class="txt">Why does an unshielded sensor read high in the middle of the day?</div></div>
+    <div class="can">proves you can explain an error from its cause</div><div class="lines"><div></div></div></div>
+  <div class="q"><div class="head"><div class="num">8</div><div class="txt">What is your station's known error, and how would you measure it?</div></div>
+    <div class="can">proves you can state your uncertainty</div><div class="lines"><div></div></div></div>
+  <div class="q"><div class="head"><div class="num">9</div><div class="txt">Name one thing you would change about the shield, and what it costs.</div></div>
+    <div class="can">proves you can trade cost against accuracy</div><div class="lines"><div></div></div></div>
+  <div class="q"><div class="head"><div class="num">10</div><div class="txt">How many layers of your phone can you name? How many of your station?</div></div>
+    <div class="can">proves you can audit any device</div><div class="lines"><div></div></div></div>
+  <div class="q"><div class="head"><div class="num">11</div><div class="txt">Which CARE principle is hardest to apply to your data, and why?</div></div>
+    <div class="can">proves you can apply a governance rule</div><div class="lines"><div></div><div></div></div></div>
+  <div class="q"><div class="head"><div class="num">12</div><div class="txt">Who else has this data? What would you give up to make this easier?</div></div>
+    <div class="can">proves you can take a position</div><div class="lines"><div></div><div></div></div></div>
+
+  <div class="consent">
+    <span class="cb"></span><b>You decide, not us.</b>
+    May we show your answers to next year's students? Your first name and nation
+    only, never your full name. Say no and nothing happens; your answers stay
+    with you either way.
+    <div style="margin-top:3mm;font-size:8.5pt;color:#555">
+      This is CARE in practice. <b>Authority to Control</b>: it is your call.
+      <b>Collective Benefit</b>: it helps whoever sits here next.
+      <b>Responsibility</b>: we will tell you where it was used.</div>
+  </div>
+
+  <div class="foot"><span>ourworlds.io &middot; built on BeagleBoard hardware</span><span>4 of 4</span></div>
+</div>
+
+</body></html>

@@ -1,0 +1,65 @@
+#!/usr/bin/env python3
+"""sws-check: does this station actually have what it claims to have?
+
+Run this at the workshop. It answers four questions in plain language and
+prints nothing you have to take on trust.
+"""
+import glob, re, subprocess, sys
+try:
+    from smbus2 import SMBus
+except ImportError:
+    sys.exit("smbus2 not installed. run: sudo apt install python3-smbus2")
+
+OK, BAD, INFO = "  OK ", "  !! ", "     "
+
+print("\n1. which I2C buses exist on this board?")
+buses = sorted(int(re.search(r"(\d+)$", p).group(1))
+               for p in glob.glob("/dev/i2c-*"))
+print(INFO + "found: " + ", ".join("i2c-%d" % b for b in buses))
+print(INFO + "note there is no i2c-1 on a PocketBeagle 2.")
+
+print("\n2. what is answering on them?")
+found = {}
+for b in buses:
+    try: bus = SMBus(b)
+    except Exception: continue
+    for addr in list(range(0x03, 0x78)):
+        try:
+            bus.read_byte(addr); found.setdefault(b, []).append(addr)
+        except Exception:
+            pass
+    bus.close()
+if not found:
+    print(BAD + "nothing answered anywhere. check your four wires, then recount the pins.")
+for b, addrs in found.items():
+    print(INFO + "i2c-%d: %s" % (b, "  ".join("0x%02X" % a for a in addrs)))
+
+print("\n3. is the sensor the chip you were sold?")
+hit = False
+for b, addrs in found.items():
+    for addr in (0x76, 0x77):
+        if addr not in addrs: continue
+        bus = SMBus(b)
+        cid = bus.read_byte_data(addr, 0xD0)
+        bus.close(); hit = True
+        if cid == 0x60:
+            print(OK + "i2c-%d 0x%02X reports 0x60. real BME280, humidity works." % (b, addr))
+        elif cid == 0x58:
+            print(BAD + "i2c-%d 0x%02X reports 0x58. that is a BMP280." % (b, addr))
+            print(INFO + "same package, same pins, no humidity sensor inside.")
+        else:
+            print(BAD + "i2c-%d 0x%02X reports 0x%02X. not a chip we know." % (b, addr, cid))
+if not hit:
+    print(BAD + "no sensor at 0x76 or 0x77.")
+
+print("\n4. can this station reach the internet?")
+ifs = subprocess.run(["ip", "-o", "link"], capture_output=True, text=True).stdout
+names = [l.split(":")[1].strip() for l in ifs.strip().splitlines()]
+radio = [n for n in names if n.startswith(("wlan", "wlp", "ww"))]
+print(INFO + "network interfaces: " + ", ".join(names))
+if radio:
+    print(BAD + "there is a radio here: " + ", ".join(radio))
+else:
+    print(OK + "no wifi, no bluetooth, no cellular. there is no radio on this board.")
+    print(INFO + "the only way data leaves is you reading the screen and typing it in.")
+print()

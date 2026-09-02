@@ -1,0 +1,13 @@
+#!/bin/bash
+# Twelve cards cloned from one image are twelve identical machines. This makes
+# each board its own. Runs once, then never again.
+set -euo pipefail
+mkdir -p /data
+rm -f /etc/ssh/ssh_host_*
+ssh-keygen -A                                    # fresh host keys per board
+rm -f /etc/machine-id /var/lib/dbus/machine-id
+systemd-machine-id-setup
+ID="sws-$(tr -dc a-z0-9 </dev/urandom | head -c6)"
+echo "$ID" > /data/station-id
+hostnamectl set-hostname "$ID" || echo "$ID" > /etc/hostname
+touch /data/.firstboot-done
