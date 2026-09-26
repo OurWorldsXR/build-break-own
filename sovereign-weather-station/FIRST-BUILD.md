@@ -83,7 +83,7 @@ first build leave the clock in the bag. Add it once everything else works.
 
 ### The breadboard
 
-![Bench layout: breadboard with the three modules plugged in along the top, the board below with four wires running from P1 to the breadboard](images/bench-layout.svg)
+![Step 1: the three modules seated in the top half of the breadboard, the board below, no wires yet](images/bench-step1.svg)
 
 A plastic slab full of holes. Inside, the holes are joined into hidden wires
 in a fixed pattern, and that pattern is the whole trick:
@@ -116,6 +116,8 @@ until the USB cable goes in at Part 4.
 
 ### Step 2.1: seat the modules
 
+(Picture: `images/bench-step1.svg`, above.)
+
 Push the sensor's pins into the top half of the breadboard so each pin sits
 in its own column, with the module's body overhanging the top edge of the
 breadboard. Press firmly and evenly; it takes more force than you expect,
@@ -129,9 +131,13 @@ share a column. Both modules are in the same half (above the groove).
 
 ### Step 2.2: power to the modules
 
+![Step 2: red and black wires from each module to the + and − rails](images/bench-step2.svg)
+
 Run a **red** jumper from the sensor's `VIN`/`VCC` column (any free hole in
-that column) to any hole in the **+ rail**. Run a **black** jumper from the
-sensor's `GND` column to the **− rail**.
+that column below the module) to any free hole in the **+ rail**. The module
+body sits over the rail, so use a rail hole just beside the module; the rail
+is one wire end to end, so it doesn't matter which. Run a **black** jumper
+from the sensor's `GND` column to the **− rail**.
 
 Do the same for the screen, using the pin order you wrote down in Part 1.
 
@@ -142,6 +148,8 @@ end at GND. If either is wrong, swap them now. A backwards screen dies the
 moment power arrives.
 
 ### Step 2.3: the two shared wires
+
+![Step 3: blue wires meet in column 17, yellow wires meet in column 19](images/bench-step3.svg)
 
 Choose two empty columns in the top half, away from the modules. The diagram
 uses 17 for SDA and 19 for SCL. Nothing plugs into them directly; they are
@@ -158,6 +166,8 @@ Column 17 now joins both SDA pins together. Column 19 joins both SCL pins.
 wires end in column 19. No blue wire touches a yellow column.
 
 ### Step 2.4: the four wires to the board
+
+![Step 4: four wires from P1.14, P1.15, P1.26 and P1.28 to the breadboard](images/bench-step4.svg)
 
 Turn the board so P1 faces the breadboard (in the bench diagram that puts the
 USB-C port on the left and pin 1 at the left end of P1). Count columns from

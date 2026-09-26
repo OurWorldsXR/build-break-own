@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1240" height="880" viewBox="0 0 1240 880" font-family="Inter, Helvetica, Arial, sans-serif">
 <rect width="1240" height="880" fill="#ffffff"/>
-<text x="32" y="40" font-size="22" font-weight="700" fill="#1b1b1b">Step 4 of 4: four wires from the board</text>
-<text x="32" y="64" font-size="13" fill="#6b6b6b" text-anchor="start" font-weight="400" >Turn the board so P1 faces the breadboard. Red P1.14 to +, black P1.15 to -, blue P1.26 to column 17, yellow P1.28 to column 19.</text>
+<text x="32" y="40" font-size="22" font-weight="700" fill="#1b1b1b">Step 2 of 4: power to each module</text>
+<text x="32" y="64" font-size="13" fill="#6b6b6b" text-anchor="start" font-weight="400" >Red from each VCC/VIN column to the + rail. Black from each GND column to the - rail. Check the letters on the module before each wire.</text>
 <rect x="140" y="190" width="940" height="300" rx="10" fill="#f6f2e4" stroke="#c9c1a6" stroke-width="2"/>
 <line x1="162" y1="204" x2="1058" y2="204" stroke="#d7362e" stroke-width="2.5"/>
 <line x1="162" y1="250" x2="1058" y2="250" stroke="#2f6fdb" stroke-width="2.5"/>
@@ -385,10 +385,6 @@
 <text x="148" y="481" font-size="9" fill="#6b6b6b" text-anchor="start" font-weight="400" >b</text>
 <text x="148" y="505" font-size="9" fill="#6b6b6b" text-anchor="start" font-weight="400" >a</text>
 <line x1="152" y1="389.0" x2="1068" y2="389.0" stroke="#ddd6c2" stroke-width="7"/>
-<rect x="645" y="266" width="20" height="116" rx="3" fill="#2f6fdb" opacity="0.12"/>
-<text x="655" y="260" font-size="9" fill="#2f6fdb" text-anchor="middle" font-weight="700" >SDA column</text>
-<rect x="705" y="266" width="20" height="116" rx="3" fill="#e0a800" opacity="0.12"/>
-<text x="715" y="260" font-size="9" fill="#e0a800" text-anchor="middle" font-weight="700" >SCL column</text>
 <rect x="190" y="194" width="120" height="70" rx="5" fill="#5a3fa0" stroke="#111" stroke-dasharray="none"/>
 <rect x="242.0" y="208" width="16" height="14" rx="2" fill="#b8b8c8"/>
 <text x="250.0" y="238" font-size="10" fill="#fff" text-anchor="middle" font-weight="700" >BME280</text>
@@ -454,30 +450,8 @@
 <path d="M 1015 324 L 1015 334 L 835 334 L 835 238" stroke="#1f1f1f" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 <circle cx="1015" cy="324" r="5" fill="#1f1f1f" stroke="#fff" stroke-width="1.5"/>
 <circle cx="835" cy="238" r="5" fill="#1f1f1f" stroke="#fff" stroke-width="1.5"/>
-<path d="M 265 348 L 265 360 L 715 360 L 715 348" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
-<path d="M 265 348 L 265 360 L 715 360 L 715 348" stroke="#e0a800" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="265" cy="348" r="5" fill="#e0a800" stroke="#fff" stroke-width="1.5"/>
-<circle cx="715" cy="348" r="5" fill="#e0a800" stroke="#fff" stroke-width="1.5"/>
-<path d="M 295 372 L 295 384 L 655 384 L 655 372" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
-<path d="M 295 372 L 295 384 L 655 384 L 655 372" stroke="#2f6fdb" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="295" cy="372" r="5" fill="#2f6fdb" stroke="#fff" stroke-width="1.5"/>
-<circle cx="655" cy="372" r="5" fill="#2f6fdb" stroke="#fff" stroke-width="1.5"/>
-<path d="M 475 348 L 475 360 L 715 360 L 715 348" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
-<path d="M 475 348 L 475 360 L 715 360 L 715 348" stroke="#e0a800" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="475" cy="348" r="5" fill="#e0a800" stroke="#fff" stroke-width="1.5"/>
-<circle cx="715" cy="348" r="5" fill="#e0a800" stroke="#fff" stroke-width="1.5"/>
-<path d="M 505 372 L 505 384 L 655 384 L 655 372" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
-<path d="M 505 372 L 505 384 L 655 384 L 655 372" stroke="#2f6fdb" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="505" cy="372" r="5" fill="#2f6fdb" stroke="#fff" stroke-width="1.5"/>
-<circle cx="655" cy="372" r="5" fill="#2f6fdb" stroke="#fff" stroke-width="1.5"/>
-<path d="M 925 348 L 925 360 L 715 360 L 715 348" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
-<path d="M 925 348 L 925 360 L 715 360 L 715 348" stroke="#e0a800" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="925" cy="348" r="5" fill="#e0a800" stroke="#fff" stroke-width="1.5"/>
-<circle cx="715" cy="348" r="5" fill="#e0a800" stroke="#fff" stroke-width="1.5"/>
-<path d="M 955 372 L 955 384 L 655 384 L 655 372" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
-<path d="M 955 372 L 955 384 L 655 384 L 655 372" stroke="#2f6fdb" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="955" cy="372" r="5" fill="#2f6fdb" stroke="#fff" stroke-width="1.5"/>
-<circle cx="655" cy="372" r="5" fill="#2f6fdb" stroke="#fff" stroke-width="1.5"/>
+<text x="140" y="100" font-size="12" fill="#1b1b1b" text-anchor="start" font-weight="400" >The module body sits over the rails, so each power wire runs from the module's column (row i or h) to the nearest free rail hole beside it.</text>
+<text x="140" y="118" font-size="12" fill="#1b1b1b" text-anchor="start" font-weight="400" >The rail is one wire end to end, so which hole does not matter. Red always ends on +, black always on −.</text>
 <rect x="250" y="590" width="760" height="250" rx="60" fill="#233333" stroke="#0d1717" stroke-width="2"/>
 <rect x="236" y="691.0" width="28" height="48" rx="7" fill="#c8c8c8" stroke="#777"/>
 <text x="228" y="719.0" font-size="11" fill="#1b1b1b" text-anchor="end" font-weight="400" >USB-C (leave unplugged)</text>
@@ -497,10 +471,8 @@
 <rect x="483" y="609" width="14" height="14" rx="2" fill="#050808" stroke="#4a5a5a"/>
 <rect x="483" y="631" width="14" height="14" rx="2" fill="#050808" stroke="#4a5a5a"/>
 <rect x="521" y="609" width="14" height="14" rx="2" fill="#050808" stroke="#4a5a5a"/>
-<rect x="521" y="631" width="14" height="14" rx="2" fill="#d7362e" stroke="#fff"/>
-<text x="528" y="662" font-size="9" fill="#fff" text-anchor="middle" font-weight="700" >P1.14</text>
-<rect x="559" y="609" width="14" height="14" rx="2" fill="#1f1f1f" stroke="#fff"/>
-<text x="566" y="662" font-size="9" fill="#fff" text-anchor="middle" font-weight="700" >P1.15</text>
+<rect x="521" y="631" width="14" height="14" rx="2" fill="#050808" stroke="#4a5a5a"/>
+<rect x="559" y="609" width="14" height="14" rx="2" fill="#050808" stroke="#4a5a5a"/>
 <rect x="559" y="631" width="14" height="14" rx="2" fill="#050808" stroke="#4a5a5a"/>
 <rect x="597" y="609" width="14" height="14" rx="2" fill="#050808" stroke="#4a5a5a"/>
 <rect x="597" y="631" width="14" height="14" rx="2" fill="#050808" stroke="#4a5a5a"/>
@@ -511,11 +483,9 @@
 <rect x="711" y="609" width="14" height="14" rx="2" fill="#050808" stroke="#4a5a5a"/>
 <rect x="711" y="631" width="14" height="14" rx="2" fill="#050808" stroke="#4a5a5a"/>
 <rect x="749" y="609" width="14" height="14" rx="2" fill="#050808" stroke="#4a5a5a"/>
-<rect x="749" y="631" width="14" height="14" rx="2" fill="#2f6fdb" stroke="#fff"/>
-<text x="756" y="662" font-size="9" fill="#fff" text-anchor="middle" font-weight="700" >P1.26</text>
+<rect x="749" y="631" width="14" height="14" rx="2" fill="#050808" stroke="#4a5a5a"/>
 <rect x="787" y="609" width="14" height="14" rx="2" fill="#050808" stroke="#4a5a5a"/>
-<rect x="787" y="631" width="14" height="14" rx="2" fill="#e0a800" stroke="#fff"/>
-<text x="794" y="662" font-size="9" fill="#fff" text-anchor="middle" font-weight="700" >P1.28</text>
+<rect x="787" y="631" width="14" height="14" rx="2" fill="#050808" stroke="#4a5a5a"/>
 <rect x="825" y="609" width="14" height="14" rx="2" fill="#050808" stroke="#4a5a5a"/>
 <rect x="825" y="631" width="14" height="14" rx="2" fill="#050808" stroke="#4a5a5a"/>
 <rect x="863" y="609" width="14" height="14" rx="2" fill="#050808" stroke="#4a5a5a"/>
@@ -566,23 +536,6 @@
 <rect x="939" y="807" width="14" height="14" rx="2" fill="#050808" stroke="#4a5a5a"/>
 <rect x="939" y="785" width="14" height="14" rx="2" fill="#050808" stroke="#4a5a5a"/>
 <text x="274" y="807" font-size="12" fill="#fff" text-anchor="start" font-weight="700" >P2</text>
-<path d="M 528 638 L 528 556 L 1102 556 L 1102 216 L 985 216" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
-<path d="M 528 638 L 528 556 L 1102 556 L 1102 216 L 985 216" stroke="#d7362e" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="528" cy="638" r="5" fill="#d7362e" stroke="#fff" stroke-width="1.5"/>
-<circle cx="985" cy="216" r="5" fill="#d7362e" stroke="#fff" stroke-width="1.5"/>
-<path d="M 566 616 L 566 546 L 1090 546 L 1090 238 L 955 238" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
-<path d="M 566 616 L 566 546 L 1090 546 L 1090 238 L 955 238" stroke="#1f1f1f" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="566" cy="616" r="5" fill="#1f1f1f" stroke="#fff" stroke-width="1.5"/>
-<circle cx="955" cy="238" r="5" fill="#1f1f1f" stroke="#fff" stroke-width="1.5"/>
-<path d="M 756 638 L 756 530 L 640 530 L 640 386 L 655 372" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
-<path d="M 756 638 L 756 530 L 640 530 L 640 386 L 655 372" stroke="#2f6fdb" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="756" cy="638" r="5" fill="#2f6fdb" stroke="#fff" stroke-width="1.5"/>
-<circle cx="655" cy="372" r="5" fill="#2f6fdb" stroke="#fff" stroke-width="1.5"/>
-<path d="M 794 638 L 794 544 L 730 544 L 730 386 L 715 372" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
-<path d="M 794 638 L 794 544 L 730 544 L 730 386 L 715 372" stroke="#e0a800" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="794" cy="638" r="5" fill="#e0a800" stroke="#fff" stroke-width="1.5"/>
-<circle cx="715" cy="372" r="5" fill="#e0a800" stroke="#fff" stroke-width="1.5"/>
-<text x="32" y="864" font-size="12" fill="#1b1b1b" text-anchor="start" font-weight="400" >Say it out loud while you check: red leaves 14 and arrives at +. Black leaves 15 and arrives at −. Blue leaves 26 and arrives at 17. Yellow leaves 28 and arrives at 19.</text>
 <rect x="1090" y="85" width="30" height="8" rx="4" fill="#d7362e"/>
 <text x="1130" y="96" font-size="12" fill="#1b1b1b" text-anchor="start" font-weight="400" >3.3 V</text>
 <rect x="1090" y="107" width="30" height="8" rx="4" fill="#1f1f1f"/>

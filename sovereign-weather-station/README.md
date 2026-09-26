@@ -16,6 +16,9 @@ Built for Build It, Break It, Own It. OurWorlds, AISES 2026.
 | [FACILITATOR.md](FACILITATOR.md) | running the room |
 | [CHANGES.md](CHANGES.md) | exactly what this image adds to BeagleBoard's |
 
+The diagrams in `images/` are drawn by `tools/draw-diagrams.py`. Change the
+script, not the SVGs.
+
 ## Flash it
 
 The card image is built by GitHub Actions from the official PocketBeagle 2

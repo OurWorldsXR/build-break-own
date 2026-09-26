@@ -6,7 +6,9 @@ Print one per table. Four wires. Every module gets all four.
 
 ![Where the four pins are on the board, header side up, USB-C to the right](images/board-pins.svg)
 
-![Bench layout on a half size breadboard](images/bench-layout.svg)
+![Bench layout on a half size breadboard, all wires in place](images/bench-layout.svg)
+
+The build in four pictures, one wire colour at a time: [step 1](images/bench-step1.svg), [step 2](images/bench-step2.svg), [step 3](images/bench-step3.svg), [step 4](images/bench-step4.svg).
 
 ```
 PocketBeagle 2, P1 header (the header on the USB-C side)
