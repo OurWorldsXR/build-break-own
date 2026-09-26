@@ -116,6 +116,43 @@ check('totals survive a restart', S2.n_total == 8, 'n=%d' % S2.n_total)
 check('min and max reload from the card', S2.tmin is not None and S2.tmax is not None)
 for _ in range(3): S.page = (S.page + 1) % 3; S.draw()
 check('all three screen pages render', True)
+n_before, pend_before = S.n_total, len(S.pending)
+S.peek(); S.draw()
+check('a live peek shows on screen but is not logged or counted',
+      S.n_total == n_before and len(S.pending) == pend_before and S.last is not None)
+
+print('\nfinding the bus')
+import glob as _glob
+class FakeSMBus:
+    """/dev/i2c-0 has the board's own devices, /dev/i2c-2 is the header."""
+    layout = {0: (0x20, 0x50), 2: (0x77, 0x3C), 3: ()}
+    def __init__(self, n):
+        if n not in self.layout: raise OSError('no such bus')
+        self.n = n
+    def read_byte_data(self, addr, reg):
+        if addr not in self.layout[self.n]: raise OSError('no device')
+        return 0x60
+    def close(self): pass
+def fake_glob(pat):
+    if pat.startswith('/dev/i2c-'): return ['/dev/i2c-0', '/dev/i2c-2', '/dev/i2c-3']
+    return []
+st.SMBus = FakeSMBus
+import glob; _orig = glob.glob; glob.glob = fake_glob
+st.header_bus = lambda: 2
+n, bus, addr = st.find_bus()
+check('sensor found on the header bus at 0x77', n == 2 and addr == 0x77, 'i2c-%d 0x%02X' % (n, addr))
+FakeSMBus.layout = {0: (0x20, 0x50), 2: (0x76,), 3: ()}
+n, bus, addr = st.find_bus()
+check('0x76 is found too', n == 2 and addr == 0x76)
+st.header_bus = lambda: None
+n, bus, addr = st.find_bus()
+check('without sysfs help it still finds the sensor by looking', n == 2 and addr == 0x76)
+FakeSMBus.layout = {0: (0x20, 0x50), 2: (), 3: ()}
+try:
+    st.find_bus(); check('no sensor anywhere exits with a message', False)
+except SystemExit:
+    check('no sensor anywhere exits with a message', True)
+glob.glob = _orig
 
 print('\n' + ('ALL PASS' if not FAILED else 'FAILURES: ' + ', '.join(FAILED)))
 sys.exit(1 if FAILED else 0)

@@ -17,8 +17,9 @@ apt-get install -y --no-install-recommends \
 echo "==> files -> /opt/sws"
 install -d /opt/sws/station /opt/sws/bin /data
 install -m 0644 "$HERE"/station/*.py /opt/sws/station/
-install -m 0755 "$HERE"/bin/sws-check "$HERE"/bin/sws-firstboot /opt/sws/bin/
+install -m 0755 "$HERE"/bin/sws-check "$HERE"/bin/sws-live "$HERE"/bin/sws-firstboot /opt/sws/bin/
 ln -sf /opt/sws/bin/sws-check /usr/local/bin/sws-check
+ln -sf /opt/sws/bin/sws-live  /usr/local/bin/sws-live
 
 echo "==> real time clock"
 # No network means no NTP. Without this, every boot starts in 1970 and the
@@ -35,5 +36,13 @@ echo "==> services"
 install -m 0644 "$HERE"/systemd/*.service /etc/systemd/system/
 systemctl daemon-reload
 systemctl enable sws-firstboot.service station.service
+
+echo "==> record what was built"
+install -d /opt/sws
+{ echo "built: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+  echo "base:  $(cat /etc/dogtag 2>/dev/null || echo unknown)"
+  [ -n "${SWS_GIT_REV:-}" ] && echo "rev:   $SWS_GIT_REV"
+  echo "sha256 of what was installed:"; (cd "$HERE" && sha256sum setup.sh station/*.py bin/*)
+} > /opt/sws/BUILD.txt
 
 echo "==> done. reboot, then run: sws-check"

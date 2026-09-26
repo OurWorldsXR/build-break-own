@@ -17,10 +17,17 @@ https://www.beagleboard.org/distros . Nothing in the base is removed or patched.
 | `/opt/sws/station/ssd1306.py` | screen driver, 5x7 font, no image library |
 | `/opt/sws/station/station.py` | the logger. reads every 5 min, writes hourly |
 | `/opt/sws/bin/sws-check` | the verification tool students run |
+| `/opt/sws/bin/sws-live` | prints a reading every two seconds. for the table |
+| `/opt/sws/BUILD.txt` | when it was built, from what, and the hash of every file above |
 | `/opt/sws/bin/sws-firstboot` | makes each cloned card a distinct machine |
 | `/etc/systemd/system/station.service` | starts the logger at boot |
 | `/etc/systemd/system/sws-firstboot.service` | runs once, ever |
 | `/data/` | the only directory that gets written to |
+
+## Boot partition
+`sysconf.txt`: `user_name=student`, `user_password=buildit`. The base image's
+own first-boot service creates that login and then blanks the file. Change the
+password at the workshop or edit the file before first boot.
 
 ## Services enabled
 `station.service`, `sws-firstboot.service`, `fake-hwclock.service`

@@ -5,11 +5,11 @@ Reads the air every five minutes. Keeps the readings in memory and writes them
 to the card once an hour, so the card lasts. Shows three pages on the screen.
 Has no network code in it at all, because there is no network.
 """
-import csv, os, signal, statistics, sys, time
+import csv, os, signal, sys, time
 from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from bme280 import BME280, CHIP_BME280
+from bme280 import BME280
 from ssd1306 import SSD1306
 from smbus2 import SMBus
 
@@ -17,29 +17,63 @@ READ_EVERY   = 300          # seconds between readings
 FLUSH_EVERY  = 3600         # seconds between writes to the card
 DATA_DIR     = "/data"
 CSV_PATH     = os.path.join(DATA_DIR, "readings.csv")
-STATE_PATH   = os.path.join(DATA_DIR, "station.json")
-SCREEN_HOLD  = 15           # seconds the screen stays lit
+PAGE_EVERY   = 5            # seconds each screen page is shown
+SHOW_EVERY   = 15           # seconds between live (unlogged) screen refreshes
+
+
+HEADER_BUS_NODE = "i2c@20020000"   # main_i2c2 on the AM62: P1.26 SDA, P1.28 SCL
+SENSOR_ADDRS    = (0x76, 0x77)
+
+
+def header_bus():
+    """Which /dev/i2c-N is the one wired to the P1 header?
+
+    The kernel numbers buses from the device tree aliases, so on the official
+    PocketBeagle 2 image main_i2c2 is /dev/i2c-2. That is a fact about one
+    image, not about the board, so look it up in sysfs rather than trusting it.
+    """
+    import glob, os, re
+    for path in sorted(glob.glob("/sys/bus/i2c/devices/i2c-*/of_node")):
+        try:
+            if os.path.basename(os.readlink(path)) == HEADER_BUS_NODE:
+                return int(re.search(r"i2c-(\d+)", path).group(1))
+        except OSError:
+            continue
+    return None
 
 
 def find_bus():
-    """PocketBeagle 2 does not have an i2c-1. Look at what is actually there."""
+    """PocketBeagle 2 does not have an i2c-1. Look at what is actually there.
+
+    Returns (bus number, open SMBus, sensor address). Tries the header bus
+    first, then everything else, and both addresses a BME280 can sit at.
+    """
     import glob, re
-    for path in sorted(glob.glob("/dev/i2c-*")):
-        n = int(re.search(r"(\d+)$", path).group(1))
+    nums = sorted(int(re.search(r"(\d+)$", p).group(1))
+                  for p in glob.glob("/dev/i2c-*"))
+    h = header_bus()
+    if h in nums:
+        nums.remove(h); nums.insert(0, h)
+    for n in nums:
         try:
             bus = SMBus(n)
-            bus.read_byte_data(0x76, 0xD0)
-            return n, bus
         except Exception:
-            try: bus.close()
-            except Exception: pass
+            continue
+        for addr in SENSOR_ADDRS:
+            try:
+                bus.read_byte_data(addr, 0xD0)
+                return n, bus, addr
+            except Exception:
+                pass
+        try: bus.close()
+        except Exception: pass
     raise SystemExit("no sensor found on any i2c bus. run sws-check.")
 
 
 class Station:
     def __init__(self):
-        self.bus_no, self.bus = find_bus()
-        self.sensor = BME280(self.bus)
+        self.bus_no, self.bus, self.addr = find_bus()
+        self.sensor = BME280(self.bus, self.addr)
         try:
             self.screen = SSD1306(self.bus)
         except Exception:
@@ -71,6 +105,10 @@ class Station:
         self.n_total += 1; self.tsum += t
         self.tmin = t if self.tmin is None else min(self.tmin, t)
         self.tmax = t if self.tmax is None else max(self.tmax, t)
+
+    def peek(self):
+        """A fresh reading for the screen only. Nothing is logged or counted."""
+        self.last = self.sensor.read()
 
     def flush(self):
         """One write an hour instead of 288 a day. The card lasts 24x longer."""
@@ -123,11 +161,19 @@ def main():
 
     st.take_reading(); st.draw()
     next_read = time.time() + READ_EVERY
+    next_show = time.time() + SHOW_EVERY
+    next_page = time.time() + PAGE_EVERY
     while running[0]:
         now = time.time()
         if now >= next_read:
-            st.take_reading(); st.draw()
+            st.take_reading(); st.draw()          # logged
             next_read = now + READ_EVERY
+        elif now >= next_show:
+            st.peek(); st.draw()                  # shown, not logged
+            next_show = now + SHOW_EVERY
+        if now >= next_page:
+            st.page = (st.page + 1) % 3; st.draw()
+            next_page = now + PAGE_EVERY
         if now - st.last_flush >= FLUSH_EVERY:
             st.flush()
         time.sleep(1)

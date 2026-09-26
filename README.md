@@ -83,7 +83,7 @@ About $60 a station, not counting the board.
 | [`index.html`](index.html) | The curriculum. Open it and it starts. `B` for the twenty minute build, `T` for the full tour |
 | [`worksheet.html`](worksheet.html) | Four pages to print. Pin diagram, ten steps, the trace, twelve questions |
 | [`teacher-guide.html`](teacher-guide.html) | Standards, three session lengths, six things you can mark. Also as [markdown](teacher-guide.md) |
-| [`sovereign-weather-station/`](sovereign-weather-station/) | The station image. Build script, drivers, verification tool, 21 tests |
+| [`sovereign-weather-station/`](sovereign-weather-station/) | The station image. Build script, drivers, verification tool, image pipeline, 30 tests |
 | [`IMAGES.md`](IMAGES.md) | Where to get photographs without stealing them |
 | [`images/`](images/) | The Schultz weaving, and the terms it is here under |
 
@@ -154,13 +154,13 @@ File an issue. There is a template.
 
 ## In progress
 
-The station image is in testing. The drivers pass 21 unit tests against a
-simulated bus, and hardware validation is underway. Pin numbers and the I2C bus
-number get confirmed on a real board and corrected here.
+The station image is in testing. The drivers pass 30 unit tests against a
+simulated bus. The pin numbers and I2C bus come from BeagleBoard's published
+header table and device tree; the rehearsal on real boards is still to come.
 
 There is no `.img` in this repo, on purpose. The build script is the artifact.
-The image is what the script produces on your machine, which is the only version
-you can audit.
+The image is what the script produces, on your machine or on the GitHub Actions
+runner, and either way you can read every step that made it.
 
 The student responses array is empty. Nothing in it will ever be invented.
 

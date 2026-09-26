@@ -1,0 +1,88 @@
+# Builds the Sovereign Weather Station card image from the official
+# PocketBeagle 2 Debian image, on every push that touches the station, and
+# publishes it as a GitHub release when a tag like station-v1 is pushed.
+#
+# The build script is the artifact. This just runs it somewhere with a network.
+name: station image
+
+on:
+  push:
+    branches: [main]
+    tags: ["station-v*"]
+    paths:
+      - "sovereign-weather-station/**"
+      - ".github/workflows/build-image.yml"
+  pull_request:
+    paths:
+      - "sovereign-weather-station/**"
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: Official PocketBeagle 2 image (.img.xz)
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install smbus2
+      - name: unit tests against a simulated bus
+        run: python3 sovereign-weather-station/test/test_station.py
+      - name: unit files parse
+        run: |
+          sudo systemd-analyze verify sovereign-weather-station/systemd/*.service || true
+          bash -n sovereign-weather-station/setup.sh
+          bash -n sovereign-weather-station/build-image.sh
+      - name: checksums match the tree
+        working-directory: sovereign-weather-station
+        run: sha256sum -c SHA256SUMS
+
+  image:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends qemu-user-static binfmt-support xz-utils
+          sudo update-binfmts --enable qemu-aarch64 || true
+      - name: build
+        env:
+          BASE_URL: ${{ github.event.inputs.base_url }}
+          SWS_USER: student
+          SWS_PASSWORD: ${{ secrets.SWS_PASSWORD || 'buildit' }}
+        run: |
+          sudo mkdir -p /mnt/work && sudo chown "$USER" /mnt/work
+          if [ -z "$BASE_URL" ]; then unset BASE_URL; fi
+          sudo -E env WORK=/mnt/work SWS_GIT_REV="$GITHUB_SHA" \
+            sovereign-weather-station/build-image.sh sovereign-weather-station-pocketbeagle2
+      - name: record
+        run: |
+          ls -la /mnt/work/*.img.xz*
+          cat /mnt/work/*.sha256sum
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sovereign-weather-station-pocketbeagle2
+          path: |
+            /mnt/work/sovereign-weather-station-pocketbeagle2.img.xz
+            /mnt/work/sovereign-weather-station-pocketbeagle2.img.xz.sha256sum
+          retention-days: 30
+      - name: release
+        if: startsWith(github.ref, 'refs/tags/station-v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            /mnt/work/sovereign-weather-station-pocketbeagle2.img.xz
+            /mnt/work/sovereign-weather-station-pocketbeagle2.img.xz.sha256sum
+          body: |
+            Sovereign Weather Station card image for PocketBeagle 2.
+            Flash with the BeagleBoard Imaging Utility or `xzcat ... | dd`.
+            Login: student / buildit (change it). Then `sws-check`.
+            Built from the official PocketBeagle 2 Debian image by
+            `sovereign-weather-station/build-image.sh`; every change is in CHANGES.md.

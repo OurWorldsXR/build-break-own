@@ -4,7 +4,7 @@
 Run this at the workshop. It answers four questions in plain language and
 prints nothing you have to take on trust.
 """
-import glob, re, subprocess, sys
+import glob, os, re, subprocess, sys
 try:
     from smbus2 import SMBus
 except ImportError:
@@ -12,27 +12,59 @@ except ImportError:
 
 OK, BAD, INFO = "  OK ", "  !! ", "     "
 
-print("\n1. which I2C buses exist on this board?")
-buses = sorted(int(re.search(r"(\d+)$", p).group(1))
-               for p in glob.glob("/dev/i2c-*"))
-print(INFO + "found: " + ", ".join("i2c-%d" % b for b in buses))
-print(INFO + "note there is no i2c-1 on a PocketBeagle 2.")
+# The AM62 has three I2C controllers the PocketBeagle 2 wires up. Only one of
+# them reaches the P1 header. The others belong to the board itself.
+KNOWN = {
+    "i2c@20000000": "the board's own bus: EEPROM at 0x50, ADC at 0x20. not yours",
+    "i2c@20020000": "main_i2c2. P1.26 is SDA, P1.28 is SCL. this is your bus",
+    "i2c@2b200000": "wakeup domain bus. not brought out to the headers",
+}
+HEADER = "i2c@20020000"
 
-print("\n2. what is answering on them?")
-found = {}
+
+def node_of(n):
+    try:
+        return os.path.basename(os.readlink("/sys/bus/i2c/devices/i2c-%d/of_node" % n))
+    except OSError:
+        return "?"
+
+
+print("\n1. which I2C buses exist on this board?")
+buses = sorted(int(re.search(r"(\d+)$", p).group(1)) for p in glob.glob("/dev/i2c-*"))
+header = None
 for b in buses:
-    try: bus = SMBus(b)
-    except Exception: continue
-    for addr in list(range(0x03, 0x78)):
+    node = node_of(b)
+    print(INFO + "i2c-%d  %-16s %s" % (b, node, KNOWN.get(node, "")))
+    if node == HEADER:
+        header = b
+print(INFO + "note there is no i2c-1 on a PocketBeagle 2. the numbers come from the")
+print(INFO + "device tree aliases, not from counting.")
+if header is None:
+    print(BAD + "could not find main_i2c2 in sysfs. is this the official PocketBeagle 2 image?")
+    scan = buses
+else:
+    scan = [header]
+
+print("\n2. what is answering on the header bus?")
+found = {}
+for b in scan:
+    try:
+        bus = SMBus(b)
+    except Exception as e:
+        print(BAD + "cannot open i2c-%d: %s" % (b, e)); continue
+    for addr in range(0x03, 0x78):
         try:
             bus.read_byte(addr); found.setdefault(b, []).append(addr)
         except Exception:
             pass
     bus.close()
 if not found:
-    print(BAD + "nothing answered anywhere. check your four wires, then recount the pins.")
+    print(BAD + "nothing answered. check your four wires, then recount the pins:")
+    print(INFO + "P1.14 -> 3V3   P1.15 -> GND   P1.26 -> SDA   P1.28 -> SCL")
 for b, addrs in found.items():
     print(INFO + "i2c-%d: %s" % (b, "  ".join("0x%02X" % a for a in addrs)))
+    if 0x3C in addrs:
+        print(OK + "0x3C is the screen.")
 
 print("\n3. is the sensor the chip you were sold?")
 hit = False
@@ -56,10 +88,13 @@ print("\n4. can this station reach the internet?")
 ifs = subprocess.run(["ip", "-o", "link"], capture_output=True, text=True).stdout
 names = [l.split(":")[1].strip() for l in ifs.strip().splitlines()]
 radio = [n for n in names if n.startswith(("wlan", "wlp", "ww"))]
+usb = [n for n in names if n.startswith("usb")]
 print(INFO + "network interfaces: " + ", ".join(names))
 if radio:
     print(BAD + "there is a radio here: " + ", ".join(radio))
 else:
     print(OK + "no wifi, no bluetooth, no cellular. there is no radio on this board.")
-    print(INFO + "the only way data leaves is you reading the screen and typing it in.")
+if usb:
+    print(INFO + "the usb cable to your laptop is a network link (192.168.7.2). unplug it")
+    print(INFO + "and the only way data leaves is you reading the screen and typing it in.")
 print()
