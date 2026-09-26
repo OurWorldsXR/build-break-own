@@ -10,7 +10,10 @@ of those is called out before the step where it can happen.
 
 You need: a PocketBeagle 2, a microSD card (8 GB or more), a USB-C **data**
 cable, a BME280 sensor board, a small OLED screen board, a breadboard, at
-least eight jumper wires, and a Mac. A DS3231 clock module is optional.
+least twelve jumper wires, and a Mac. A DS3231 clock module is optional.
+
+There is a printable version of every picture in this guide, one per A4
+sheet: [images/print/FIRST-BUILD-sheets.pdf](images/print/FIRST-BUILD-sheets.pdf).
 
 If a step's result doesn't match what's written, stop there and read the
 "if it doesn't" note under it. Don't go on to the next step hoping it sorts
@@ -38,8 +41,9 @@ so nothing ever has to be turned round in your head.
 2. **Top centre: the jumpers, sorted into four rows by colour.** Four red,
    four black, three blue, three yellow. Count them.
 3. **Top right: the card and the cable.** They stay there until Parts 3 and 4.
-4. **Middle: the breadboard**, long way across, with the red-lined rail at
-   the top edge.
+4. **Middle: the breadboard**, long way across. Modules will go along its
+   top edge; power will use the rail pair along its bottom edge, the one
+   nearest the board.
 5. **Bottom: the board**, socket strips facing up, **USB-C port on the
    left**. The strip nearest the breadboard is P1; find the tiny printed
    `1` at its left end, by the USB-C port.
@@ -121,9 +125,10 @@ first build leave the clock in the bag. Add it once everything else works.
 A plastic slab full of holes. Inside, the holes are joined into hidden wires
 in a fixed pattern, and that pattern is the whole trick:
 
-- The two long rows along each edge, marked **+** (red line) and **−** (blue
+- The long rows along each edge, marked **+** (red line) and **−** (blue
   line), are **rails**. Every hole in a rail is joined to every other hole in
-  that rail, end to end. We use one pair: + for 3.3 V, − for ground.
+  that rail, end to end. We use the pair along the **bottom** edge: + for
+  3.3 V, − for ground. The top pair ends up hidden under the modules.
 - The main area is split by a groove down the middle. On each side of the
   groove, the holes are in **columns of five**, and the five holes in one
   column are joined together. Column 3 above the groove is one wire; column 3
@@ -151,13 +156,15 @@ until the USB cable goes in at Part 4.
 
 (Picture: `images/bench-step1.svg`, above.)
 
-Push the sensor's pins into the top half of the breadboard so each pin sits
-in its own column, with the module's body overhanging the top edge of the
-breadboard. Press firmly and evenly; it takes more force than you expect,
-and the pins should go in most of the way. The diagram uses columns 2 to 5.
+Push the sensor's pins into the **top row (row j)** of the breadboard so
+each pin sits in its own column, with the module's body overhanging the top
+edge and covering the top rails. Press firmly and evenly; it takes more
+force than you expect, and the pins should go in most of the way. The
+pictures use columns 2 to 5.
 
-Push the screen in the same way a few columns to the right, columns 9 to 12
-in the diagram. Leave the clock out for now.
+Push the screen in the same way further right, columns 12 to 15 in the
+pictures, leaving a gap of a few columns between the two modules; that gap
+is where the shared columns go in step 2.3. Leave the clock out for now.
 
 **Check:** every pin is in a different column. No two pins of one module
 share a column. Both modules are in the same half (above the groove).
@@ -167,10 +174,10 @@ share a column. Both modules are in the same half (above the groove).
 ![Step 2: red and black wires from each module to the + and − rails](images/bench-step2.svg)
 
 Run a **red** jumper from the sensor's `VIN`/`VCC` column (any free hole in
-that column below the module) to any free hole in the **+ rail**. The module
-body sits over the rail, so use a rail hole just beside the module; the rail
-is one wire end to end, so it doesn't matter which. Run a **black** jumper
-from the sensor's `GND` column to the **− rail**.
+that column below the pin, rows h or i) down to any hole in the **bottom +
+rail**. The wire passes over the groove and the empty bottom half; it only
+connects at its two ends. Run a **black** jumper from the sensor's `GND`
+column to the **bottom − rail**.
 
 Do the same for the screen, using the pin order you wrote down in Part 1.
 
@@ -184,19 +191,20 @@ moment power arrives.
 
 ![Step 3: blue wires meet in column 17, yellow wires meet in column 19](images/bench-step3.svg)
 
-Choose two empty columns in the top half, away from the modules. The diagram
-uses 17 for SDA and 19 for SCL. Nothing plugs into them directly; they are
-meeting points.
+Choose two empty columns in the gap between the sensor and the screen. The
+pictures use **column 8 for SDA and column 10 for SCL**. Nothing plugs into
+them directly; they are meeting points. Use their top half (rows f to j).
 
-- **Blue** jumper from the sensor's `SDA` column to column 17.
-- **Blue** jumper from the screen's `SDA` column to column 17.
-- **Yellow** jumper from the sensor's `SCL` column to column 19.
-- **Yellow** jumper from the screen's `SCL` column to column 19.
+- **Blue** jumper from the sensor's `SDA` column to column 8.
+- **Blue** jumper from the screen's `SDA` column to column 8.
+- **Yellow** jumper from the sensor's `SCL` column to column 10.
+- **Yellow** jumper from the screen's `SCL` column to column 10.
 
-Column 17 now joins both SDA pins together. Column 19 joins both SCL pins.
+Column 8 now joins both SDA pins together. Column 10 joins both SCL pins.
 
-**Check:** two blue wires end in column 17 and nowhere else. Two yellow
-wires end in column 19. No blue wire touches a yellow column.
+**Check:** two blue wires end in column 8 and nowhere else. Two yellow
+wires end in column 10. No blue wire touches a yellow column. All four ends
+are above the groove.
 
 ### Step 2.4: the four wires to the board
 
@@ -206,19 +214,21 @@ Turn the board so P1 faces the breadboard (in the bench diagram that puts the
 USB-C port on the left and pin 1 at the left end of P1). Count columns from
 the pin 1 end.
 
-- **Red** jumper: P1.14 (column 7, inner row) to the **+ rail**.
-- **Black** jumper: P1.15 (column 8, outer row) to the **− rail**.
-- **Blue** jumper: P1.26 (column 13, inner row) to breadboard column 17.
-- **Yellow** jumper: P1.28 (column 14, inner row) to breadboard column 19.
+- **Red** jumper: P1.14 (column 7, inner row) to the **bottom + rail**.
+- **Black** jumper: P1.15 (column 8, outer row) to the **bottom − rail**.
+- **Blue** jumper: P1.26 (column 13, inner row) to breadboard column 8, a
+  free hole in its top half.
+- **Yellow** jumper: P1.28 (column 14, inner row) to breadboard column 10,
+  a free hole in its top half.
 
 Pushing a jumper into the board's sockets needs a firm straight push. If it
 won't go, you are between sockets; look again.
 
 **Check, slowly, out loud:** "Red leaves the board at fourteen, inner row,
 and arrives at plus. Black leaves at fifteen, outer row, and arrives at
-minus. Blue leaves at twenty-six and arrives at column seventeen, with the
-other blues. Yellow leaves at twenty-eight and arrives at column nineteen,
-with the other yellows." Count the columns on the board again from the pin 1
+minus. Blue leaves at twenty-six and arrives at column eight, with the
+other blues. Yellow leaves at twenty-eight and arrives at column ten, with
+the other yellows." Count the columns on the board again from the pin 1
 end. The nearest socket to the USB-C port in the outer row is P1.1, the 5 V
 pin; make sure nothing is in it.
 
@@ -341,7 +351,7 @@ the reference photo for every station after this one.
 
 | Grid shows | Meaning | Do |
 |---|---|---|
-| `3c` only | screen fine, sensor not answering | unplug USB. check the sensor's four wires, especially that its SDA and SCL wires reach columns 17 and 19 |
+| `3c` only | screen fine, sensor not answering | unplug USB. check the sensor's four wires, especially that its SDA and SCL wires reach columns 8 and 10 |
 | `76`/`77` only | sensor fine, screen not | unplug USB. check the screen's wires; recheck the pin order you wrote down |
 | nothing | neither answers | unplug USB. most likely SDA and SCL are swapped at the board end (P1.26 vs P1.28), or the red or black wire from the board isn't in the rail |
 | `command not found` | the tool isn't installed on this image | `sudo apt update && sudo apt install -y i2c-tools`, which needs the board to have internet: see Part 6, step 1 |
@@ -461,9 +471,10 @@ One line per five minutes, written to the card once an hour.
 
 Only after Parts 1 to 6 pass, and only after reading the battery warning in
 HARDWARE.md. With the USB unplugged: seat the DS3231 in the top half of the
-breadboard (columns 24 to 29 in the diagram), and run four jumpers exactly
-as for the other modules: `VCC` to +, `GND` to −, `SDA` to column 17, `SCL`
-to column 19. `32K` and `SQW` stay empty. Fit the coin cell **only if** you
+breadboard (columns 21 to 26 in the pictures; its body hangs a little past
+the end of the board, which is fine), and run four jumpers exactly as for
+the other modules: `VCC` to the bottom +, `GND` to the bottom −, `SDA` to
+column 8, `SCL` to column 10. `32K` and `SQW` stay empty. Fit the coin cell **only if** you
 have disabled the module's charging resistor or are using a rechargeable
 LIR2032.
 

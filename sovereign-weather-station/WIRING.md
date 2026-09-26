@@ -33,10 +33,10 @@ PocketBeagle 2, P1 header (the header on the USB-C side)
 ## On the breadboard
 
 1. Push each module into the top half of the breadboard so each pin sits in its own column of five holes.
-2. One power rail is 3.3 V. Run a jumper from **P1.14** to it.
-3. The other rail is ground. Run a jumper from **P1.15** to it.
-4. Pick two empty columns for SDA and SCL. Jumper **P1.26** to the SDA column and **P1.28** to the SCL column.
-5. For each module: a short jumper from its VCC column to the 3.3 V rail, GND column to the ground rail, SDA column to the SDA column, SCL column to the SCL column.
+2. Use the rail pair along the bottom edge (the modules cover the top pair). The + rail is 3.3 V: jumper from **P1.14** to it.
+3. The − rail is ground: jumper from **P1.15** to it.
+4. Pick two empty columns between the modules for SDA and SCL (8 and 10 in the pictures). Jumper **P1.26** to the SDA column and **P1.28** to the SCL column, top half.
+5. For each module: a jumper from its VCC column down to the + rail, GND column to the − rail, SDA column to the SDA column, SCL column to the SCL column.
 
 The header is two rows of pins. With the sockets facing you and the USB-C
 port on your right, P1 is the bottom strip; pins 1 and 2 are at the USB-C
