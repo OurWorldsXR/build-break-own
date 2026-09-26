@@ -2,7 +2,9 @@
 
 For someone who has never wired a board. Nothing here assumes you know what a
 breadboard is, which end of a jumper goes where, or what I2C means. It takes
-about two hours the first time, most of it waiting for downloads. Nothing you
+about two hours the first time, most of it waiting for downloads. Part 0
+puts everything on the table in a fixed layout; every picture after that
+assumes it. Nothing you
 do here can hurt you; a couple of mistakes can hurt the parts, and every one
 of those is called out before the step where it can happen.
 
@@ -16,6 +18,34 @@ itself out; each step is a check on the one before.
 
 ---
 
+## Part 0: tip out the bag (5 minutes)
+
+![Every part in the kit, drawn and named: PocketBeagle 2, breadboard, USB-C cable, microSD card, BME280 sensor, OLED screen, DS3231 clock, jumper wires in four colours](images/kit.svg)
+
+Match each thing on the table to the picture. There should be one board, one
+breadboard, one cable, one card, one sensor, one screen, a bundle of jumper
+wires, and possibly a clock module with a round battery holder. If something
+in the bag isn't in the picture, leave it in the bag.
+
+Now lay it out. This arrangement is the same one every later picture uses,
+so nothing ever has to be turned round in your head.
+
+![Table layout: modules top left with pins toward you, jumpers sorted by colour top centre, card and cable top right, breadboard across the middle with the red rail at the top, board along the bottom with sockets up and USB-C to the left](images/layout-mat.svg)
+
+1. **Top left: the sensor and the screen**, pins pointing toward you. Read
+   the letters beside the screen's four pins and write the order on a scrap
+   of paper. Leave the clock in the bag.
+2. **Top centre: the jumpers, sorted into four rows by colour.** Four red,
+   four black, three blue, three yellow. Count them.
+3. **Top right: the card and the cable.** They stay there until Parts 3 and 4.
+4. **Middle: the breadboard**, long way across, with the red-lined rail at
+   the top edge.
+5. **Bottom: the board**, socket strips facing up, **USB-C port on the
+   left**. The strip nearest the breadboard is P1; find the tiny printed
+   `1` at its left end, by the USB-C port.
+
+Laptop closed, to one side. Nothing is plugged in.
+
 ## Part 1: know the parts (10 minutes)
 
 ### The board
@@ -27,10 +57,12 @@ two long strips of black sockets along its long edges, called **P1** and
 **P2**. Each strip is two rows of 18 sockets, 36 in all, and each socket is
 a numbered **pin** that the computer can talk through.
 
-Hold the board so the **socket strips face up** and the **USB-C port is on
-your right**. You should be looking at the side with the microSD slot and the
-dog logo. In this position, P1 is the strip along the **bottom** edge and P2
-along the top. Tiny numbers are printed on the board at the ends of each
+The picture above shows the board with the **USB-C port on the right**, the
+way BeagleBoard's own photos show it. On your table it is turned the other
+way (USB-C left) so that P1 is nearest the breadboard; the numbers are the
+same, only the direction you count in flips. Either way you are looking at
+the side with the microSD slot and the dog logo, and P1 is the strip with the
+printed `1` and `2` at the USB-C end. Tiny numbers are printed on the board at the ends of each
 strip: **1 and 2 at the USB-C end, 35 and 36 at the far end**. On P1, odd
 numbered pins are in the outer row (nearest the edge), even numbered pins in
 the inner row.
@@ -44,7 +76,8 @@ Find these four sockets on P1, counting columns from the USB-C end:
 | **P1.26** | column 13, inner row | SDA, the data wire |
 | **P1.28** | column 14, inner row | SCL, the clock wire |
 
-Put a bit of tape or a pencil dot next to them if it helps. Note that
+On your table, with USB-C to the left, count those columns from the left end
+of P1. Put a bit of tape or a pencil dot next to them if it helps. Note that
 **P1.1, the socket in the corner nearest the USB-C port, is 5 volts**. It
 looks exactly like the others. We never use it, and a wire from it to any of
 our modules will destroy that module.

@@ -9,7 +9,7 @@ Built for Build It, Break It, Own It. OurWorlds, AISES 2026.
 | Read this | When |
 |---|---|
 | [HARDWARE.md](HARDWARE.md) | ordering parts, or checking what a kit should contain |
-| [FIRST-BUILD.md](FIRST-BUILD.md) | never wired a board before. start here, with the parts in front of you |
+| [FIRST-BUILD.md](FIRST-BUILD.md) | never wired a board before. start here: what is in the bag, how to lay it out, then every step with a picture |
 | [WIRING.md](WIRING.md) | at the table. print one per team |
 | [BENCH-TEST.md](BENCH-TEST.md) | first time with a board in hand. do this before anything else |
 | [FLASHING.md](FLASHING.md) | writing the image to twenty cards |

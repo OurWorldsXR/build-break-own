@@ -307,3 +307,204 @@ if __name__ == "__main__":
     draw_board()
     for i in (1, 2, 3, 4):
         draw_bench(i)
+
+
+# --------------------------------------------------------------------------
+# 4. kit.svg: every part in the bag, drawn so it can be matched by eye
+# --------------------------------------------------------------------------
+def part_board(s, x, y, scale=0.42, usb_left=False):
+    w, h = 880 * scale, 400 * scale
+    s.add(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{72*scale}" fill="{BOARD}" stroke="{BOARD_EDGE}" stroke-width="2"/>')
+    ux = x - 6 if usb_left else x + w - 6
+    s.add(f'<rect x="{ux}" y="{y+h/2-12}" width="12" height="24" rx="3" fill="#c8c8c8" stroke="#777"/>')
+    sdx = x + 48 if usb_left else x + w - 100
+    s.add(f'<rect x="{sdx}" y="{y+h/2-20}" width="52" height="40" rx="3" fill="#a7b3b3"/>')
+    pitch = 45 * scale; sq = 18 * scale
+    for row in (y + 30 * scale, y + 54 * scale, y + h - 30 * scale, y + h - 54 * scale):
+        for k in range(18):
+            px = (x + 62 * scale + k * pitch) if usb_left else (x + w - 62 * scale - k * pitch)
+            s.add(f'<rect x="{px-sq/2}" y="{row-sq/2}" width="{sq}" height="{sq}" fill="{SOCKET}" stroke="#4a5a5a" stroke-width="0.5"/>')
+    lab = ("P1", y + h - 42 * scale) if usb_left else ("P1", y + h - 42 * scale)
+    s.text(x + (12 if usb_left else w - 12), y + 46 * scale, "P2" if not usb_left else "P1", 8 * (scale / 0.36), "#fff", "start" if usb_left else "end", 700)
+    s.text(x + (12 if usb_left else w - 12), y + h - 36 * scale, "P1" if not usb_left else "P2", 8 * (scale / 0.36), "#fff", "start" if usb_left else "end", 700)
+    return w, h
+
+
+def part_bme(s, x, y, six=False):
+    w, h = 62, 74
+    s.add(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="5" fill="#5a3fa0" stroke="#111"/>')
+    s.add(f'<rect x="{x+w/2-7}" y="{y+16}" width="14" height="12" rx="2" fill="#b8b8c8"/>')
+    s.add(f'<circle cx="{x+w/2}" cy="{y+50}" r="6" fill="none" stroke="#c8c8d8"/>')
+    labs = ["VIN", "GND", "SCL", "SDA"] + (["CSB", "SDO"] if six else [])
+    step = w / (len(labs) + 1)
+    for i, l in enumerate(labs):
+        px = x + step * (i + 1)
+        s.add(f'<line x1="{px}" y1="{y+h}" x2="{px}" y2="{y+h+16}" stroke="#9a9a9a" stroke-width="2.5"/>')
+        s.text(px, y + h - 6, l, 6, "#fff", "middle")
+    return w, h + 16
+
+
+def part_oled(s, x, y):
+    w, h = 96, 78
+    s.add(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="5" fill="#2a2a44" stroke="#111"/>')
+    s.add(f'<rect x="{x+8}" y="{y+22}" width="{w-16}" height="46" rx="2" fill="#0b0b12" stroke="#555"/>')
+    labs = ["GND", "VCC", "SCL", "SDA"]
+    for i, l in enumerate(labs):
+        px = x + 16 + i * 21
+        s.add(f'<line x1="{px}" y1="{y}" x2="{px}" y2="{y-16}" stroke="#9a9a9a" stroke-width="2.5"/>')
+        s.text(px, y + 14, l, 6, "#fff", "middle")
+    return w, h
+
+
+def part_rtc(s, x, y):
+    w, h = 110, 72
+    s.add(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="5" fill="#3c5a7a" stroke="#111"/>')
+    s.add(f'<circle cx="{x+w-30}" cy="{y+h/2}" r="22" fill="#d9d9d9" stroke="#888"/>')
+    s.text(x + w - 30, y + h / 2 + 4, "cell", 8, "#555", "middle")
+    s.add(f'<rect x="{x+10}" y="{y+18}" width="26" height="20" rx="2" fill="#1a1a1a"/>')
+    labs = ["32K", "SQW", "SCL", "SDA", "VCC", "GND"]
+    for i, l in enumerate(labs):
+        px = x + 12 + i * 13
+        s.add(f'<line x1="{px}" y1="{y+h}" x2="{px}" y2="{y+h+16}" stroke="#9a9a9a" stroke-width="2.5"/>')
+        s.text(px, y + h - 5, l, 5.5, "#fff", "middle")
+    return w, h + 16
+
+
+def part_breadboard(s, x, y, scale=0.3):
+    w, h = 940 * scale, 300 * scale
+    s.add(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="4" fill="{BB}" stroke="{BB_EDGE}"/>')
+    s.add(f'<line x1="{x+8}" y1="{y+h*0.09}" x2="{x+w-8}" y2="{y+h*0.09}" stroke="{RED}" stroke-width="1.5"/>')
+    s.add(f'<line x1="{x+8}" y1="{y+h*0.2}" x2="{x+w-8}" y2="{y+h*0.2}" stroke="{BLU}" stroke-width="1.5"/>')
+    s.add(f'<line x1="{x+6}" y1="{y+h*0.62}" x2="{x+w-6}" y2="{y+h*0.62}" stroke="#ddd6c2" stroke-width="{10*scale}"/>')
+    d = 8 * scale
+    for c in range(30):
+        for fr in (0.12, 0.17, 0.3, 0.37, 0.44, 0.51, 0.58, 0.68, 0.75, 0.82, 0.89, 0.96):
+            s.add(f'<rect x="{x+w*0.04+c*(w*0.92/30)}" y="{y+h*fr-d/2}" width="{d}" height="{d}" fill="#3a3a3a"/>')
+    return w, h
+
+
+def part_jumper(s, x, y, color, length=110):
+    s.add(f'<rect x="{x}" y="{y-3}" width="9" height="6" rx="1" fill="#222"/>')
+    s.add(f'<rect x="{x+length-9}" y="{y-3}" width="9" height="6" rx="1" fill="#222"/>')
+    s.add(f'<line x1="{x+9}" y1="{y}" x2="{x+length-9}" y2="{y}" stroke="{color}" stroke-width="3.5" stroke-linecap="round"/>')
+    s.add(f'<line x1="{x-6}" y1="{y}" x2="{x}" y2="{y}" stroke="#bbb" stroke-width="1.5"/>')
+    s.add(f'<line x1="{x+length}" y1="{y}" x2="{x+length+6}" y2="{y}" stroke="#bbb" stroke-width="1.5"/>')
+
+
+def part_cable(s, x, y):
+    s.add(f'<rect x="{x}" y="{y-5}" width="22" height="10" rx="4" fill="#c8c8c8" stroke="#777"/>')
+    s.add(f'<path d="M {x+22} {y} C {x+60} {y-30} {x+90} {y+30} {x+130} {y}" stroke="#333" stroke-width="4" fill="none"/>')
+    s.add(f'<rect x="{x+130}" y="{y-5}" width="22" height="10" rx="4" fill="#c8c8c8" stroke="#777"/>')
+
+
+def part_card(s, x, y):
+    s.add(f'<path d="M {x} {y+6} L {x+6} {y} L {x+22} {y} L {x+22} {y+32} L {x} {y+32} Z" fill="#222" stroke="#555"/>')
+    s.text(x + 11, y + 21, "32", 7, "#fff", "middle")
+
+
+def draw_kit():
+    W, H = 1200, 720
+    s = SVG(W, H, "What is in the bag")
+    s.text(32, 64, "Tip everything out and match each thing to a picture. Read the tiny printed letters on the small boards; they are how you tell the pins apart.", 13, MUTE)
+    # board
+    part_board(s, 40, 100)
+    s.text(40, 290, "PocketBeagle 2", 14, INK, weight=700)
+    s.text(40, 308, "The computer. Two black strips of sockets along the long edges. Tiny numbers at the strip ends.", 11, MUTE)
+    s.text(40, 324, "Hold it by the edges. The side with the microSD slot and dog logo is the side you use.", 11, MUTE)
+    # breadboard
+    part_breadboard(s, 470, 110)
+    s.text(470, 220, "Breadboard", 14, INK, weight=700)
+    s.text(470, 238, "Plastic slab of holes. Red and blue lines mark the power rails.", 11, MUTE)
+    s.text(470, 254, "Half size (30 columns) or mini (17): either works.", 11, MUTE)
+    # cable, card
+    part_cable(s, 800, 130)
+    s.text(800, 165, "USB-C cable", 14, INK, weight=700)
+    s.text(800, 183, "Must be a data cable. A charge-only cable looks identical", 11, MUTE)
+    s.text(800, 199, "and is the most common reason nothing works.", 11, MUTE)
+    part_card(s, 1010, 230)
+    s.text(1050, 247, "microSD card", 14, INK, weight=700)
+    s.text(1050, 265, "8 GB or more. Holds the", 11, MUTE); s.text(1050, 281, "whole operating system.", 11, MUTE)
+    # modules row
+    part_bme(s, 60, 400)
+    s.text(150, 420, "BME280 sensor", 14, INK, weight=700)
+    s.text(150, 438, "Fingernail-sized, 4 pins (some have 6). Reads VIN or VCC,", 11, MUTE)
+    s.text(150, 454, "GND, SCL, SDA. Measures temperature, pressure, humidity.", 11, MUTE)
+    s.text(150, 470, "Pins point down here; on yours they may be on any edge.", 11, MUTE)
+    part_oled(s, 640, 416)
+    s.text(760, 420, "OLED screen (SSD1306)", 14, INK, weight=700)
+    s.text(760, 438, "Small dark glass on a board, 4 pins on the top edge. VCC, GND, SCL,", 11, MUTE)
+    s.text(760, 454, "SDA, but the order of the first two varies. Read yours and write it", 11, MUTE)
+    s.text(760, 470, "down now.", 11, MUTE)
+    part_rtc(s, 60, 540)
+    s.text(190, 560, "DS3231 clock (optional, in some kits)", 14, INK, weight=700)
+    s.text(190, 578, "Has a round coin cell holder. 6 pins on one edge. Uses SCL, SDA, VCC, GND only.", 11, MUTE)
+    s.text(190, 594, "Leave it in the bag on your first build. No battery until you read HARDWARE.md.", 11, MUTE)
+    # jumpers
+    yj = 560
+    for i, (c, t) in enumerate([(RED, "red: 3.3 V power"), (BLK, "black: ground"), (BLU, "blue: SDA, data"), (YEL, "yellow: SCL, clock")]):
+        part_jumper(s, 620, yj + i * 22, c)
+        s.text(750, yj + i * 22 + 4, t, 11, INK)
+    s.text(620, yj - 18, "Jumper wires, male to male (a pin at both ends)", 14, INK, weight=700)
+    s.text(900, yj + 4, "You need 12 (16 with the clock).", 11, MUTE)
+    s.text(900, yj + 26, "Colours are a convention: any four colours", 11, MUTE)
+    s.text(900, yj + 48, "work if you use them consistently. Pick", 11, MUTE)
+    s.text(900, yj + 70, "and write them down before you start.", 11, MUTE)
+    s.text(32, 690, "Not needed and not in the bag: a screen, keyboard or power supply for the board. Your laptop is all three, over the USB-C cable.", 12, INK)
+    s.save("kit.svg")
+
+
+# --------------------------------------------------------------------------
+# 5. layout-mat.svg: how to arrange the parts on the table before starting
+# --------------------------------------------------------------------------
+def draw_mat():
+    W, H = 1200, 820
+    s = SVG(W, H, "Lay it out like this before you start")
+    s.text(32, 64, "Same arrangement as every later picture, so you never have to turn anything round in your head. A4 sheet of paper for scale; USB cable stays in the bag until Part 4.", 13, MUTE)
+    mx, my, mw, mh = 80, 100, 1040, 660
+    s.add(f'<rect x="{mx}" y="{my}" width="{mw}" height="{mh}" rx="6" fill="#fbfbfb" stroke="#bbb" stroke-dasharray="8 6"/>')
+    s.text(mx + mw - 10, my + mh - 12, "your table, seen from above, you sit at the bottom", 11, MUTE, "end")
+
+    def zone(x, y, w, h, n, title):
+        s.add(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="10" fill="#f1f5fb" stroke="#8fa8c8" stroke-width="1.5"/>')
+        s.add(f'<circle cx="{x+18}" cy="{y+18}" r="13" fill="#2f6fdb"/>')
+        s.text(x + 18, y + 23, str(n), 13, "#fff", "middle", 700)
+        s.text(x + 40, y + 23, title, 13, INK, weight=700)
+
+    # 1 top-left: modules
+    zone(mx + 20, my + 20, 300, 230, 1, "Modules, pins toward you")
+    part_bme(s, mx + 50, my + 70); s.text(mx + 81, my + 180, "sensor", 11, MUTE, "middle")
+    part_oled(s, mx + 150, my + 86); s.text(mx + 198, my + 180, "screen", 11, MUTE, "middle")
+    s.text(mx + 40, my + 215, "Write the screen's pin order here: ____ ____ ____ ____", 11, INK)
+    s.text(mx + 40, my + 235, "Clock stays in the bag today.", 11, MUTE)
+    # 2 top-right: jumpers by colour
+    zone(mx + 340, my + 20, 400, 230, 2, "Jumpers sorted by colour, 4 rows")
+    for i, (c, n) in enumerate([(RED, "4 red"), (BLK, "4 black"), (BLU, "3 blue"), (YEL, "3 yellow")]):
+        for k in range(3):
+            part_jumper(s, mx + 380 + k * 100, my + 80 + i * 36, c, 80)
+        s.text(mx + 690, my + 84 + i * 36, n, 11, INK)
+    s.text(mx + 360, my + 236, "Count them now. Missing one at step 3 costs ten minutes of doubt.", 11, MUTE)
+    # 3 right: card and cable
+    zone(mx + 760, my + 20, 260, 230, 3, "Not yet")
+    part_card(s, mx + 800, my + 80); s.text(mx + 835, my + 100, "card: Part 3", 11, INK)
+    part_cable(s, mx + 800, my + 150); s.text(mx + 800, my + 190, "cable: Part 4, not before", 11, INK)
+    s.text(mx + 800, my + 215, "Laptop closed, to the side.", 11, MUTE)
+    # 4 middle: breadboard
+    zone(mx + 20, my + 270, 1000, 170, 4, "Breadboard, long way across, red rail at the top")
+    part_breadboard(s, mx + 200, my + 316, 0.38)
+    s.text(mx + 730, my + 350, "The + rail (red line) must be the one nearest", 11, INK)
+    s.text(mx + 730, my + 366, "the top of the table. If your board has rails on", 11, INK)
+    s.text(mx + 730, my + 382, "both edges, use the top pair and ignore the bottom.", 11, INK)
+    # 5 bottom: board
+    zone(mx + 20, my + 460, 1000, 180, 5, "PocketBeagle 2, sockets up, USB-C port to the LEFT")
+    part_board(s, mx + 260, my + 500, 0.36, usb_left=True)
+    s.text(mx + 660, my + 530, "Turned so its P1 strip is the one nearest the", 11, INK)
+    s.text(mx + 660, my + 546, "breadboard. Pin 1 is then at the left end of P1,", 11, INK)
+    s.text(mx + 660, my + 562, "the end by the USB-C port. Check the printed 1.", 11, INK)
+    s.text(mx + 660, my + 590, "A wire leaving P1 goes straight up into the", 11, MUTE)
+    s.text(mx + 660, my + 606, "breadboard. Nothing crosses anything.", 11, MUTE)
+    s.save("layout-mat.svg")
+
+
+if __name__ == "__main__":
+    draw_kit()
+    draw_mat()
