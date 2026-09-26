@@ -62,8 +62,10 @@ Wado.
 
 ## What students do
 
-Teams of four build a weather station: a sensor, a screen, a card, four wires.
-The build takes about thirty minutes. Then we ask the question that takes the
+Teams of four build a weather station: a sensor, a screen, a card, a
+breadboard, twelve wires. The build takes about twenty-five minutes. Without a
+breadboard (Kit B) it is four wires and one module at a time; the guide covers
+both. Then we ask the question that takes the
 rest of the session. Who actually controls what you just built?
 
 They trace it layer by layer: chip, firmware, operating system, application. At

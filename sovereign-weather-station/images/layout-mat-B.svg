@@ -1,0 +1,192 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1080" viewBox="0 0 1400 1080" font-family="Inter, Helvetica, Arial, sans-serif">
+<rect width="1400" height="1080" fill="#ffffff"/>
+<text x="40.0" y="52.0" font-size="26" fill="#1a1a1a" text-anchor="start" font-weight="700" >Kit B: lay it out like this before you start</text>
+<text x="40.0" y="80.0" font-size="15" fill="#666666" text-anchor="start" font-weight="400" >This is the arrangement every later picture uses. You sit at the bottom edge. Cable and card stay where they are until Parts 3 and 4.</text>
+<rect x="1168" y="26" width="192" height="34" rx="17" fill="#7a4fb0"/>
+<text x="1264.0" y="49.0" font-size="14" fill="#fff" text-anchor="middle" font-weight="700" >Kit B: direct</text>
+<rect x="60" y="105" width="1280" height="950" rx="10" fill="#fcfcfc" stroke="#c4c4c4" stroke-dasharray="10 7" stroke-width="2"/>
+<text x="1326.0" y="1043.0" font-size="12" fill="#666666" text-anchor="end" font-weight="400" >your table, seen from above</text>
+<rect x="75" y="120" width="430" height="300" rx="12" fill="#f3effa" stroke="#b9a6d6" stroke-width="1.5"/>
+<circle cx="99.0" cy="144.0" r="15" fill="#7a4fb0" stroke="#fff" stroke-width="2.5"/>
+<text x="99.0" y="149.5" font-size="15" fill="#fff" text-anchor="middle" font-weight="700" >1</text>
+<text x="123.0" y="150.0" font-size="15" fill="#1a1a1a" text-anchor="start" font-weight="700" >Modules, pins toward you</text>
+<rect x="120" y="185" width="78.2" height="102.0" rx="6.8" fill="#5b3f9e" stroke="#2a1d4d"/>
+<rect x="149.57999999999998" y="201.32" width="19.04" height="16.32" rx="1" fill="#c9c9d6" stroke="#8a8aa0"/>
+<circle cx="133.6" cy="198.6" r="5.44" fill="none" stroke="#c9c9d6"/>
+<text x="159.1" y="243.5" font-size="6.5" fill="#d9d2ee" text-anchor="middle" font-weight="400" >BME280</text>
+<line x1="133.192" y1="287.0" x2="133.192" y2="310.8" stroke="#8d8d8d" stroke-width="3"/>
+<text x="133.2" y="281.6" font-size="7" fill="#fff" text-anchor="middle" font-weight="700" >VIN</text>
+<line x1="150.464" y1="287.0" x2="150.464" y2="310.8" stroke="#8d8d8d" stroke-width="3"/>
+<text x="150.5" y="281.6" font-size="7" fill="#fff" text-anchor="middle" font-weight="700" >GND</text>
+<line x1="167.736" y1="287.0" x2="167.736" y2="310.8" stroke="#8d8d8d" stroke-width="3"/>
+<text x="167.7" y="281.6" font-size="7" fill="#fff" text-anchor="middle" font-weight="700" >SCL</text>
+<line x1="185.00799999999998" y1="287.0" x2="185.00799999999998" y2="310.8" stroke="#8d8d8d" stroke-width="3"/>
+<text x="185.0" y="281.6" font-size="7" fill="#fff" text-anchor="middle" font-weight="700" >SDA</text>
+<text x="159.1" y="331.0" font-size="12" fill="#666666" text-anchor="middle" font-weight="400" >sensor: first</text>
+<rect x="260" y="167" width="183.6" height="183.6" rx="8.16" fill="#1d2340" stroke="#0b0e1c"/>
+<rect x="270.2" y="194.2" width="163.2" height="88.39999999999999" rx="1" fill="#05050a" stroke="#3a3a55"/>
+<text x="351.8" y="245.9" font-size="9" fill="#8fd3ff" text-anchor="middle" font-weight="400" font-family="monospace">NOW  21.4 C</text>
+<circle cx="273.6" cy="180.6" r="5.44" fill="none" stroke="#9aa3c8"/>
+<circle cx="273.6" cy="337.0" r="5.44" fill="none" stroke="#9aa3c8"/>
+<circle cx="430.0" cy="180.6" r="5.44" fill="none" stroke="#9aa3c8"/>
+<circle cx="430.0" cy="337.0" r="5.44" fill="none" stroke="#9aa3c8"/>
+<line x1="325.892" y1="350.6" x2="325.892" y2="374.40000000000003" stroke="#8d8d8d" stroke-width="3"/>
+<text x="325.9" y="345.2" font-size="7" fill="#fff" text-anchor="middle" font-weight="700" >GND</text>
+<line x1="343.164" y1="350.6" x2="343.164" y2="374.40000000000003" stroke="#8d8d8d" stroke-width="3"/>
+<text x="343.2" y="345.2" font-size="7" fill="#fff" text-anchor="middle" font-weight="700" >VCC</text>
+<line x1="360.43600000000004" y1="350.6" x2="360.43600000000004" y2="374.40000000000003" stroke="#8d8d8d" stroke-width="3"/>
+<text x="360.4" y="345.2" font-size="7" fill="#fff" text-anchor="middle" font-weight="700" >SCL</text>
+<line x1="377.708" y1="350.6" x2="377.708" y2="374.40000000000003" stroke="#8d8d8d" stroke-width="3"/>
+<text x="377.7" y="345.2" font-size="7" fill="#fff" text-anchor="middle" font-weight="700" >SDA</text>
+<text x="351.8" y="394.6" font-size="12" fill="#666666" text-anchor="middle" font-weight="400" >screen: second</text>
+<text x="95.0" y="371.0" font-size="13" fill="#1a1a1a" text-anchor="start" font-weight="400" >Screen pin order, left to right:  ____  ____  ____  ____</text>
+<rect x="520" y="120" width="500" height="300" rx="12" fill="#f3effa" stroke="#b9a6d6" stroke-width="1.5"/>
+<circle cx="544.0" cy="144.0" r="15" fill="#7a4fb0" stroke="#fff" stroke-width="2.5"/>
+<text x="544.0" y="149.5" font-size="15" fill="#fff" text-anchor="middle" font-weight="700" >2</text>
+<text x="568.0" y="150.0" font-size="15" fill="#1a1a1a" text-anchor="start" font-weight="700" >Four wires, one of each colour</text>
+<rect x="580" y="191.5" width="14.96" height="7" rx="1.5" fill="#222"/>
+<line x1="574" y1="195" x2="580" y2="195" stroke="#aaa" stroke-width="1.5"/>
+<rect x="769.04" y="191" width="14.96" height="8" rx="1.5" fill="#333"/><rect x="778.0" y="193.5" width="4" height="3" fill="#999"/>
+<line x1="594.96" y1="195" x2="769.04" y2="195" stroke="#d62828" stroke-width="4" stroke-linecap="round"/>
+<text x="804.0" y="200.0" font-size="13" fill="#1a1a1a" text-anchor="start" font-weight="400" >3.3 V</text>
+<rect x="580" y="231.5" width="14.96" height="7" rx="1.5" fill="#222"/>
+<line x1="574" y1="235" x2="580" y2="235" stroke="#aaa" stroke-width="1.5"/>
+<rect x="769.04" y="231" width="14.96" height="8" rx="1.5" fill="#333"/><rect x="778.0" y="233.5" width="4" height="3" fill="#999"/>
+<line x1="594.96" y1="235" x2="769.04" y2="235" stroke="#1c1c1c" stroke-width="4" stroke-linecap="round"/>
+<text x="804.0" y="240.0" font-size="13" fill="#1a1a1a" text-anchor="start" font-weight="400" >ground</text>
+<rect x="580" y="271.5" width="14.96" height="7" rx="1.5" fill="#222"/>
+<line x1="574" y1="275" x2="580" y2="275" stroke="#aaa" stroke-width="1.5"/>
+<rect x="769.04" y="271" width="14.96" height="8" rx="1.5" fill="#333"/><rect x="778.0" y="273.5" width="4" height="3" fill="#999"/>
+<line x1="594.96" y1="275" x2="769.04" y2="275" stroke="#1d6fd8" stroke-width="4" stroke-linecap="round"/>
+<text x="804.0" y="280.0" font-size="13" fill="#1a1a1a" text-anchor="start" font-weight="400" >SDA (data)</text>
+<rect x="580" y="311.5" width="14.96" height="7" rx="1.5" fill="#222"/>
+<line x1="574" y1="315" x2="580" y2="315" stroke="#aaa" stroke-width="1.5"/>
+<rect x="769.04" y="311" width="14.96" height="8" rx="1.5" fill="#333"/><rect x="778.0" y="313.5" width="4" height="3" fill="#999"/>
+<line x1="594.96" y1="315" x2="769.04" y2="315" stroke="#f2b705" stroke-width="4" stroke-linecap="round"/>
+<text x="804.0" y="320.0" font-size="13" fill="#1a1a1a" text-anchor="start" font-weight="400" >SCL (clock)</text>
+<text x="540.0" y="393.0" font-size="12" fill="#666666" text-anchor="start" font-weight="400" >Pin end into the board's socket. Socket end over the module's pin.</text>
+<rect x="1035" y="120" width="290" height="300" rx="12" fill="#f3effa" stroke="#b9a6d6" stroke-width="1.5"/>
+<circle cx="1059.0" cy="144.0" r="15" fill="#7a4fb0" stroke="#fff" stroke-width="2.5"/>
+<text x="1059.0" y="149.5" font-size="15" fill="#fff" text-anchor="middle" font-weight="700" >3</text>
+<text x="1083.0" y="150.0" font-size="15" fill="#1a1a1a" text-anchor="start" font-weight="700" >Not yet</text>
+<path d="M 1070 188.6 L 1083.6 175 L 1144.8 175 L 1144.8 277.0 L 1070 277.0 Z" fill="#232323" stroke="#555"/>
+<text x="1107.4" y="229.0" font-size="8" fill="#eee" text-anchor="middle" font-weight="400" >32 GB</text>
+<text x="1158.8" y="201.0" font-size="13" fill="#1a1a1a" text-anchor="start" font-weight="400" >card: Part 3</text>
+<rect x="1060" y="315.48" width="40.8" height="19.04" rx="8.16" fill="#cfcfcf" stroke="#7a7a7a"/>
+<path d="M 1100.8 325 C 1130.72 257.0 1166.08 393.0 1196.0 325" stroke="#2b2b2b" stroke-width="5" fill="none"/>
+<rect x="1196.0" y="315.48" width="40.8" height="19.04" rx="8.16" fill="#cfcfcf" stroke="#7a7a7a"/>
+<text x="1060.0" y="361.0" font-size="13" fill="#1a1a1a" text-anchor="start" font-weight="400" >cable: Part 4, not before</text>
+<text x="1060.0" y="393.0" font-size="12" fill="#666666" text-anchor="start" font-weight="400" >Laptop closed, to one side.</text>
+<rect x="75" y="432" width="1250" height="608" rx="12" fill="#f3effa" stroke="#b9a6d6" stroke-width="1.5"/>
+<circle cx="99.0" cy="456.0" r="15" fill="#7a4fb0" stroke="#fff" stroke-width="2.5"/>
+<text x="99.0" y="461.5" font-size="15" fill="#fff" text-anchor="middle" font-weight="700" >4</text>
+<text x="123.0" y="462.0" font-size="15" fill="#1a1a1a" text-anchor="start" font-weight="700" >PocketBeagle 2, sockets up, USB-C port to the LEFT, the sensor 5 cm above it</text>
+<rect x="480" y="632" width="380.8" height="238.0" rx="40.8" fill="#26393a" stroke="#0f1b1b" stroke-width="2"/>
+<rect x="471.84" y="720.4" width="19.04" height="61.199999999999996" rx="9.52" fill="#cfcfcf" stroke="#7a7a7a"/>
+<rect x="514.0" y="700.0" width="95.2" height="102.0" rx="6.8" fill="#a9b6b6" stroke="#6d7a7a"/>
+<text x="561.6" y="755.0" font-size="10.0" fill="#1a2a2a" text-anchor="middle" font-weight="400" >microSD</text>
+<text x="724.8" y="755.0" font-size="10.0" fill="#b9c6c6" text-anchor="middle" font-weight="400" font-style="italic">beagleboard.org</text>
+<rect x="518.42" y="641.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="518.42" y="658.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="535.692" y="641.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="535.692" y="658.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="552.9639999999999" y="641.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="552.9639999999999" y="658.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="570.236" y="641.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="570.236" y="658.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="587.5079999999999" y="641.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="587.5079999999999" y="658.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="604.78" y="641.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="604.78" y="658.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="622.0519999999999" y="641.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="622.0519999999999" y="658.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="639.324" y="641.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="639.324" y="658.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="656.596" y="641.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="656.596" y="658.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="673.8679999999999" y="641.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="673.8679999999999" y="658.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="691.1399999999999" y="641.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="691.1399999999999" y="658.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="708.4119999999999" y="641.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="708.4119999999999" y="658.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="725.684" y="641.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="725.684" y="658.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="742.9559999999999" y="641.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="742.9559999999999" y="658.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="760.228" y="641.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="760.228" y="658.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="777.5" y="641.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="777.5" y="658.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="794.7719999999999" y="641.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="794.7719999999999" y="658.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="812.0439999999999" y="641.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="812.0439999999999" y="658.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<text x="503.3" y="660.3" font-size="11.0" fill="#fff" text-anchor="middle" font-weight="700" >P1</text>
+<text x="524.9" y="640.6" font-size="9.0" fill="#e6e6e6" text-anchor="middle" font-weight="400" >1</text>
+<text x="524.9" y="678.9" font-size="9.0" fill="#e6e6e6" text-anchor="middle" font-weight="400" >2</text>
+<text x="818.5" y="640.6" font-size="9.0" fill="#e6e6e6" text-anchor="middle" font-weight="400" >35</text>
+<text x="818.5" y="678.9" font-size="9.0" fill="#e6e6e6" text-anchor="middle" font-weight="400" >36</text>
+<rect x="518.42" y="847.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="518.42" y="830.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="535.692" y="847.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="535.692" y="830.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="552.9639999999999" y="847.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="552.9639999999999" y="830.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="570.236" y="847.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="570.236" y="830.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="587.5079999999999" y="847.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="587.5079999999999" y="830.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="604.78" y="847.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="604.78" y="830.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="622.0519999999999" y="847.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="622.0519999999999" y="830.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="639.324" y="847.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="639.324" y="830.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="656.596" y="847.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="656.596" y="830.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="673.8679999999999" y="847.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="673.8679999999999" y="830.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="691.1399999999999" y="847.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="691.1399999999999" y="830.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="708.4119999999999" y="847.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="708.4119999999999" y="830.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="725.684" y="847.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="725.684" y="830.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="742.9559999999999" y="847.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="742.9559999999999" y="830.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="760.228" y="847.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="760.228" y="830.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="777.5" y="847.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="777.5" y="830.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="794.7719999999999" y="847.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="794.7719999999999" y="830.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="812.0439999999999" y="847.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="812.0439999999999" y="830.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<text x="503.3" y="849.7" font-size="11.0" fill="#fff" text-anchor="middle" font-weight="700" >P2</text>
+<text x="524.9" y="868.4" font-size="9.0" fill="#e6e6e6" text-anchor="middle" font-weight="400" >1</text>
+<text x="524.9" y="830.1" font-size="9.0" fill="#e6e6e6" text-anchor="middle" font-weight="400" >2</text>
+<text x="818.5" y="868.4" font-size="9.0" fill="#e6e6e6" text-anchor="middle" font-weight="400" >35</text>
+<text x="818.5" y="830.1" font-size="9.0" fill="#e6e6e6" text-anchor="middle" font-weight="400" >36</text>
+<rect x="631.3" y="492" width="78.2" height="102.0" rx="6.8" fill="#5b3f9e" stroke="#2a1d4d"/>
+<rect x="660.88" y="508.32" width="19.04" height="16.32" rx="1" fill="#c9c9d6" stroke="#8a8aa0"/>
+<circle cx="644.9" cy="505.6" r="5.44" fill="none" stroke="#c9c9d6"/>
+<text x="670.4" y="550.5" font-size="6.5" fill="#d9d2ee" text-anchor="middle" font-weight="400" >BME280</text>
+<line x1="644.492" y1="594.0" x2="644.492" y2="617.8" stroke="#8d8d8d" stroke-width="3"/>
+<text x="644.5" y="588.6" font-size="7" fill="#fff" text-anchor="middle" font-weight="700" >VIN</text>
+<line x1="661.764" y1="594.0" x2="661.764" y2="617.8" stroke="#8d8d8d" stroke-width="3"/>
+<text x="661.8" y="588.6" font-size="7" fill="#fff" text-anchor="middle" font-weight="700" >GND</text>
+<line x1="679.036" y1="594.0" x2="679.036" y2="617.8" stroke="#8d8d8d" stroke-width="3"/>
+<text x="679.0" y="588.6" font-size="7" fill="#fff" text-anchor="middle" font-weight="700" >SCL</text>
+<line x1="696.308" y1="594.0" x2="696.308" y2="617.8" stroke="#8d8d8d" stroke-width="3"/>
+<text x="696.3" y="588.6" font-size="7" fill="#fff" text-anchor="middle" font-weight="700" >SDA</text>
+<text x="960.0" y="512.0" font-size="13" fill="#1a1a1a" text-anchor="start" font-weight="400" >P1 is the top strip, nearest the module.</text>
+<text x="960.0" y="532.0" font-size="13" fill="#1a1a1a" text-anchor="start" font-weight="400" >Pin 1 is at the left end of P1, by the</text>
+<text x="960.0" y="552.0" font-size="13" fill="#1a1a1a" text-anchor="start" font-weight="400" >USB-C port.</text>
+<text x="960.0" y="582.0" font-size="13" fill="#1a1a1a" text-anchor="start" font-weight="700" >Find the tiny printed 1 and 2 there</text>
+<text x="960.0" y="602.0" font-size="13" fill="#1a1a1a" text-anchor="start" font-weight="700" >before going on.</text>
+<text x="960.0" y="632.0" font-size="13" fill="#666666" text-anchor="start" font-weight="400" >The module just sits on the table above</text>
+<text x="960.0" y="652.0" font-size="13" fill="#666666" text-anchor="start" font-weight="400" >the board, pins toward it. Four short wires</text>
+<text x="960.0" y="672.0" font-size="13" fill="#666666" text-anchor="start" font-weight="400" >join them. Nothing to press into anything</text>
+<text x="960.0" y="692.0" font-size="13" fill="#666666" text-anchor="start" font-weight="400" >except the wire ends.</text>
+</svg>

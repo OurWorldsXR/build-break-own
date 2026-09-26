@@ -98,6 +98,12 @@
   .panel.bare::before{display:none}
   body.talk .step:not([data-talk]) .panel{opacity:.18;filter:saturate(.4)}
   body.build .step:not([data-build]) .panel{opacity:.15;filter:saturate(.3)}
+  body.kitB .kitA{display:none!important}
+  body:not(.kitB) .kitB{display:none!important}
+  .kitbadge{display:inline-block;font-size:.8rem;letter-spacing:.04em;padding:.15em .6em;border-radius:1em;
+    background:#1d6fd8;color:#fff;margin-right:.4em;vertical-align:middle}
+  body.kitB .kitbadge{background:#7a4fb0}
+  .panel img{display:block;width:100%;max-width:470px;border-radius:8px;margin:.7rem 0;background:#fff}
 
   .kick{font-size:clamp(.85rem,1vw,1rem);letter-spacing:.005em;color:var(--accent);
     margin-bottom:1.15rem;font-weight:500;font-style:italic}
@@ -1749,7 +1755,8 @@ const BEATS=[
 {s:'paths',talk:1,side:'left',html:`<div class="kick">start here</div>
   <h2>Two ways in</h2>
   <p>The same nine steps, read two different ways. Pick the one that matches why you opened this.</p>`},
-{s:'paths',side:'left',html:`<p><span class="a">Press B for the build path.</span> Twenty minutes, ten steps, hands only. Everything you need to get a station working and nothing you do not. This is the one to use at a workshop table.</p>
+{s:'paths',side:'left',html:`<p><span class="a">Press B for the build path.</span> Twenty minutes, hands only. Everything you need to get a station working and nothing you do not. This is the one to use at a workshop table.</p>
+  <p style="margin-top:1rem"><span class="a">Press K to pick your kit.</span> Kit A has a breadboard and runs the sensor and screen together. Kit B has no breadboard and wires one module straight to the board. The bag decides; the steps below change to match. You are on <span class="kitA">Kit A</span><span class="kitB">Kit B</span>.</p>
   <p style="margin-top:1rem"><a href="worksheet.html">Print the worksheet</a> first. Four pages, and it works with no power at all.</p>`},
 {s:'paths',side:'left',html:`<p><span class="a">Press T for the full tour.</span> Forty minutes. The same build, plus where the chips were made, what happened in France in 1918, and what a wax cylinder has to do with your weather data.</p>`},
 {s:'paths',side:'left',html:`<p>Or scroll straight through for all of it, about an hour. The route only changes what is emphasised. Nothing is hidden, and the worksheet is the same either way.</p>
@@ -1771,12 +1778,15 @@ const BEATS=[
 
 {s:'kit',talk:1,build:1,side:'left',html:`<div class="kick">step one</div>
   <h2>Tip the bag out</h2>
-  <p>Six kinds of thing. Lay them on the table in front of you and leave them there. You will use every one.</p>`},
-{s:'kit',side:'left',html:`<p>The <span class="a">computer</span> is the green board. It is the size of a stick of gum. It runs Linux, the same operating system that runs most of the internet.</p>`},
+  <p><span class="kitbadge"><span class="kitA">Kit A</span><span class="kitB">Kit B</span></span> Lay everything on the table in front of you and leave it there. Board at the bottom with its USB-C port on the <span class="a">left</span>; modules above it, pins toward you; wires sorted by colour.</p>
+  <img class="kitA" src="sovereign-weather-station/images/kit-A.svg" alt="Kit A: board, mini breadboard, cable, card, sensor, screen, clock, twelve wires">
+  <img class="kitB" src="sovereign-weather-station/images/kit-B.svg" alt="Kit B: board, cable, card, sensor, screen, four wires">`},
+{s:'kit',side:'left',html:`<p>The <span class="a">computer</span> is the black board with two strips of sockets along its long edges. It is the size of a stick of gum. It runs Linux, the same operating system that runs most of the internet.</p>`},
 {s:'kit',side:'left',html:`<p>The <span class="a">card</span> is smaller than your fingernail. Do not lose it. Everything the computer knows lives on it.</p>`},
-{s:'kit',side:'left',html:`<p>The <span class="a">sensor</span> is the small board with four legs. It reads the air.</p>`},
-{s:'kit',side:'left',html:`<p>The <span class="a">screen</span> is the little glass rectangle. Four legs as well. It shows you what the sensor found.</p>`},
-{s:'kit',talk:1,build:1,side:'left',html:`<p>Then a <span class="a">button</span> and <span class="a">eight wires</span>. Count the wires now. If you have seven, get another one before you start.</p>`},
+{s:'kit',side:'left',html:`<p>The <span class="a">sensor</span> is the small purple board with four legs. It reads the air. The legs are labelled in tiny letters: VIN, GND, SCL, SDA.</p>`},
+{s:'kit',side:'left',html:`<p>The <span class="a">screen</span> is the little glass rectangle. Four legs as well, and the order of the first two, VCC and GND, differs between makers. <span class="a">Read yours and write it down now.</span> Backwards is the one mistake that kills a part.</p>`},
+{s:'kit',talk:1,build:1,side:'left',html:`<p class="kitA">Then the <span class="a">breadboard</span>, a slab of 170 holes, and <span class="a">twelve wires</span> with a pin at both ends. Count the wires now. If you have eleven, get another one before you start.</p>
+  <p class="kitB">Then <span class="a">four wires</span> with a pin at one end and a socket at the other. Pin end goes into the board; socket end slides over a module leg. No breadboard in this kit, so the sensor and the screen take turns.</p>`},
 
 {s:'why',talk:1,side:'left',html:`<div class="kick">before you start</div>
   <h2>Why this computer</h2>
@@ -1797,39 +1807,44 @@ const BEATS=[
 
 {s:'card',talk:1,build:1,side:'left',html:`<div class="kick">step two</div>
   <h2>The card goes in first</h2>
-  <p>Before power. Before wires. Find the slot on the short edge, opposite the USB socket.</p>`},
-{s:'card',side:'left',html:`<p>Metal contacts face down, towards the board. Push until it stops. It should sit almost flush. If it sticks out, it is the wrong way round.</p>`},
+  <p>Before power. Before wires. The slot is on the socket side of the board, next to the USB-C end, under the big metal plate.</p>`},
+{s:'card',side:'left',html:`<p>Label facing out, away from the board. Push until it clicks. It should sit almost flush. If it sticks out, it is the wrong way round.</p>`},
 {s:'card',talk:1,build:1,side:'left',html:`<p>You are holding the whole computer in your hand. Move this card to another board and your station moves with it.</p>`},
 
 {s:'power',talk:1,build:1,side:'left',html:`<div class="kick">step three</div>
   <h2>Now plug it in</h2>
   <p>USB-C. The same connector as a phone charger. It only fits one way, so you cannot get this wrong.</p>`},
-{s:'power',side:'left',html:`<p>Four small lights come on near the middle of the board. One flickers unevenly. That is the card being read. Flickering is good.</p>`},
-{s:'power',talk:1,build:1,side:'left',html:`<p>Then wait. <span class="a">Nothing visible happens for about thirty seconds.</span> The computer is starting up. This is the moment most people decide it is broken. It is not.</p>`},
+{s:'power',side:'left',html:`<p>Small lights come on. They are on the underside, the side without sockets, so you see a glow at the USB-C end rather than the lights themselves. One flickers unevenly. That is the card being read. Flickering is good.</p>`},
+{s:'power',talk:1,build:1,side:'left',html:`<p>Then wait. <span class="a">Nothing visible happens for about forty seconds.</span> The computer is starting up. This is the moment most people decide it is broken. It is not. <span class="kitA">Then the screen lights, on its own.</span></p>`},
 
 {s:'counting',talk:1,build:1,side:'left',html:`<div class="kick">step four</div>
-  <h2>How to find one pin out of seventy-two</h2>
-  <p>Both long edges are lined with metal pins. They look identical. They are not. There is a system.</p>`},
-{s:'counting',side:'left',html:`<p>Pin 1 sits at the end nearest the USB socket. From there the numbers zig-zag: odd numbers along one row, evens along the other.</p>`},
-{s:'counting',side:'left',html:`<p>To find <span class="a">pin 14</span>, count pairs along the bottom row: 2, 4, 6, 8, 10, 12, 14. Seven pairs.</p>`},
-{s:'counting',side:'left',html:`<p><span class="a">Pin 15</span> is the one diagonally up from it, on the odd row.</p>`},
+  <h2>How to find one socket out of seventy-two</h2>
+  <p>Both long edges are lined with sockets. They look identical. They are not. There is a system.</p>
+  <img src="sovereign-weather-station/images/board-pins.svg" alt="The PocketBeagle 2 with P1.14, P1.15, P1.26 and P1.28 marked, and every P1 socket numbered">`},
+{s:'counting',side:'left',html:`<p>Hold the board sockets up. The strip with a tiny printed <span class="a">1</span> and <span class="a">2</span> at the USB-C end is P1. From there the numbers zig-zag: odd numbers along the outer row, evens along the inner row.</p>`},
+{s:'counting',side:'left',html:`<p>To find <span class="a">pin 14</span>, count sockets along the inner row from the USB-C end: 2, 4, 6, 8, 10, 12, 14. Seven sockets.</p>`},
+{s:'counting',side:'left',html:`<p><span class="a">Pin 15</span> is the next one along on the outer row, diagonal from 14. <span class="a">26</span> and <span class="a">28</span> are the 13th and 14th along the inner row. And the corner socket by the USB-C port, outer row, is pin 1: five volts. Nothing ever goes in it.</p>`},
 {s:'counting',talk:1,build:1,side:'left',html:`<p>Count out loud. Count twice. Almost every mistake in this build is a miscounted pin.</p>`},
 
 {s:'wires',talk:1,build:1,side:'left',html:`<div class="kick">step five</div>
   <h2>Four wires, one at a time</h2>
-  <p>Unplug the board first. Never move a wire while it has power. That is the one action that can permanently damage it.</p>`},
-{s:'wires',side:'left',html:`<p>First wire: <span class="a">pin 14 to the 3V3 pad</span> on the sensor. This is the power line. It carries 3.3 volts. The board does not survive 5.</p>`},
-{s:'wires',side:'left',html:`<p>Second: <span class="a">pin 15 to GND</span>. Ground is the shared floor both devices measure everything against.</p>`},
-{s:'wires',side:'left',html:`<p>Third: <span class="a">pin 26 to SDA</span>. This one carries the actual readings.</p>`},
-{s:'wires',side:'left',html:`<p>Fourth: <span class="a">pin 28 to SCL</span>. A clock, ticking, so both ends agree on when to listen.</p>`},
-{s:'wires',talk:1,build:1,side:'left',html:`<p>The screen goes to the same four pins. Two devices, one set of wires. That is the whole trick of how this works.</p>`},
+  <p>Unplug the board first. Never move a wire while it has power. That is the one action that can permanently damage it.</p>
+  <img class="kitA" src="sovereign-weather-station/images/bench-A-step4.svg" alt="Kit A: sensor and screen in the mini breadboard, four shared columns, four wires from the board">
+  <img class="kitB" src="sovereign-weather-station/images/bench-B-step1.svg" alt="Kit B: four wires from the board straight to the sensor">`},
+{s:'wires',side:'left',html:`<p class="kitA">Seat the sensor in the breadboard's top row, columns 1 to 4, and the screen in columns 9 to 12. Columns 14 to 17 stay empty: they become the four shared wires. First wire: <span class="a">pin 14 to column 14</span>. That is the power line. It carries 3.3 volts. The modules do not survive 5.</p>
+  <p class="kitB">First wire: <span class="a">pin 14 to VIN</span> on the sensor. Pin end in the board, socket end over the leg. This is the power line. It carries 3.3 volts. The sensor does not survive 5.</p>`},
+{s:'wires',side:'left',html:`<p>Second: <span class="a">pin 15 to <span class="kitA">column 15</span><span class="kitB">GND</span></span>. Ground is the shared floor everything is measured against.</p>`},
+{s:'wires',side:'left',html:`<p>Third: <span class="a">pin 26 to <span class="kitA">column 16</span><span class="kitB">SDA</span></span>. This one carries the actual readings.</p>`},
+{s:'wires',side:'left',html:`<p>Fourth: <span class="a">pin 28 to <span class="kitA">column 17</span><span class="kitB">SCL</span></span>. A clock, ticking, so both ends agree on when to listen.</p>`},
+{s:'wires',talk:1,build:1,side:'left',html:`<p class="kitA">Now the sensor's four legs to the same four columns, and the screen's four legs too, in the order printed on your screen. Red ends at VIN or VCC, black at GND, every time. Two devices, one set of wires. That is the whole trick of how this works.</p>
+  <p class="kitB">The screen would go to the same four pins, and it will, after the sensor has answered: unplug, move the four wires across, plug in again. Two devices, one set of wires, taking turns. With a breadboard they would share.</p>`},
 
 {s:'bus',talk:1,build:1,side:'left',html:`<div class="kick">step six</div>
   <h2>Ask what is out there</h2>
-  <p>Plug the power back in. Wait for the boot. Run one command: <code>i2cdetect</code>. It calls out across the wires and prints whatever answers.</p>`},
-{s:'bus',side:'left',html:`<p>Almost everything comes back as a dash, meaning nothing there. Then <span class="a">76</span> appears. That is your sensor. It just told you its address.</p>`},
-{s:'bus',side:'left',html:`<p>And <span class="a">3c</span>. That is your screen.</p>`},
-{s:'bus',talk:1,build:1,side:'left',html:`<p>Two numbers in a field of dashes. Your circuit is correct. You proved it instead of hoping.</p>`},
+  <p>Plug the power back in. Wait for the boot. On the laptop, <code>ssh student@192.168.7.2</code> (Mac: <code>192.168.6.2</code>), password <code>buildit</code>. Then one command: <code>sws-check</code>. It calls out across the wires and tells you in plain words what answered. The long way is <code>sudo i2cdetect -y -r 2</code>, a grid of dashes.</p>`},
+{s:'bus',side:'left',html:`<p>In the grid almost everything comes back as a dash, meaning nothing there. Then <span class="a">76</span> appears. That is your sensor. It just told you its address.</p>`},
+{s:'bus',side:'left',html:`<p><span class="kitA">And <span class="a">3c</span>. That is your screen.</span><span class="kitB">The screen's <span class="a">3c</span> comes when it takes its turn on the wires.</span></p>`},
+{s:'bus',talk:1,build:1,side:'left',html:`<p>Numbers in a field of dashes. Your circuit is correct. You proved it instead of hoping. Then <code>sws-live</code>, breathe on the sensor, and watch the humidity climb.</p>`},
 
 {s:'q1',talk:1,side:'full',html:`<h2>Question 1</h2><p>Which pin carries 3.3 volts, and what happens if you connect 5?</p>`},
 {s:'q1',side:'full',html:``},
@@ -2043,6 +2058,9 @@ const art=document.getElementById('art'),bar=document.getElementById('bar'),
       clockEl=document.getElementById('clock');
 const _b=document.getElementById('build');if(_b)_b.textContent=BUILD;
 let talkMode=false, buildMode=false,talkStart=0,TALK_MINUTES=20;   /* EDIT HERE: your slot length */
+try{if(localStorage.getItem('bbo-kit')==='B')document.body.classList.add('kitB')}catch(_){}
+if(/[?&]kit=B/i.test(location.search))document.body.classList.add('kitB');
+if(/[?&]kit=A/i.test(location.search))document.body.classList.remove('kitB');
 
 const SCENES=[];
 BEATS.forEach(b=>{const last=SCENES[SCENES.length-1];
@@ -2136,6 +2154,9 @@ addEventListener('keydown',e=>{
     clockEl.classList.toggle('on',talkMode);
     document.body.classList.toggle('talk',talkMode);e.preventDefault();return}
   if(k==='r'&&talkMode){talkStart=Date.now();e.preventDefault();return}
+  if(k==='k'||k==='K'){const kb=document.body.classList.toggle('kitB');
+    try{localStorage.setItem('bbo-kit',kb?'B':'A')}catch(_){}
+    e.preventDefault();return}
   if(k==='g'||k==='G'){idxEl.classList.toggle('on');e.preventDefault();return}
   if(k==='Escape'){idxEl.classList.remove('on');return}
   if(k===' '||k==='ArrowRight'||k==='PageDown'){stepTo(1);e.preventDefault()}

@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="990" viewBox="0 0 1400 990" font-family="Inter, Helvetica, Arial, sans-serif">
+<rect width="1400" height="990" fill="#ffffff"/>
+<text x="40.0" y="52.0" font-size="26" fill="#1a1a1a" text-anchor="start" font-weight="700" >Kit B, step 1 of 2: the sensor, wired straight to the board</text>
+<text x="40.0" y="80.0" font-size="15" fill="#666666" text-anchor="start" font-weight="400" >Four male-to-female wires, pin end in the board, socket end on the module. Red P1.14 to VIN, black P1.15 to GND, blue P1.26 to SDA, yellow P1.28 to SCL. USB cable still in the bag.</text>
+<rect x="1168" y="26" width="192" height="34" rx="17" fill="#7a4fb0"/>
+<text x="1264.0" y="49.0" font-size="14" fill="#fff" text-anchor="middle" font-weight="700" >Kit B: direct</text>
+<rect x="420" y="540" width="380.8" height="238.0" rx="40.8" fill="#26393a" stroke="#0f1b1b" stroke-width="2"/>
+<rect x="411.84" y="628.4" width="19.04" height="61.199999999999996" rx="9.52" fill="#cfcfcf" stroke="#7a7a7a"/>
+<rect x="454.0" y="608.0" width="95.2" height="102.0" rx="6.8" fill="#a9b6b6" stroke="#6d7a7a"/>
+<text x="501.6" y="663.0" font-size="10.0" fill="#1a2a2a" text-anchor="middle" font-weight="400" >microSD</text>
+<text x="664.8" y="663.0" font-size="10.0" fill="#b9c6c6" text-anchor="middle" font-weight="400" font-style="italic">beagleboard.org</text>
+<rect x="458.42" y="549.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="458.42" y="566.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="475.692" y="549.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="475.692" y="566.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="492.964" y="549.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="492.964" y="566.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="510.23600000000005" y="549.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="510.23600000000005" y="566.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="527.5079999999999" y="549.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="527.5079999999999" y="566.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="544.78" y="549.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="544.78" y="566.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="562.0519999999999" y="549.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="562.0519999999999" y="566.452" width="12.92" height="12.92" rx="1.5" fill="#d62828" stroke="#fff" stroke-width="1.8"/>
+<rect x="579.324" y="549.18" width="12.92" height="12.92" rx="1.5" fill="#1c1c1c" stroke="#fff" stroke-width="1.8"/>
+<rect x="579.324" y="566.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="596.596" y="549.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="596.596" y="566.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="613.8679999999999" y="549.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="613.8679999999999" y="566.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="631.1399999999999" y="549.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="631.1399999999999" y="566.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="648.4119999999999" y="549.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="648.4119999999999" y="566.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="665.684" y="549.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="665.684" y="566.452" width="12.92" height="12.92" rx="1.5" fill="#1d6fd8" stroke="#fff" stroke-width="1.8"/>
+<rect x="682.9559999999999" y="549.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="682.9559999999999" y="566.452" width="12.92" height="12.92" rx="1.5" fill="#f2b705" stroke="#fff" stroke-width="1.8"/>
+<rect x="700.228" y="549.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="700.228" y="566.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="717.5" y="549.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="717.5" y="566.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="734.7719999999999" y="549.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="734.7719999999999" y="566.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="752.0439999999999" y="549.18" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="752.0439999999999" y="566.452" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<text x="443.3" y="568.3" font-size="11.0" fill="#fff" text-anchor="middle" font-weight="700" >P1</text>
+<text x="464.9" y="548.6" font-size="9.0" fill="#e6e6e6" text-anchor="middle" font-weight="400" >1</text>
+<text x="464.9" y="586.9" font-size="9.0" fill="#e6e6e6" text-anchor="middle" font-weight="400" >2</text>
+<text x="758.5" y="548.6" font-size="9.0" fill="#e6e6e6" text-anchor="middle" font-weight="400" >35</text>
+<text x="758.5" y="586.9" font-size="9.0" fill="#e6e6e6" text-anchor="middle" font-weight="400" >36</text>
+<rect x="458.42" y="755.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="458.42" y="738.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="475.692" y="755.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="475.692" y="738.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="492.964" y="755.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="492.964" y="738.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="510.23600000000005" y="755.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="510.23600000000005" y="738.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="527.5079999999999" y="755.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="527.5079999999999" y="738.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="544.78" y="755.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="544.78" y="738.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="562.0519999999999" y="755.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="562.0519999999999" y="738.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="579.324" y="755.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="579.324" y="738.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="596.596" y="755.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="596.596" y="738.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="613.8679999999999" y="755.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="613.8679999999999" y="738.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="631.1399999999999" y="755.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="631.1399999999999" y="738.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="648.4119999999999" y="755.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="648.4119999999999" y="738.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="665.684" y="755.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="665.684" y="738.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="682.9559999999999" y="755.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="682.9559999999999" y="738.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="700.228" y="755.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="700.228" y="738.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="717.5" y="755.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="717.5" y="738.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="734.7719999999999" y="755.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="734.7719999999999" y="738.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="752.0439999999999" y="755.9" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<rect x="752.0439999999999" y="738.6279999999999" width="12.92" height="12.92" rx="1.5" fill="#070b0b" stroke="#5a6c6c" stroke-width="0.8"/>
+<text x="443.3" y="757.7" font-size="11.0" fill="#fff" text-anchor="middle" font-weight="700" >P2</text>
+<text x="464.9" y="776.4" font-size="9.0" fill="#e6e6e6" text-anchor="middle" font-weight="400" >1</text>
+<text x="464.9" y="738.1" font-size="9.0" fill="#e6e6e6" text-anchor="middle" font-weight="400" >2</text>
+<text x="758.5" y="776.4" font-size="9.0" fill="#e6e6e6" text-anchor="middle" font-weight="400" >35</text>
+<text x="758.5" y="738.1" font-size="9.0" fill="#e6e6e6" text-anchor="middle" font-weight="400" >36</text>
+<rect x="666.5" y="300" width="78.2" height="102.0" rx="6.8" fill="#5b3f9e" stroke="#2a1d4d"/>
+<rect x="696.08" y="316.32" width="19.04" height="16.32" rx="1" fill="#c9c9d6" stroke="#8a8aa0"/>
+<circle cx="680.1" cy="313.6" r="5.44" fill="none" stroke="#c9c9d6"/>
+<text x="705.6" y="358.5" font-size="6.5" fill="#d9d2ee" text-anchor="middle" font-weight="400" >BME280</text>
+<line x1="679.692" y1="402.0" x2="679.692" y2="425.8" stroke="#8d8d8d" stroke-width="3"/>
+<text x="679.7" y="396.6" font-size="7" fill="#fff" text-anchor="middle" font-weight="700" >VIN</text>
+<line x1="696.964" y1="402.0" x2="696.964" y2="425.8" stroke="#8d8d8d" stroke-width="3"/>
+<text x="697.0" y="396.6" font-size="7" fill="#fff" text-anchor="middle" font-weight="700" >GND</text>
+<line x1="714.236" y1="402.0" x2="714.236" y2="425.8" stroke="#8d8d8d" stroke-width="3"/>
+<text x="714.2" y="396.6" font-size="7" fill="#fff" text-anchor="middle" font-weight="700" >SCL</text>
+<line x1="731.508" y1="402.0" x2="731.508" y2="425.8" stroke="#8d8d8d" stroke-width="3"/>
+<text x="731.5" y="396.6" font-size="7" fill="#fff" text-anchor="middle" font-weight="700" >SDA</text>
+<text x="705.6" y="286.0" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="700" >sensor</text>
+<path d="M 568.512 572.912 C 568.512 462.91200000000003 679.692 535.8 679.692 425.8" stroke="#fff" stroke-width="9" fill="none" opacity="0.95"/>
+<path d="M 568.512 572.912 C 568.512 462.91200000000003 679.692 535.8 679.692 425.8" stroke="#d62828" stroke-width="5" fill="none"/>
+<circle cx="568.512" cy="572.912" r="6.5" fill="#d62828" stroke="#fff" stroke-width="2"/><circle cx="679.692" cy="425.8" r="6.5" fill="#d62828" stroke="#fff" stroke-width="2"/>
+<path d="M 585.784 555.64 C 585.784 445.64 696.964 535.8 696.964 425.8" stroke="#fff" stroke-width="9" fill="none" opacity="0.95"/>
+<path d="M 585.784 555.64 C 585.784 445.64 696.964 535.8 696.964 425.8" stroke="#1c1c1c" stroke-width="5" fill="none"/>
+<circle cx="585.784" cy="555.64" r="6.5" fill="#1c1c1c" stroke="#fff" stroke-width="2"/><circle cx="696.964" cy="425.8" r="6.5" fill="#1c1c1c" stroke="#fff" stroke-width="2"/>
+<path d="M 672.144 572.912 C 672.144 462.91200000000003 731.508 535.8 731.508 425.8" stroke="#fff" stroke-width="9" fill="none" opacity="0.95"/>
+<path d="M 672.144 572.912 C 672.144 462.91200000000003 731.508 535.8 731.508 425.8" stroke="#1d6fd8" stroke-width="5" fill="none"/>
+<circle cx="672.144" cy="572.912" r="6.5" fill="#1d6fd8" stroke="#fff" stroke-width="2"/><circle cx="731.508" cy="425.8" r="6.5" fill="#1d6fd8" stroke="#fff" stroke-width="2"/>
+<path d="M 689.4159999999999 572.912 C 689.4159999999999 462.91200000000003 714.236 535.8 714.236 425.8" stroke="#fff" stroke-width="9" fill="none" opacity="0.95"/>
+<path d="M 689.4159999999999 572.912 C 689.4159999999999 462.91200000000003 714.236 535.8 714.236 425.8" stroke="#f2b705" stroke-width="5" fill="none"/>
+<circle cx="689.4159999999999" cy="572.912" r="6.5" fill="#f2b705" stroke="#fff" stroke-width="2"/><circle cx="714.236" cy="425.8" r="6.5" fill="#f2b705" stroke="#fff" stroke-width="2"/>
+<text x="556.5" y="618.9" font-size="10" fill="#fff" text-anchor="middle" font-weight="700" >P1.14</text>
+<text x="597.8" y="585.6" font-size="10" fill="#fff" text-anchor="middle" font-weight="700" >P1.15</text>
+<text x="660.1" y="618.9" font-size="10" fill="#fff" text-anchor="middle" font-weight="700" >P1.26</text>
+<text x="701.4" y="602.9" font-size="10" fill="#fff" text-anchor="middle" font-weight="700" >P1.28</text>
+<text x="40.0" y="946.0" font-size="13" fill="#1a1a1a" text-anchor="start" font-weight="400" >Say it out loud: red leaves 14 and arrives at VIN. Black leaves 15 and arrives at GND. Blue leaves 26 and arrives at SDA. Yellow leaves 28 and arrives at SCL.</text>
+<text x="40.0" y="966.0" font-size="13" fill="#1a1a1a" text-anchor="start" font-weight="400" >Nothing in P1.1. Then Part 3 (the card) and Part 4 (power). The sensor alone is a working station: readings come to your laptop with sws-live.</text>
+<rect x="1188" y="126" width="170" height="118" rx="8" fill="#f4f4f4"/>
+<rect x="1200" y="141" width="34" height="9" rx="4.5" fill="#d62828"/>
+<text x="1244.0" y="150.0" font-size="13" fill="#1a1a1a" text-anchor="start" font-weight="400" >3.3 V</text>
+<rect x="1200" y="167" width="34" height="9" rx="4.5" fill="#1c1c1c"/>
+<text x="1244.0" y="176.0" font-size="13" fill="#1a1a1a" text-anchor="start" font-weight="400" >ground</text>
+<rect x="1200" y="193" width="34" height="9" rx="4.5" fill="#1d6fd8"/>
+<text x="1244.0" y="202.0" font-size="13" fill="#1a1a1a" text-anchor="start" font-weight="400" >SDA (data)</text>
+<rect x="1200" y="219" width="34" height="9" rx="4.5" fill="#f2b705"/>
+<text x="1244.0" y="228.0" font-size="13" fill="#1a1a1a" text-anchor="start" font-weight="400" >SCL (clock)</text>
+<text x="1188.0" y="290.0" font-size="11" fill="#666666" text-anchor="start" font-weight="400" >board turned so P1 faces the</text>
+<text x="1188.0" y="306.0" font-size="11" fill="#666666" text-anchor="start" font-weight="400" >module: USB-C on the left,</text>
+<text x="1188.0" y="322.0" font-size="11" fill="#666666" text-anchor="start" font-weight="400" >pin 1 at the left end of P1.</text>
+</svg>

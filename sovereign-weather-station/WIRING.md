@@ -6,9 +6,11 @@ Print one per table. Four wires. Every module gets all four.
 
 ![Where the four pins are on the board, header side up, USB-C to the right](images/board-pins.svg)
 
-![Bench layout on a half size breadboard, all wires in place](images/bench-layout.svg)
+Two kits, two wiring sections, same four pins. [Which kit do you have?](images/choose-kit.svg)
 
-The build in four pictures, one wire colour at a time: [step 1](images/bench-step1.svg), [step 2](images/bench-step2.svg), [step 3](images/bench-step3.svg), [step 4](images/bench-step4.svg).
+**Kit A, breadboard:** [step 1](images/bench-A-step1.svg), [step 2](images/bench-A-step2.svg), [step 3](images/bench-A-step3.svg), [step 4](images/bench-A-step4.svg). Print: [FIRST-BUILD-kit-A.pdf](images/print/FIRST-BUILD-kit-A.pdf).
+
+**Kit B, direct, no breadboard:** [step 1](images/bench-B-step1.svg), [step 2](images/bench-B-step2.svg). Print: [FIRST-BUILD-kit-B.pdf](images/print/FIRST-BUILD-kit-B.pdf).
 
 ```
 PocketBeagle 2, P1 header (the header on the USB-C side)
@@ -30,13 +32,17 @@ PocketBeagle 2, P1 header (the header on the USB-C side)
                          └──── SCL     (DS3231)
 ```
 
-## On the breadboard
+## Kit A: on the mini breadboard
 
-1. Push each module into the top half of the breadboard so each pin sits in its own column of five holes.
-2. Use the rail pair along the bottom edge (the modules cover the top pair). The + rail is 3.3 V: jumper from **P1.14** to it.
-3. The − rail is ground: jumper from **P1.15** to it.
-4. Pick two empty columns between the modules for SDA and SCL (8 and 10 in the pictures). Jumper **P1.26** to the SDA column and **P1.28** to the SCL column, top half.
-5. For each module: a jumper from its VCC column down to the + rail, GND column to the − rail, SDA column to the SDA column, SCL column to the SCL column.
+1. Sensor pins in row j, columns 1 to 4. Screen pins in row j, columns 9 to 12. Bodies hang off the top edge.
+2. Columns 14 to 17 are the four shared wires: 14 is 3.3 V, 15 is ground, 16 is SDA, 17 is SCL. There are no power rails on a 170 point board; these columns do that job.
+3. From the board, row h: **P1.14** to 14, **P1.15** to 15, **P1.26** to 16, **P1.28** to 17.
+4. From the sensor, row f: VIN to 14, GND to 15, SDA to 16, SCL to 17.
+5. From the screen, row g, in your screen's pin order: VCC to 14, GND to 15, SDA to 16, SCL to 17.
+
+## Kit B: no breadboard
+
+Four male-to-female wires, pin end in the board, socket end on the module. One module at a time: **P1.14** to VIN/VCC, **P1.15** to GND, **P1.26** to SDA, **P1.28** to SCL. Sensor first; unplug, then the screen.
 
 The header is two rows of pins. With the sockets facing you and the USB-C
 port on your right, P1 is the bottom strip; pins 1 and 2 are at the USB-C

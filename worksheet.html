@@ -74,21 +74,27 @@
   </table>
 
   <h2>What is in the bag</h2>
-  <p>Tip it out and count before you start. If something is missing, get it now.</p>
+  <p>Tip it out and count before you start. If something is missing, get it now.
+     Then tick which kit you have: the only difference is the breadboard.</p>
   <table>
     <tr><th>#</th><th>Part</th><th>What it does</th><th>Got it</th></tr>
-    <tr><td>1</td><td>PocketBeagle 2</td><td>the computer. 56 &times; 35 mm. runs Linux.</td><td></td></tr>
+    <tr><td>1</td><td>PocketBeagle 2</td><td>the computer. 56 &times; 35 mm. black. runs Linux.</td><td></td></tr>
     <tr><td>1</td><td>microSD card</td><td>the operating system and every reading</td><td></td></tr>
+    <tr><td>1</td><td>USB-C cable</td><td>power and the link to the laptop. must be a data cable</td><td></td></tr>
     <tr><td>1</td><td>BME280 sensor</td><td>reads temperature, humidity, pressure</td><td></td></tr>
     <tr><td>1</td><td>SSD1306 screen</td><td>shows you what the sensor found</td><td></td></tr>
-    <tr><td>1</td><td>push button</td><td>changes the page on the screen</td><td></td></tr>
-    <tr><td>8</td><td>jumper wires</td><td>four for the sensor, four for the screen</td><td></td></tr>
+    <tr><td>1</td><td>mini breadboard</td><td><b>Kit A</b> if you have one, <b>Kit B</b> if you don't &nbsp;&nbsp; A &#9634; &nbsp; B &#9634;</td><td></td></tr>
+    <tr><td>12</td><td>jumper wires, pin both ends</td><td>Kit A: 4 from the board, 4 sensor, 4 screen</td><td></td></tr>
+    <tr><td>4</td><td>jumper wires, pin one end, socket the other</td><td>Kit B: board straight to one module</td><td></td></tr>
   </table>
 
   <h2>Finding pin 14</h2>
-  <p>Both long edges have 36 pins. They look identical. Pin 1 is at the end
-     nearest the USB socket, and the numbers zig-zag: odds on one row, evens on
-     the other.</p>
+  <p>Both long edges have 36 sockets. They look identical. Hold the board with
+     the sockets up: the strip with the tiny printed 1 and 2 at the USB-C end
+     is P1. Pin 1 is at that end, and the numbers zig-zag: odds along the
+     outer row, evens along the inner row. Pin 14 is the 7th socket along the
+     inner row; 15 is the 8th along the outer row; 26 and 28 are the 13th and
+     14th along the inner row.</p>
 
   <svg viewBox="0 0 640 150" role="img" aria-label="Pin numbering diagram">
     <rect x="8" y="34" width="624" height="84" fill="#eceae5" stroke="#111" stroke-width="1.5"/>
@@ -158,26 +164,26 @@
   <p class="sub">Tick each one as you finish it. If a step will not work, go to
      the troubleshooting list before you undo anything.</p>
 
-  <div class="step"><div class="n">1</div><div class="b"><b>Count the parts</b>
-    <span>Six kinds of thing. Eight wires, not seven.</span></div><div class="tick"></div></div>
-  <div class="step"><div class="n">2</div><div class="b"><b>Card in first</b>
-    <span>Short edge, opposite the USB socket. Contacts face the board. It sits almost flush.</span></div><div class="tick"></div></div>
-  <div class="step"><div class="n">3</div><div class="b"><b>Plug in and wait</b>
-    <span>Four lights come on. One flickers unevenly, which is good. Then nothing visible for about 30 seconds. That is normal.</span></div><div class="tick"></div></div>
-  <div class="step"><div class="n">4</div><div class="b"><b>Unplug again</b>
-    <span>Never move a wire while the board has power.</span></div><div class="tick"></div></div>
-  <div class="step"><div class="n">5</div><div class="b"><b>Find pin 14 and pin 15</b>
-    <span>Use the diagram on page 1. Count out loud, in pairs, twice.</span></div><div class="tick"></div></div>
-  <div class="step"><div class="n">6</div><div class="b"><b>Wire power and ground</b>
-    <span>14 &rarr; 3V3. 15 &rarr; GND. On the sensor and on the screen.</span></div><div class="tick"></div></div>
-  <div class="step"><div class="n">7</div><div class="b"><b>Wire data and clock</b>
-    <span>26 &rarr; SDA. 28 &rarr; SCL. Same two pins serve both devices.</span></div><div class="tick"></div></div>
-  <div class="step"><div class="n">8</div><div class="b"><b>Power up and scan the bus</b>
-    <span>Run <code>sudo i2cdetect -y &lt;bus&gt;</code>. Look for 76 and 3c.</span></div><div class="tick"></div></div>
-  <div class="step"><div class="n">9</div><div class="b"><b>Check the chip</b>
-    <span>Run <code>sws-check</code>. It reads the sensor's ID register and tells you what you actually have.</span></div><div class="tick"></div></div>
+  <div class="step"><div class="n">1</div><div class="b"><b>Count the parts and pick your kit</b>
+    <span>Breadboard in the bag: Kit A, twelve wires. No breadboard: Kit B, four wires.</span></div><div class="tick"></div></div>
+  <div class="step"><div class="n">2</div><div class="b"><b>Lay it out</b>
+    <span>Board sockets up, USB-C on the left, so P1 is the top strip and pin 1 is at the left end. Modules above it, pins toward you. Write down your screen's pin order.</span></div><div class="tick"></div></div>
+  <div class="step"><div class="n">3</div><div class="b"><b>Find pins 14, 15, 26, 28</b>
+    <span>Count columns from the pin 1 end: 14 is column 7 inner, 15 is column 8 outer, 26 is column 13 inner, 28 is column 14 inner. Count out loud, twice. P1.1 is 5 V: nothing goes in it.</span></div><div class="tick"></div></div>
+  <div class="step"><div class="n">4</div><div class="b"><b>Kit A: seat the modules, then four wires from the board</b>
+    <span>Sensor pins in row j, columns 1 to 4; screen in row j, columns 9 to 12. Then 14 &rarr; column 14, 15 &rarr; 15, 26 &rarr; 16, 28 &rarr; 17, all in row h. Those four columns are now the shared wires.</span></div><div class="tick"></div></div>
+  <div class="step"><div class="n">5</div><div class="b"><b>Kit A: sensor, then screen, into the shared columns</b>
+    <span>Sensor in row f: VIN &rarr; 14, GND &rarr; 15, SDA &rarr; 16, SCL &rarr; 17. Screen in row g, in YOUR screen's pin order. Red must end at VIN or VCC, black at GND.</span></div><div class="tick"></div></div>
+  <div class="step"><div class="n">6</div><div class="b"><b>Kit B: four wires straight to the sensor</b>
+    <span>Pin end in the board, socket end on the module. 14 &rarr; VIN, 15 &rarr; GND, 26 &rarr; SDA, 28 &rarr; SCL. The screen gets the same four wires later, on its own.</span></div><div class="tick"></div></div>
+  <div class="step"><div class="n">7</div><div class="b"><b>Card in, then plug in, then wait</b>
+    <span>Card slot is on the socket side, next to the USB-C end, label facing out. Lights are on the underside. About 40 seconds before anything happens. Kit A: the screen comes on by itself.</span></div><div class="tick"></div></div>
+  <div class="step"><div class="n">8</div><div class="b"><b>Reach it from the laptop</b>
+    <span><code>ssh student@192.168.7.2</code> (Mac: <code>192.168.6.2</code>), password <code>buildit</code>.</span></div><div class="tick"></div></div>
+  <div class="step"><div class="n">9</div><div class="b"><b>Prove it</b>
+    <span>Run <code>sws-check</code>. Five questions in plain language. Question 2 should list 0x76 (the sensor) and, Kit A, 0x3C (the screen). Question 3 should say "real BME280". The long way: <code>sudo i2cdetect -y -r 2</code>.</span></div><div class="tick"></div></div>
   <div class="step"><div class="n">10</div><div class="b"><b>Read your own weather</b>
-    <span>Press the button to cycle the three pages on the screen.</span></div><div class="tick"></div></div>
+    <span>Run <code>sws-live</code>. Breathe on the sensor and watch humidity climb. Kit A: the screen changes page every five seconds on its own.</span></div><div class="tick"></div></div>
 
   <h2>When nothing shows up</h2>
   <p>This happens to everybody, including people who have done it a hundred

@@ -68,11 +68,17 @@ know the time. Without a DS3231, `fake-hwclock` restores the time from the
 last shutdown and every power cut puts the clock behind by the length of the
 outage. With it, timestamps in `/data/readings.csv` are real.
 
-### Breadboard and jumpers
+### Breadboard and jumpers: the part that defines the kit
 
-Any half size or mini breadboard. Male to male jumpers, at least 8 per
-station, 12 with the RTC. Jumpers are the part that goes missing; bring 40
-spares loose.
+The US order has ELEGOO 170 point mini breadboards (17 columns, no power
+rails) and Dupont jumper packs. With a breadboard the station runs sensor
+and screen together: that is **Kit A**. Without one, four male-to-female
+jumpers run one module at a time straight from the board: **Kit B**. The
+UK bench is Kit B until a breadboard arrives. FIRST-BUILD.md has both.
+
+Kit A wants 12 male-to-male jumpers per station (16 with the clock). Kit B
+wants 4 male-to-female. Jumpers are the part that goes missing; bring 40
+spares loose, of both kinds.
 
 ### Cable
 
