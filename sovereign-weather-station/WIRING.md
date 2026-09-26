@@ -4,6 +4,10 @@ Print one per table. Four wires. Every module gets all four.
 
 ![Wiring: PocketBeagle 2 P1.14, P1.15, P1.26, P1.28 to the BME280, SSD1306 and optional DS3231 over breadboard rails](images/wiring.svg)
 
+![Where the four pins are on the board, header side up, USB-C to the right](images/board-pins.svg)
+
+![Bench layout on a half size breadboard](images/bench-layout.svg)
+
 ```
 PocketBeagle 2, P1 header (the header on the USB-C side)
 
@@ -26,14 +30,18 @@ PocketBeagle 2, P1 header (the header on the USB-C side)
 
 ## On the breadboard
 
-1. Push each module into the breadboard so its pins sit in their own rows.
+1. Push each module into the top half of the breadboard so each pin sits in its own column of five holes.
 2. One power rail is 3.3 V. Run a jumper from **P1.14** to it.
 3. The other rail is ground. Run a jumper from **P1.15** to it.
-4. Pick two empty rows for SDA and SCL. Jumper **P1.26** to the SDA row and **P1.28** to the SCL row.
-5. For each module: a short jumper from its VCC pin to the 3.3 V rail, GND pin to the ground rail, SDA pin to the SDA row, SCL pin to the SCL row.
+4. Pick two empty columns for SDA and SCL. Jumper **P1.26** to the SDA column and **P1.28** to the SCL column.
+5. For each module: a short jumper from its VCC column to the 3.3 V rail, GND column to the ground rail, SDA column to the SDA column, SCL column to the SCL column.
 
-The header is two rows of pins, odd numbers on one row and even on the
-other. The numbers are printed on the board. Count from the end marked 1.
+The header is two rows of pins. With the sockets facing you and the USB-C
+port on your right, P1 is the bottom strip; pins 1 and 2 are at the USB-C
+end, 35 and 36 at the far end; odd pins are the outer row. So P1.14 is column
+7 from the USB-C end, inner row; P1.15 column 8, outer row; P1.26 column 13,
+inner; P1.28 column 14, inner. The numbers are printed on the board; trust
+those over this paragraph.
 
 ## Each module's pins
 
