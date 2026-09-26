@@ -6,6 +6,15 @@ You decide what leaves.
 
 Built for Build It, Break It, Own It. OurWorlds, AISES 2026.
 
+| Read this | When |
+|---|---|
+| [HARDWARE.md](HARDWARE.md) | ordering parts, or checking what a kit should contain |
+| [WIRING.md](WIRING.md) | at the table. print one per team |
+| [BENCH-TEST.md](BENCH-TEST.md) | first time with a board in hand. do this before anything else |
+| [FLASHING.md](FLASHING.md) | writing the image to twenty cards |
+| [FACILITATOR.md](FACILITATOR.md) | running the room |
+| [CHANGES.md](CHANGES.md) | exactly what this image adds to BeagleBoard's |
+
 ## Flash it
 
 The card image is built by GitHub Actions from the official PocketBeagle 2

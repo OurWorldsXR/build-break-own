@@ -83,7 +83,7 @@ About $60 a station, not counting the board.
 | [`index.html`](index.html) | The curriculum. Open it and it starts. `B` for the twenty minute build, `T` for the full tour |
 | [`worksheet.html`](worksheet.html) | Four pages to print. Pin diagram, ten steps, the trace, twelve questions |
 | [`teacher-guide.html`](teacher-guide.html) | Standards, three session lengths, six things you can mark. Also as [markdown](teacher-guide.md) |
-| [`sovereign-weather-station/`](sovereign-weather-station/) | The station image. Build script, drivers, verification tool, image pipeline, 30 tests |
+| [`sovereign-weather-station/`](sovereign-weather-station/) | The station image. Build script, drivers, verification tool, image pipeline, 30 tests, and the hardware, wiring, bench test, flashing and facilitator guides |
 | [`IMAGES.md`](IMAGES.md) | Where to get photographs without stealing them |
 | [`images/`](images/) | The Schultz weaving, and the terms it is here under |
 

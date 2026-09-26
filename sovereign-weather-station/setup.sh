@@ -15,8 +15,9 @@ apt-get install -y --no-install-recommends \
   python3 python3-smbus2 i2c-tools fake-hwclock
 
 echo "==> files -> /opt/sws"
-install -d /opt/sws/station /opt/sws/bin /data
+install -d /opt/sws/station /opt/sws/bin /opt/sws/test /data
 install -m 0644 "$HERE"/station/*.py /opt/sws/station/
+install -m 0644 "$HERE"/test/test_station.py /opt/sws/test/
 install -m 0755 "$HERE"/bin/sws-check "$HERE"/bin/sws-live "$HERE"/bin/sws-firstboot /opt/sws/bin/
 ln -sf /opt/sws/bin/sws-check /usr/local/bin/sws-check
 ln -sf /opt/sws/bin/sws-live  /usr/local/bin/sws-live

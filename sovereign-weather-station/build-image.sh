@@ -78,7 +78,7 @@ cp mnt/etc/resolv.conf.build mnt/etc/resolv.conf
 printf '#!/bin/sh\nexit 101\n' > mnt/usr/sbin/policy-rc.d; chmod +x mnt/usr/sbin/policy-rc.d
 
 rm -rf mnt/tmp/sws; mkdir -p mnt/tmp/sws
-cp -a "$HERE"/setup.sh "$HERE"/station "$HERE"/bin "$HERE"/systemd mnt/tmp/sws/
+cp -a "$HERE"/setup.sh "$HERE"/station "$HERE"/bin "$HERE"/systemd "$HERE"/test mnt/tmp/sws/
 chmod +x mnt/tmp/sws/setup.sh mnt/tmp/sws/bin/*
 chroot mnt /usr/bin/env SWS_GIT_REV="${SWS_GIT_REV:-}" DEBIAN_FRONTEND=noninteractive \
   /bin/bash -c 'cd /tmp/sws && ./setup.sh && apt-get clean && rm -rf /var/lib/apt/lists/*'

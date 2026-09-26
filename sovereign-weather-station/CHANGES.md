@@ -18,6 +18,7 @@ https://www.beagleboard.org/distros . Nothing in the base is removed or patched.
 | `/opt/sws/station/station.py` | the logger. reads every 5 min, writes hourly |
 | `/opt/sws/bin/sws-check` | the verification tool students run |
 | `/opt/sws/bin/sws-live` | prints a reading every two seconds. for the table |
+| `/opt/sws/test/test_station.py` | the unit tests. `python3 /opt/sws/test/test_station.py` runs them on the board |
 | `/opt/sws/BUILD.txt` | when it was built, from what, and the hash of every file above |
 | `/opt/sws/bin/sws-firstboot` | makes each cloned card a distinct machine |
 | `/etc/systemd/system/station.service` | starts the logger at boot |
