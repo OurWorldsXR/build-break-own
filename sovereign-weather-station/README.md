@@ -67,16 +67,18 @@ that: it finds the bus through sysfs and falls back to looking.
 alone. There is no `/dev/i2c-1`.
 
 Sensor answers at `0x76` (sometimes `0x77`; both are handled). Screen answers
-at `0x3C`.
+at `0x3C`. A DS3231 clock, if fitted, at `0x68`; `sws-rtc` binds it at boot
+and sets the system time from it.
 
 ## sws-check
 
-Four questions, answered in plain language:
+Five questions, answered in plain language:
 
 1. which I2C buses exist  (there is no `i2c-1` on this board)
-2. what is answering on them
+2. what is answering on the header bus
 3. is the sensor a real BME280 (`0x60`) or a BMP280 in disguise (`0x58`)
-4. can this station reach the internet  (no. and it shows you why)
+4. what time does the board think it is, and how does it know
+5. can this station reach the internet  (no. and it shows you why)
 
 ## Tested, and not tested
 

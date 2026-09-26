@@ -36,8 +36,8 @@ jobs:
       - name: unit files parse
         run: |
           sudo systemd-analyze verify sovereign-weather-station/systemd/*.service || true
-          bash -n sovereign-weather-station/setup.sh
-          bash -n sovereign-weather-station/build-image.sh
+          bash -n sovereign-weather-station/setup.sh sovereign-weather-station/build-image.sh \
+                  sovereign-weather-station/bin/sws-rtc sovereign-weather-station/bin/sws-firstboot
       - name: checksums match the tree
         working-directory: sovereign-weather-station
         run: sha256sum -c SHA256SUMS

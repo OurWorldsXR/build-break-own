@@ -21,8 +21,10 @@ https://www.beagleboard.org/distros . Nothing in the base is removed or patched.
 | `/opt/sws/test/test_station.py` | the unit tests. `python3 /opt/sws/test/test_station.py` runs them on the board |
 | `/opt/sws/BUILD.txt` | when it was built, from what, and the hash of every file above |
 | `/opt/sws/bin/sws-firstboot` | makes each cloned card a distinct machine |
+| `/opt/sws/bin/sws-rtc` | binds a DS3231 at 0x68 if wired, sets the clock from it |
 | `/etc/systemd/system/station.service` | starts the logger at boot |
 | `/etc/systemd/system/sws-firstboot.service` | runs once, ever |
+| `/etc/systemd/system/sws-rtc.service` | every boot, before the logger |
 | `/data/` | the only directory that gets written to |
 
 ## Boot partition
@@ -31,7 +33,7 @@ own first-boot service creates that login and then blanks the file. Change the
 password at the workshop or edit the file before first boot.
 
 ## Services enabled
-`station.service`, `sws-firstboot.service`, `fake-hwclock.service`
+`station.service`, `sws-firstboot.service`, `sws-rtc.service`, `fake-hwclock.service`
 
 ## Nothing else
 No network configuration is added or changed. No wifi, no bluetooth, no
@@ -43,8 +45,9 @@ clock does not survive a power cut. `fake-hwclock` stores the time at shutdown
 and restores it at boot, which keeps timestamps in order but lets them drift.
 
 For real timestamps, fit a **DS3231 RTC module** (about $4) on the same I2C bus
-as the sensor. It keeps time for years on a coin cell. `setup.sh` detects one if
-present and says so.
+as the sensor. It keeps time for years on a coin cell. `sws-rtc` finds it at
+every boot and sets the system clock from it. Set the clock once after fitting:
+`sudo date -u -s '<UTC time>' && sudo hwclock -w --utc`.
 
 ## Card wear
 Readings are held in RAM and written once an hour: 12 writes a day instead of

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """sws-check: does this station actually have what it claims to have?
 
-Run this at the workshop. It answers four questions in plain language and
+Run this at the workshop. It answers five questions in plain language and
 prints nothing you have to take on trust.
 """
 import glob, os, re, subprocess, sys
@@ -58,6 +58,13 @@ for b in scan:
         except Exception:
             pass
     bus.close()
+    # a device the kernel already drives (the DS3231, once sws-rtc binds it)
+    # refuses a raw read, so it does not show up above. sysfs still lists it.
+    for dev in glob.glob("/sys/bus/i2c/devices/%d-00*" % b):
+        a = int(dev.rsplit("-", 1)[1], 16)
+        if a not in found.setdefault(b, []):
+            found[b].append(a)
+    found[b] = sorted(found.get(b, []))
 if not found:
     print(BAD + "nothing answered. check your four wires, then recount the pins:")
     print(INFO + "P1.14 -> 3V3   P1.15 -> GND   P1.26 -> SDA   P1.28 -> SCL")
@@ -65,6 +72,8 @@ for b, addrs in found.items():
     print(INFO + "i2c-%d: %s" % (b, "  ".join("0x%02X" % a for a in addrs)))
     if 0x3C in addrs:
         print(OK + "0x3C is the screen.")
+    if 0x68 in addrs:
+        print(OK + "0x68 is the DS3231 clock." + ("  0x57 is the EEPROM that rides on its module." if 0x57 in addrs else ""))
 
 print("\n3. is the sensor the chip you were sold?")
 hit = False
@@ -84,7 +93,21 @@ for b, addrs in found.items():
 if not hit:
     print(BAD + "no sensor at 0x76 or 0x77.")
 
-print("\n4. can this station reach the internet?")
+print("\n4. what time does this board think it is, and how does it know?")
+rtc = os.path.exists("/dev/rtc0")
+print(INFO + "system clock: " + subprocess.run(["date", "-u", "+%Y-%m-%d %H:%M:%S UTC"],
+                                              capture_output=True, text=True).stdout.strip())
+if rtc:
+    hw = subprocess.run(["hwclock", "-r", "--utc"], capture_output=True, text=True).stdout.strip()
+    print(OK + "a hardware clock is bound (/dev/rtc0). it says: " + (hw or "?"))
+    print(INFO + "that is the DS3231 on your breadboard, keeping time on a coin cell.")
+else:
+    print(INFO + "no hardware clock. the time came from fake-hwclock: whatever it was at the")
+    print(INFO + "last shutdown. it is wrong by however long the power was off.")
+    if any(0x68 in a for a in found.values()):
+        print(BAD + "but something answers at 0x68. run: sudo systemctl restart sws-rtc")
+
+print("\n5. can this station reach the internet?")
 ifs = subprocess.run(["ip", "-o", "link"], capture_output=True, text=True).stdout
 names = [l.split(":")[1].strip() for l in ifs.strip().splitlines()]
 radio = [n for n in names if n.startswith(("wlan", "wlp", "ww"))]

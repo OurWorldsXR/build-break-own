@@ -86,8 +86,8 @@ chroot mnt /usr/bin/env SWS_GIT_REV="${SWS_GIT_REV:-}" DEBIAN_FRONTEND=nonintera
 echo "==> smoke test inside the image (arm64 python under qemu)"
 chroot mnt /usr/bin/python3 -c 'import smbus2, sys; sys.path.insert(0,"/opt/sws/station"); import station, bme280, ssd1306; print("    imports ok", sys.version.split()[0])'
 chroot mnt /usr/bin/python3 /opt/sws/bin/sws-check >/dev/null 2>&1 || true   # runs, finds no buses here: fine
-chroot mnt /bin/bash -c 'systemctl is-enabled station.service sws-firstboot.service fake-hwclock.service' | sed 's/^/    /'
-test -x mnt/opt/sws/bin/sws-check && test -x mnt/opt/sws/bin/sws-live && test -x mnt/opt/sws/bin/sws-firstboot
+chroot mnt /bin/bash -c 'systemctl is-enabled station.service sws-firstboot.service sws-rtc.service fake-hwclock.service' | sed 's/^/    /'
+test -x mnt/opt/sws/bin/sws-check && test -x mnt/opt/sws/bin/sws-live && test -x mnt/opt/sws/bin/sws-firstboot && test -x mnt/opt/sws/bin/sws-rtc
 test -L mnt/usr/local/bin/sws-check && test -L mnt/usr/local/bin/sws-live
 test -d mnt/data
 cat mnt/opt/sws/BUILD.txt | sed 's/^/    /'

@@ -1,0 +1,10 @@
+[Unit]
+Description=Sovereign Weather Station: set the clock from a DS3231 if one is wired
+After=local-fs.target fake-hwclock.service
+Before=station.service
+[Service]
+Type=oneshot
+ExecStart=/opt/sws/bin/sws-rtc
+RemainAfterExit=yes
+[Install]
+WantedBy=multi-user.target

@@ -35,7 +35,8 @@ This half uses nothing from this repo. If it passes, the hardware is right.
    ```
    sudo i2cdetect -y -r 2
    ```
-   In the grid, expect `3c` in row 30 and `76` (or `77`) in row 70.
+   In the grid, expect `3c` in row 30 and `76` (or `77`) in row 70. With a
+   DS3231 fitted, also `57` in row 50 and `68` in row 60.
 
    | You see | It means |
    |---|---|
@@ -85,9 +86,10 @@ Half one passed. Write down which address the sensor answered at.
    ```
    sws-check
    ```
-   Four questions. All four should end in `OK` lines. Question 2 should list
-   `0x3C` and the sensor address. Question 3 should say "real BME280".
-   Question 4 should say there is no radio on this board.
+   Five questions. Question 2 should list `0x3C` and the sensor address (and
+   `0x68` if a clock is fitted). Question 3 should say "real BME280".
+   Question 4 says where the time came from. Question 5 should say there is
+   no radio on this board.
 
 6. **Watch it work.**
    ```
@@ -141,7 +143,7 @@ Half two passed. Now flash the rest: [FLASHING.md](FLASHING.md).
 | `sws-check` says BMP280 | wrong part from the vendor. still runs, no humidity |
 | screen shows garbage | loose SDA or SCL wire. reseat, `sudo systemctl restart station` |
 | readings are absurd (pressure 0, temperature -40) | run `python3 /opt/sws/test/test_station.py` and open an issue with the output of `sws-live` |
-| clock is 1970 | expected on a board that has never seen a network. fit a DS3231 or accept relative timestamps |
+| clock is 1970 or stale | expected on a board with no DS3231. fit one (see HARDWARE.md, battery note first), then `sudo systemctl restart sws-rtc` and set it once: `sudo date -u -s '2026-10-14 09:00:00' && sudo hwclock -w --utc` |
 
 Open an issue at https://github.com/OurWorldsXR/build-break-own/issues with
 the output of `sws-check` pasted in. That output is designed to be the bug report.

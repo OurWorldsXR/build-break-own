@@ -1,0 +1,29 @@
+#!/bin/bash
+# If a DS3231 real time clock is on the header bus, tell the kernel about it
+# and set the system clock from it. Runs once at boot, before the logger.
+#
+# There is no network, so this is the only source of true time the board has.
+# Without it, fake-hwclock restores the time from the last shutdown and the
+# clock drifts by however long the power was off.
+set -u
+ADDR=0x68
+for d in /sys/bus/i2c/devices/i2c-*; do
+  node="$(basename "$(readlink -f "$d/of_node" 2>/dev/null || echo none)")"
+  [ "$node" = "i2c@20020000" ] || continue          # main_i2c2: the header bus
+  bus="${d##*/i2c-}"
+  if [ -e "$d/$bus-0068" ]; then
+    echo "sws-rtc: ds3231 already bound on i2c-$bus"
+  elif i2cget -y "$bus" $ADDR 0x00 >/dev/null 2>&1; then
+    echo ds3231 $ADDR > "$d/new_device" && echo "sws-rtc: ds3231 found on i2c-$bus at $ADDR"
+  else
+    echo "sws-rtc: nothing at $ADDR on i2c-$bus. no hardware clock; using fake-hwclock"
+    exit 0
+  fi
+  sleep 0.5
+  if [ -e /dev/rtc0 ]; then
+    before="$(date -u +%FT%TZ)"
+    hwclock --hctosys --utc && echo "sws-rtc: system clock $before -> $(date -u +%FT%TZ) (from the DS3231)"
+  fi
+  exit 0
+done
+echo "sws-rtc: could not find the header bus in sysfs"

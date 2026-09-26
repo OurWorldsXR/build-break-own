@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="730" viewBox="0 0 1000 730" font-family="Helvetica, Arial, sans-serif">
+<rect width="1000" height="730" fill="#ffffff"/>
+<text x="30" y="40" font-size="22" font-weight="bold">Sovereign Weather Station: wiring</text>
+<text x="30" y="64" font-size="13" fill="#444">PocketBeagle 2, P1 header. Four wires. Every module gets all four. 3.3 V only, never P1.01 (5 V).</text>
+<rect x="40" y="100" width="230" height="470" rx="10" fill="#f2f2f2" stroke="#555" stroke-width="2"/>
+<text x="155.0" y="128" font-size="15" font-weight="bold" text-anchor="middle">PocketBeagle 2</text>
+<text x="155.0" y="146" font-size="11" text-anchor="middle" fill="#555">P1 header, USB-C side. Pins 13 to 30, drawn as a list.</text>
+<rect x="60" y="162" width="60" height="22" rx="4" fill="#ccc"/><text x="90" y="177" font-size="10" text-anchor="middle">USB-C</text>
+<rect x="236" y="194" width="12" height="12" fill="#fff" stroke="#999"/>
+<text x="228" y="204" font-size="11" text-anchor="end" fill="#999">P1.13</text>
+<rect x="236" y="214" width="12" height="12" fill="#c8322b" stroke="#333"/>
+<text x="228" y="224" font-size="12" text-anchor="end" font-weight="bold">P1.14  VDD_3V3</text>
+<rect x="236" y="234" width="12" height="12" fill="#222222" stroke="#333"/>
+<text x="228" y="244" font-size="12" text-anchor="end" font-weight="bold">P1.15  GND</text>
+<rect x="236" y="254" width="12" height="12" fill="#fff" stroke="#999"/>
+<text x="228" y="264" font-size="11" text-anchor="end" fill="#999">P1.16</text>
+<rect x="236" y="274" width="12" height="12" fill="#fff" stroke="#999"/>
+<text x="228" y="284" font-size="11" text-anchor="end" fill="#999">P1.17</text>
+<rect x="236" y="294" width="12" height="12" fill="#fff" stroke="#999"/>
+<text x="228" y="304" font-size="11" text-anchor="end" fill="#999">P1.18</text>
+<rect x="236" y="314" width="12" height="12" fill="#fff" stroke="#999"/>
+<text x="228" y="324" font-size="11" text-anchor="end" fill="#999">P1.19</text>
+<rect x="236" y="334" width="12" height="12" fill="#fff" stroke="#999"/>
+<text x="228" y="344" font-size="11" text-anchor="end" fill="#999">P1.20</text>
+<rect x="236" y="354" width="12" height="12" fill="#fff" stroke="#999"/>
+<text x="228" y="364" font-size="11" text-anchor="end" fill="#999">P1.21</text>
+<rect x="236" y="374" width="12" height="12" fill="#fff" stroke="#999"/>
+<text x="228" y="384" font-size="11" text-anchor="end" fill="#999">P1.22</text>
+<rect x="236" y="394" width="12" height="12" fill="#fff" stroke="#999"/>
+<text x="228" y="404" font-size="11" text-anchor="end" fill="#999">P1.23</text>
+<rect x="236" y="414" width="12" height="12" fill="#fff" stroke="#999"/>
+<text x="228" y="424" font-size="11" text-anchor="end" fill="#999">P1.24</text>
+<rect x="236" y="434" width="12" height="12" fill="#fff" stroke="#999"/>
+<text x="228" y="444" font-size="11" text-anchor="end" fill="#999">P1.25</text>
+<rect x="236" y="454" width="12" height="12" fill="#2b5fc8" stroke="#333"/>
+<text x="228" y="464" font-size="12" text-anchor="end" font-weight="bold">P1.26  I2C2_SDA</text>
+<rect x="236" y="474" width="12" height="12" fill="#fff" stroke="#999"/>
+<text x="228" y="484" font-size="11" text-anchor="end" fill="#999">P1.27</text>
+<rect x="236" y="494" width="12" height="12" fill="#d9a300" stroke="#333"/>
+<text x="228" y="504" font-size="12" text-anchor="end" font-weight="bold">P1.28  I2C2_SCL</text>
+<rect x="236" y="514" width="12" height="12" fill="#fff" stroke="#999"/>
+<text x="228" y="524" font-size="11" text-anchor="end" fill="#999">P1.29</text>
+<rect x="236" y="534" width="12" height="12" fill="#fff" stroke="#999"/>
+<text x="228" y="544" font-size="11" text-anchor="end" fill="#999">P1.30</text>
+<line x1="330" y1="150" x2="330" y2="690" stroke="#c8322b" stroke-width="4"/>
+<text x="330" y="142" font-size="11" text-anchor="middle" fill="#c8322b" font-weight="bold">3.3 V</text>
+<line x1="360" y1="150" x2="360" y2="690" stroke="#222222" stroke-width="4"/>
+<text x="360" y="142" font-size="11" text-anchor="middle" fill="#222222" font-weight="bold">GND</text>
+<line x1="390" y1="150" x2="390" y2="690" stroke="#2b5fc8" stroke-width="4"/>
+<text x="390" y="142" font-size="11" text-anchor="middle" fill="#2b5fc8" font-weight="bold">SDA</text>
+<line x1="420" y1="150" x2="420" y2="690" stroke="#d9a300" stroke-width="4"/>
+<text x="420" y="142" font-size="11" text-anchor="middle" fill="#d9a300" font-weight="bold">SCL</text>
+<path d="M 248 220 H 330" stroke="#c8322b" stroke-width="3" fill="none"/>
+<circle cx="330" cy="220" r="4" fill="#c8322b"/>
+<path d="M 248 240 H 360" stroke="#222222" stroke-width="3" fill="none"/>
+<circle cx="360" cy="240" r="4" fill="#222222"/>
+<path d="M 248 460 H 390" stroke="#2b5fc8" stroke-width="3" fill="none"/>
+<circle cx="390" cy="460" r="4" fill="#2b5fc8"/>
+<path d="M 248 500 H 420" stroke="#d9a300" stroke-width="3" fill="none"/>
+<circle cx="420" cy="500" r="4" fill="#d9a300"/>
+<text x="155" y="600" font-size="10" text-anchor="middle" fill="#777">on the board, odd pins are one row, even pins the other</text><text x="375" y="712" font-size="11" text-anchor="middle" fill="#555">breadboard: two rails, two rows</text>
+<rect x="480" y="100" width="330" height="206" rx="8" fill="#f7f7ff" stroke="#555" stroke-width="2" stroke-dasharray="none"/>
+<text x="492" y="120" font-size="14" font-weight="bold">BME280 sensor</text>
+<text x="492" y="136" font-size="11" fill="#555">temperature, pressure, humidity. 3.3 V logic</text>
+<rect x="486" y="152" width="12" height="12" fill="#c8322b" stroke="#333"/>
+<text x="506" y="162" font-size="12" fill="#111">VIN / VCC</text>
+<path d="M 330 158 H 486" stroke="#c8322b" stroke-width="3" fill="none"/>
+<circle cx="330" cy="158" r="4" fill="#c8322b"/>
+<rect x="486" y="174" width="12" height="12" fill="#222222" stroke="#333"/>
+<text x="506" y="184" font-size="12" fill="#111">GND</text>
+<path d="M 360 180 H 486" stroke="#222222" stroke-width="3" fill="none"/>
+<circle cx="360" cy="180" r="4" fill="#222222"/>
+<rect x="486" y="196" width="12" height="12" fill="#d9a300" stroke="#333"/>
+<text x="506" y="206" font-size="12" fill="#111">SCL</text>
+<path d="M 420 202 H 486" stroke="#d9a300" stroke-width="3" fill="none"/>
+<circle cx="420" cy="202" r="4" fill="#d9a300"/>
+<rect x="486" y="218" width="12" height="12" fill="#2b5fc8" stroke="#333"/>
+<text x="506" y="228" font-size="12" fill="#111">SDA</text>
+<path d="M 390 224 H 486" stroke="#2b5fc8" stroke-width="3" fill="none"/>
+<circle cx="390" cy="224" r="4" fill="#2b5fc8"/>
+<rect x="486" y="240" width="12" height="12" fill="#fff" stroke="#333"/>
+<text x="506" y="250" font-size="12" fill="#999">CSB  (leave open; 6-pin boards only)</text>
+<rect x="486" y="262" width="12" height="12" fill="#fff" stroke="#333"/>
+<text x="506" y="272" font-size="12" fill="#999">SDO  (open = 0x76, tied to 3V3 = 0x77)</text>
+<text x="492" y="296" font-size="11" fill="#555">answers at 0x76 or 0x77. chip ID 0x60 = BME280, 0x58 = BMP280</text>
+<rect x="480" y="320" width="330" height="162" rx="8" fill="#f7f7ff" stroke="#555" stroke-width="2" stroke-dasharray="none"/>
+<text x="492" y="340" font-size="14" font-weight="bold">SSD1306 OLED, 128 x 64, I2C</text>
+<text x="492" y="356" font-size="11" fill="#555">read the silkscreen: VCC and GND order varies by vendor</text>
+<rect x="486" y="372" width="12" height="12" fill="#c8322b" stroke="#333"/>
+<text x="506" y="382" font-size="12" fill="#111">VCC</text>
+<path d="M 330 378 H 486" stroke="#c8322b" stroke-width="3" fill="none"/>
+<circle cx="330" cy="378" r="4" fill="#c8322b"/>
+<rect x="486" y="394" width="12" height="12" fill="#222222" stroke="#333"/>
+<text x="506" y="404" font-size="12" fill="#111">GND</text>
+<path d="M 360 400 H 486" stroke="#222222" stroke-width="3" fill="none"/>
+<circle cx="360" cy="400" r="4" fill="#222222"/>
+<rect x="486" y="416" width="12" height="12" fill="#d9a300" stroke="#333"/>
+<text x="506" y="426" font-size="12" fill="#111">SCL</text>
+<path d="M 420 422 H 486" stroke="#d9a300" stroke-width="3" fill="none"/>
+<circle cx="420" cy="422" r="4" fill="#d9a300"/>
+<rect x="486" y="438" width="12" height="12" fill="#2b5fc8" stroke="#333"/>
+<text x="506" y="448" font-size="12" fill="#111">SDA</text>
+<path d="M 390 444 H 486" stroke="#2b5fc8" stroke-width="3" fill="none"/>
+<circle cx="390" cy="444" r="4" fill="#2b5fc8"/>
+<text x="492" y="472" font-size="11" fill="#555">answers at 0x3C</text>
+<rect x="480" y="496" width="330" height="184" rx="8" fill="#fbfbfb" stroke="#999" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="492" y="516" font-size="14" font-weight="bold">DS3231 real time clock  (optional)</text>
+<text x="492" y="532" font-size="11" fill="#555">keeps time on a coin cell when the board is off</text>
+<rect x="486" y="548" width="12" height="12" fill="#c8322b" stroke="#333"/>
+<text x="506" y="558" font-size="12" fill="#111">VCC</text>
+<path d="M 330 554 H 486" stroke="#c8322b" stroke-width="3" fill="none"/>
+<circle cx="330" cy="554" r="4" fill="#c8322b"/>
+<rect x="486" y="570" width="12" height="12" fill="#222222" stroke="#333"/>
+<text x="506" y="580" font-size="12" fill="#111">GND</text>
+<path d="M 360 576 H 486" stroke="#222222" stroke-width="3" fill="none"/>
+<circle cx="360" cy="576" r="4" fill="#222222"/>
+<rect x="486" y="592" width="12" height="12" fill="#d9a300" stroke="#333"/>
+<text x="506" y="602" font-size="12" fill="#111">SCL</text>
+<path d="M 420 598 H 486" stroke="#d9a300" stroke-width="3" fill="none"/>
+<circle cx="420" cy="598" r="4" fill="#d9a300"/>
+<rect x="486" y="614" width="12" height="12" fill="#2b5fc8" stroke="#333"/>
+<text x="506" y="624" font-size="12" fill="#111">SDA</text>
+<path d="M 390 620 H 486" stroke="#2b5fc8" stroke-width="3" fill="none"/>
+<circle cx="390" cy="620" r="4" fill="#2b5fc8"/>
+<rect x="486" y="636" width="12" height="12" fill="#fff" stroke="#333"/>
+<text x="506" y="646" font-size="12" fill="#999">32K, SQW  (leave open)</text>
+<text x="492" y="670" font-size="11" fill="#555">answers at 0x68. 0x57 is the EEPROM on the same module</text>
+</svg>
