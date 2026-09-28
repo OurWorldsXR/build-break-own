@@ -11,7 +11,7 @@
 <text x="84.0" y="268.0" font-size="15" fill="#1a1a1a" text-anchor="start" font-weight="400" >through the breadboard. Twelve jumper wires with</text>
 <text x="84.0" y="292.0" font-size="15" fill="#1a1a1a" text-anchor="start" font-weight="400" >a pin at both ends (male to male).</text>
 <text x="84.0" y="316.0" font-size="15" fill="#1a1a1a" text-anchor="start" font-weight="400" ></text>
-<text x="84.0" y="340.0" font-size="15" fill="#1a1a1a" text-anchor="start" font-weight="400" >This is the US workshop kit.</text>
+<text x="84.0" y="340.0" font-size="15" fill="#1a1a1a" text-anchor="start" font-weight="400" >The US workshop kit and the UK bench.</text>
 <text x="84.0" y="364.0" font-size="15" fill="#1a1a1a" text-anchor="start" font-weight="400" >About 25 minutes to a working station.</text>
 <rect x="120" y="560" width="306.0" height="238.0" rx="6.8" fill="#f5f1e3" stroke="#c5bda3" stroke-width="2"/>
 <rect x="131.56" y="579.72" width="6.8" height="6.8" rx="1" fill="#3b3b3b"/>
@@ -257,8 +257,8 @@
 <text x="764.0" y="292.0" font-size="15" fill="#1a1a1a" text-anchor="start" font-weight="400" >its own. The wires need a pin at one end and a</text>
 <text x="764.0" y="316.0" font-size="15" fill="#1a1a1a" text-anchor="start" font-weight="400" >socket at the other (male to female).</text>
 <text x="764.0" y="340.0" font-size="15" fill="#1a1a1a" text-anchor="start" font-weight="400" ></text>
-<text x="764.0" y="364.0" font-size="15" fill="#1a1a1a" text-anchor="start" font-weight="400" >This is the UK bench until a breadboard arrives,</text>
-<text x="764.0" y="388.0" font-size="15" fill="#1a1a1a" text-anchor="start" font-weight="400" >and it works with any kit. About 15 minutes.</text>
+<text x="764.0" y="364.0" font-size="15" fill="#1a1a1a" text-anchor="start" font-weight="400" >For any kit without a breadboard. Works</text>
+<text x="764.0" y="388.0" font-size="15" fill="#1a1a1a" text-anchor="start" font-weight="400" >anywhere. About 15 minutes.</text>
 <rect x="800" y="640" width="380.8" height="238.0" rx="40.8" fill="#26393a" stroke="#0f1b1b" stroke-width="2"/>
 <rect x="791.84" y="728.4" width="19.04" height="61.199999999999996" rx="9.52" fill="#cfcfcf" stroke="#7a7a7a"/>
 <rect x="834.0" y="708.0" width="95.2" height="102.0" rx="6.8" fill="#a9b6b6" stroke="#6d7a7a"/>

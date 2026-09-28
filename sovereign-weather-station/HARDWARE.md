@@ -73,8 +73,9 @@ outage. With it, timestamps in `/data/readings.csv` are real.
 The US order has ELEGOO 170 point mini breadboards (17 columns, no power
 rails) and Dupont jumper packs. With a breadboard the station runs sensor
 and screen together: that is **Kit A**. Without one, four male-to-female
-jumpers run one module at a time straight from the board: **Kit B**. The
-UK bench is Kit B until a breadboard arrives. FIRST-BUILD.md has both.
+jumpers run one module at a time straight from the board: **Kit B**. Both
+benches are Kit A now that the UK breadboards have arrived; Kit B stays in
+the guide for any kit without one. FIRST-BUILD.md has both.
 
 Kit A wants 12 male-to-male jumpers per station (16 with the clock). Kit B
 wants 4 male-to-female. Jumpers are the part that goes missing; bring 40
@@ -96,8 +97,10 @@ choice for a logger that writes hourly for months.
 ### UK
 
 Farnell order, August 2026: **2 x 100003007** PocketBeagle 2 (A1, AM6254).
-Accessories for the UK bench (sensor, screen, breadboard, cable, card) come
-from the same list as the US kit; any of the parts above work.
+Breadboards arrived late September, so the UK bench is a Kit A bench. The
+other accessories (sensor, screen, cable, card, jumpers) are the same parts
+as the US kit; any of the modules above work. A USB 3 SD/TF card reader is
+the one extra tool; FIRST-BUILD.md Part 3 walks through using it.
 
 ### US
 

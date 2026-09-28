@@ -24,7 +24,7 @@ wiring section you follow; everything else in this guide is the same.
 |---|---|---|
 | What's in it | board, card, cable, sensor, screen, breadboard, 12 male-to-male jumpers, sometimes a clock | board, card, cable, sensor, screen, 4 male-to-female jumpers |
 | What runs | sensor and screen together, a complete station | one module at a time: sensor first, then the screen on its own |
-| Where it comes from | the US workshop order | the UK bench until a breadboard arrives; also any kit that lost its breadboard |
+| Where it comes from | the US workshop order, and the UK bench | any kit that has no breadboard, or lost it |
 | Wiring section | Part 2A | Part 2B |
 | Print sheets | [FIRST-BUILD-kit-A.pdf](images/print/FIRST-BUILD-kit-A.pdf) | [FIRST-BUILD-kit-B.pdf](images/print/FIRST-BUILD-kit-B.pdf) |
 
@@ -280,29 +280,96 @@ blue to `SDA`, yellow to `SCL`. Plug in, wait 40 seconds, and the screen
 lights and shows its pages with `--` where readings would be. `sws-check`
 now lists `0x3C` and no sensor. Both parts proven, all four pins proven.
 
-## Part 3: put a system on the card (20 minutes, mostly download)
+## Part 3: put a system on the card (25 minutes, mostly waiting)
 
 The board has no software of its own. It boots whatever is on the microSD
-card. For the first test we use BeagleBoard's own image, which has the tools
-for checking wiring built in, and none of our code. That way if something is
-wrong we know it is the wiring.
+card, and a new card is blank. "Flashing" or "imaging" the card means
+copying a complete operating system onto it, byte for byte, from a file
+called an image. You do it once per card, on the Mac, with a card reader.
 
-1. On the Mac, download and open the **BeagleBoard Imaging Utility** from
-   https://www.beagleboard.org/bb-imager. If macOS refuses to open it, right
-   click the app, choose Open, and confirm.
-2. Put the microSD card in a reader and plug the reader into the Mac.
-3. In the utility: **Board**: PocketBeagle 2. **Image**: the newest entry
-   whose name contains "Debian" and "IoT" (not "WorkShop"). **Storage**:
-   your card. It will be listed by size; make sure it is the card and not
-   your Mac's own disk.
-4. Press **Edit**. Set a username (say `bench`) and a password you will
-   remember. Leave the rest alone. Save.
-5. Press **Write**. It downloads roughly 1 GB, writes, then verifies. Wait
-   for it to say it is finished; it can take ten minutes.
-6. Eject the card in Finder, take it out of the reader.
+You will do this twice in this guide, on purpose. First with BeagleBoard's
+own image, which has nothing of ours on it: that proves the wiring in Part 5
+with no way for our code to be the problem. Then, in Part 6, with our image,
+which is BeagleBoard's image plus the weather station.
 
-**If it doesn't:** "Write failed" usually means the card was ejected or the
-reader is flaky. Try again with the card in a different USB port.
+### 3.1 The reader
+
+A USB card reader is a small box with a slot for the card on one side and a
+USB plug on the other. Yours takes a full size SD card and a microSD ("TF")
+card; use the **small slot, marked TF or microSD**. The card goes in with
+its metal contacts facing the same way as the reader's label says, usually
+contacts down, and it slides in until it stops or clicks. It should not
+need force. If the reader has only a full size slot, the card sits inside
+an SD adapter (a card-shaped sleeve that came with it) first.
+
+Plug the reader into the Mac. Within a few seconds one of three things
+happens:
+
+- A window says **"The disk you attached was not readable by this
+  computer"** with Initialize / Ignore / Eject. This is normal for a blank
+  card or one that has been used in a Linux board. Click **Ignore**. Do not
+  click Initialize.
+- A disk called `NO NAME`, `BOOT` or similar appears on the desktop. Also
+  normal. Leave it.
+- Nothing at all. Take the card out, check it is the right way round, push
+  it home again. If still nothing, try another USB port; on a USB-C only
+  Mac, a USB 3 reader needs a USB-C adapter or hub.
+
+### 3.2 The Imaging Utility
+
+1. Download the **BeagleBoard Imaging Utility** from
+   https://www.beagleboard.org/bb-imager (the macOS `.dmg`). Open the
+   `.dmg`, drag the app to Applications, open it from there. If macOS says
+   it "cannot be opened because Apple cannot check it", right-click the app,
+   choose **Open**, then **Open** again in the dialog. It asks this once.
+2. The utility shows three boxes: Board, Image, Storage.
+3. **Board**: choose **PocketBeagle 2**.
+4. **Image**: for this first pass choose the newest entry whose name contains
+   **Debian** and **IoT** (not "WorkShop"). The utility downloads it for you.
+5. **Storage**: choose your card. It is listed by size and name (a 32 GB
+   card shows as about 31 or 32 GB, with the reader's brand in the name).
+   **Make sure it is the card and not your Mac's own disk.** If only one
+   thing is listed and it is 500 GB or 1 TB, that is the Mac; the card
+   hasn't been seen, go back to 3.1.
+6. Press **Edit** (sometimes a gear icon). Set a **username** (say `bench`)
+   and a **password** you will remember. Leave everything else alone. Save.
+   This is the login you'll type in Part 5. Our own image in Part 6 doesn't
+   need this step; it sets its own login.
+7. Press **Write**. It asks to confirm, because writing erases everything on
+   the card. Confirm. It downloads about 1 GB, writes it, then reads it all
+   back to verify. The bar goes across twice. Ten to fifteen minutes on a
+   normal connection; leave it alone until it says it has finished.
+8. When it says it's done, **eject before you pull the card**: in Finder,
+   click the eject symbol next to the card's name in the sidebar, or drag
+   the desktop icon to the Trash, or in Terminal `diskutil eject
+   /dev/diskN` (the utility usually ejects for you and says so). Then take
+   the card out of the reader. Pulling a card that hasn't been ejected can
+   corrupt what was just written.
+
+**If it doesn't:** "Write failed" or "verify failed" usually means the card
+was disturbed, the reader is flaky, or the card is bad. Reseat the card, try
+another USB port, try again. A second failure on the same card: use another
+card; they do fail, which is why the kit has spares. If the Mac shows the
+"not readable" dialog again *after* writing, that is normal (the card is now
+in a Linux format); click Ignore and eject.
+
+### 3.3 Later: writing our image instead
+
+In Part 6 you come back here with a different image file. The only changes:
+in step 4 choose **Use custom** (at the bottom of the image list) and pick
+`sovereign-weather-station-pocketbeagle2.img.xz` from Downloads; skip step 6
+(no Edit; the image sets the login to `student` / `buildit`); everything
+else is identical. Before choosing it, check the download is intact, in
+Terminal:
+
+```
+cd ~/Downloads
+shasum -a 256 -c sovereign-weather-station-pocketbeagle2.img.xz.sha256sum
+```
+
+It must print `OK`. That line compares the file you downloaded with the
+fingerprint published alongside it, so a truncated download never reaches a
+card.
 
 ---
 
@@ -411,34 +478,38 @@ come back here and run `i2cdetect` again for the screen.
 
 ---
 
-## Part 6: put our software on it (30 minutes)
+## Part 6: put our software on it (25 minutes)
 
-Now the same card gets the weather station software on top of BeagleBoard's
-image. This is the software that will be on the release image, tested here
-before it is published. It needs internet on the board once, to fetch three
-small packages.
+Now the card gets the weather station software. Two ways, same result. The
+**release image** is the file everyone will flash for the workshop, built by
+the repository from BeagleBoard's image plus our software; use it. The
+**copy-and-install** route puts the software on the card you already have,
+which is useful when you have changed the code and want to test it before a
+release exists.
 
-### 6.1 Give the board internet through the Mac
+### 6.1 The release image (the normal way)
 
-On the Mac: System Settings, General, Sharing, **Internet Sharing**. Click
-the (i) next to it. Share your connection from: Wi-Fi. To computers using:
-tick the BeagleBone / RNDIS entry. Close, then switch Internet Sharing on and
-confirm.
+1. Download both files from
+   https://github.com/OurWorldsXR/build-break-own/releases/latest:
+   `sovereign-weather-station-pocketbeagle2.img.xz` and
+   `sovereign-weather-station-pocketbeagle2.img.xz.sha256sum`.
+2. Check and flash it exactly as in section 3.3: the same card (it gets
+   erased) or a second one, **Use custom**, no Edit step.
+3. Card into the board, USB-C in, wait a minute. Skip to 6.4.
 
-### 6.2 Copy the software over
+### 6.2 Copy and install (only when testing changed code)
 
-Still on the Mac, in Terminal. This assumes your clone of the repo is at
-`~/build-break-own` (from the earlier git steps; if it is elsewhere, change
-the path):
+Give the board internet through the Mac: System Settings, General, Sharing,
+**Internet Sharing**, click the (i), share from Wi-Fi to the BeagleBone /
+RNDIS entry, then switch Internet Sharing on. Then, from the Mac, with your
+clone at `~/build-break-own`:
 
 ```
 cd ~/build-break-own
 scp -r sovereign-weather-station bench@192.168.6.2:~/
 ```
 
-It asks for the board's password and copies the folder.
-
-### 6.3 Install it
+### 6.3 Install it (copy-and-install route only)
 
 ```
 ssh bench@192.168.6.2
@@ -446,14 +517,12 @@ cd sovereign-weather-station
 sudo ./setup.sh
 ```
 
-It prints what it is doing: installs packages (this is the part that needs
-internet), copies files to `/opt/sws`, enables three services, and ends
-with `done. reboot, then run: sws-check`. Every change it makes is listed in
-CHANGES.md, so nothing here is hidden.
+It prints what it is doing: installs packages (the part that needs
+internet), copies files to `/opt/sws`, enables the services, and ends with
+`done. reboot, then run: sws-check`. Every change is listed in CHANGES.md.
 
 **If it doesn't:** errors about `apt-get update` or "Temporary failure
-resolving" mean the board has no internet; go back to 6.1. Anything else,
-copy the last ten lines it printed and open an issue.
+resolving" mean the board has no internet; go back to 6.2.
 
 ```
 sudo reboot
@@ -466,8 +535,12 @@ you'll read it from the laptop in the next step.
 
 ### 6.4 Run the check
 
+Release image: the login is `student`, password `buildit`, and because it
+is a different system at the same address, clear the old host key first:
+`ssh-keygen -R 192.168.6.2`. Copy-and-install route: your `bench` login.
+
 ```
-ssh bench@192.168.6.2
+ssh student@192.168.6.2
 sws-check
 ```
 

@@ -285,7 +285,7 @@ def page_choose():
             "through the breadboard. Twelve jumper wires with",
             "a pin at both ends (male to male).",
             "",
-            "This is the US workshop kit.",
+            "The US workshop kit and the UK bench.",
             "About 25 minutes to a working station."]),
         ("Kit B", "#7a4fb0", "Kit B: direct, no breadboard", [
             "No breadboard in the bag.",
@@ -294,8 +294,8 @@ def page_choose():
             "its own. The wires need a pin at one end and a",
             "socket at the other (male to female).",
             "",
-            "This is the UK bench until a breadboard arrives,",
-            "and it works with any kit. About 15 minutes."]))):
+            "For any kit without a breadboard. Works",
+            "anywhere. About 15 minutes."]))):
         x = 60 + i * 680
         p.add(f'<rect x="{x}" y="120" width="620" height="780" rx="16" fill="#fafafa" stroke="{col}" stroke-width="3"/>')
         p.add(f'<rect x="{x+24}" y="144" width="110" height="34" rx="17" fill="{col}"/>')
