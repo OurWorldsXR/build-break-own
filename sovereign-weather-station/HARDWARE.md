@@ -139,8 +139,13 @@ its own and the buttons stay in the bag.
 
 ## Voltage, once more
 
-Everything on the P1 and P2 headers is 3.3 V. Power every module from P1.14
-(VDD_3V3). P1.01 is 5 V in and will kill a 3.3 V sensor.
+Every signal on the P1 and P2 headers is 3.3 V unless marked otherwise, and
+three sockets on P1 are marked otherwise: P1.01 (VIN_5V, 5 V in), P1.07
+(VIN.USB, 5 V from the USB port) and P1.24 (VOUT, 5 V out). P2.13 (VOUT) and
+P2.14 (VBAT) are not 3.3 V either. Power every module from P1.14 (VDD_3V3)
+only. Any of the 5 V sockets kills a 3.3 V sensor, and P1.24 sits one column
+before P1.26, where the SDA wire goes. Source:
+https://docs.beagleboard.org/boards/pocketbeagle-2/04-expansion.html
 
 ## Where the kits go afterwards
 

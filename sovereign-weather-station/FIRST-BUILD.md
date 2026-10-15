@@ -87,10 +87,25 @@ Find these four sockets on P1, counting columns from the USB-C end:
 | **P1.28** | column 14, inner row | SCL, the clock wire |
 
 On your table, with USB-C to the left, count those columns from the left end
-of P1. Put a bit of tape or a pencil dot next to them if it helps. Note that
-**P1.1, the socket in the corner nearest the USB-C port, is 5 volts**. It
-looks exactly like the others. We never use it, and a wire from it to any of
-our modules will destroy that module.
+of P1. Put a bit of tape or a pencil dot next to them if it helps.
+
+**Three sockets on P1 carry 5 volts, and they look exactly like the others.**
+
+| Pin | Where | What it is |
+|---|---|---|
+| **P1.1** | column 1, outer row, the corner by the USB-C port | 5 V in (VIN_5V) |
+| **P1.7** | column 4, outer row | 5 V from the USB port (VIN.USB) |
+| **P1.24** | column 12, inner row, one short of P1.26 | 5 V out (VOUT) |
+
+We never use any of them, and a wire from any of them to any of our modules
+destroys that module. P1.24 is the dangerous one: it is the socket you land
+on if you count to twelve instead of thirteen on the inner row, and the blue
+wire from it would put 5 V straight into the sensor's data pin. The source
+for all of this is BeagleBoard's own table,
+https://docs.beagleboard.org/boards/pocketbeagle-2/04-expansion.html, which
+also says: "All signals on the expansion headers are 3.3V unless otherwise
+indicated. Do not connect 5V logic level signals to these pins or the board
+will be damaged."
 
 Handle the board by its edges. Before you touch it the first time, touch
 something metal and earthed (a radiator, the metal case of a plugged in
@@ -207,8 +222,9 @@ won't go, you're between sockets; look again.
 **Check, slowly, out loud:** "Red leaves the board at fourteen, inner row,
 and arrives at column fourteen. Black leaves at fifteen, outer row, and
 arrives at fifteen. Blue leaves at twenty-six and arrives at sixteen. Yellow
-leaves at twenty-eight and arrives at seventeen." The socket in the corner
-nearest the USB-C port, outer row, is P1.1, the 5 V pin: nothing in it.
+leaves at twenty-eight and arrives at seventeen." Then the 5 V check:
+nothing in P1.1 (the corner by the USB-C port), nothing in P1.7 (column 4,
+outer), and the blue wire is in column 13, not column 12 (P1.24).
 
 ### Step A3: the sensor's four wires
 
@@ -263,9 +279,11 @@ end over the sensor's pin.**
 
 **Check, out loud:** "Red leaves fourteen and arrives at VIN. Black leaves
 fifteen and arrives at GND. Blue leaves twenty-six and arrives at SDA. Yellow
-leaves twenty-eight and arrives at SCL." Nothing in P1.1, the corner socket
-by the USB-C port. Red and black swapped kills the sensor at power on; blue
-and yellow swapped only means nothing answers.
+leaves twenty-eight and arrives at SCL." Then the 5 V check: nothing in
+P1.1 (the corner by the USB-C port), nothing in P1.7 (column 4, outer), and
+the blue wire is in column 13, not column 12 (P1.24). Red and black swapped
+kills the sensor at power on; blue and yellow swapped only means nothing
+answers.
 
 Go to Part 3. The screen comes in Step B2, after the sensor has answered.
 
@@ -276,9 +294,10 @@ Go to Part 3. The screen comes in Step B2, after the sensor has answered.
 Only once the sensor has answered in Part 5. **Unplug the USB first**; never
 move a wire with power on. Slide the four socket ends off the sensor and onto
 the screen, in the pin order you wrote down: red to `VCC`, black to `GND`,
-blue to `SDA`, yellow to `SCL`. Plug in, wait 40 seconds, and the screen
-lights and shows its pages with `--` where readings would be. `sws-check`
-now lists `0x3C` and no sensor. Both parts proven, all four pins proven.
+blue to `SDA`, yellow to `SCL`. Plug in, wait 40 seconds, `ssh` in and run
+`sudo i2cdetect -y -r 2` again: `3c` now, and no `76`. Both parts proven,
+all four pins proven. The screen stays dark on this image; it lights in
+Part 6, and `sws-check` there lists `0x3C` and no sensor.
 
 ## Part 3: put a system on the card (25 minutes, mostly waiting)
 
@@ -322,23 +341,28 @@ happens:
    `.dmg`, drag the app to Applications, open it from there. If macOS says
    it "cannot be opened because Apple cannot check it", right-click the app,
    choose **Open**, then **Open** again in the dialog. It asks this once.
-2. The utility shows three boxes: Board, Image, Storage.
+2. The utility walks through screens in order: board, image, destination,
+   configuration, review, then the write itself. The buttons at the bottom
+   move you on.
 3. **Board**: choose **PocketBeagle 2**.
 4. **Image**: for this first pass choose the newest entry whose name contains
    **Debian** and **IoT** (not "WorkShop"). The utility downloads it for you.
-5. **Storage**: choose your card. It is listed by size and name (a 32 GB
+5. **Destination**: choose your card. It is listed by size and name (a 32 GB
    card shows as about 31 or 32 GB, with the reader's brand in the name).
    **Make sure it is the card and not your Mac's own disk.** If only one
    thing is listed and it is 500 GB or 1 TB, that is the Mac; the card
    hasn't been seen, go back to 3.1.
-6. Press **Edit** (sometimes a gear icon). Set a **username** (say `bench`)
-   and a **password** you will remember. Leave everything else alone. Save.
-   This is the login you'll type in Part 5. Our own image in Part 6 doesn't
-   need this step; it sets its own login.
-7. Press **Write**. It asks to confirm, because writing erases everything on
-   the card. Confirm. It downloads about 1 GB, writes it, then reads it all
-   back to verify. The bar goes across twice. Ten to fifteen minutes on a
-   normal connection; leave it alone until it says it has finished.
+6. **Configuration**: set a **username** (say `bench`) and a **password**
+   you will remember. Leave everything else alone. This is the login you'll
+   type in Part 5. Our own image in Part 6 doesn't need this step; it sets
+   its own login, so there you leave every option off.
+7. **Review** shows board, image and destination together; read the
+   destination size once more, then **Write**. It asks to confirm, because
+   writing erases everything on the card. Confirm. It downloads about 1 GB,
+   writes it, then reads it all back to verify. The bar goes across twice.
+   Ten to fifteen minutes on a normal connection; leave it alone until it
+   says it has finished. macOS asks for your password once, for permission
+   to write to the card.
 8. When it says it's done, **eject before you pull the card**: in Finder,
    click the eject symbol next to the card's name in the sidebar, or drag
    the desktop icon to the Trash, or in Terminal `diskutil eject
@@ -356,7 +380,7 @@ in a Linux format); click Ignore and eject.
 ### 3.3 Later: writing our image instead
 
 In Part 6 you come back here with a different image file. The only changes:
-in step 4 choose **Use custom** (at the bottom of the image list) and pick
+in step 4 choose **Use Custom Image** (at the bottom of the image list) and pick
 `sovereign-weather-station-pocketbeagle2.img.xz` from Downloads; skip step 6
 (no Edit; the image sets the login to `student` / `buildit`); everything
 else is identical. Before choosing it, check the download is intact, in
@@ -459,7 +483,7 @@ the reference photo for every station after this one.
 | `3c` only | screen fine, sensor not answering | unplug USB. check the sensor's four wires, especially that its SDA and SCL wires reach columns 16 and 17 |
 | `76`/`77` only | sensor fine, screen not | unplug USB. check the screen's wires; recheck the pin order you wrote down |
 | nothing | neither answers | unplug USB. most likely SDA and SCL are swapped at the board end (P1.26 vs P1.28), or a power wire is in the wrong column or socket |
-| `command not found` | the tool isn't installed on this image | `sudo apt update && sudo apt install -y i2c-tools`, which needs the board to have internet: see Part 6, step 1 |
+| `command not found` | the tool isn't installed on this image | `sudo apt update && sudo apt install -y i2c-tools`, which needs the board to have internet: see section 6.2 |
 | a whole row of numbers | SDA and SCL shorted together or to power | unplug USB immediately. look for two bare pins touching |
 
 ### 5.4 Ask the sensor what it is
@@ -494,7 +518,8 @@ release exists.
    `sovereign-weather-station-pocketbeagle2.img.xz` and
    `sovereign-weather-station-pocketbeagle2.img.xz.sha256sum`.
 2. Check and flash it exactly as in section 3.3: the same card (it gets
-   erased) or a second one, **Use custom**, no Edit step.
+   erased) or a second one, **Use Custom Image**, nothing set on the
+   configuration screen.
 3. Card into the board, USB-C in, wait a minute. Skip to 6.4.
 
 ### 6.2 Copy and install (only when testing changed code)

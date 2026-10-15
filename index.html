@@ -1815,15 +1815,16 @@ const BEATS=[
   <h2>Now plug it in</h2>
   <p>USB-C. The same connector as a phone charger. It only fits one way, so you cannot get this wrong.</p>`},
 {s:'power',side:'left',html:`<p>Small lights come on. They are on the underside, the side without sockets, so you see a glow at the USB-C end rather than the lights themselves. One flickers unevenly. That is the card being read. Flickering is good.</p>`},
-{s:'power',talk:1,build:1,side:'left',html:`<p>Then wait. <span class="a">Nothing visible happens for about forty seconds.</span> The computer is starting up. This is the moment most people decide it is broken. It is not. <span class="kitA">Then the screen lights, on its own.</span></p>`},
+{s:'power',talk:1,build:1,side:'left',html:`<p>Then wait. <span class="a">Nothing visible happens for about forty seconds.</span> The computer is starting up. This is the moment most people decide it is broken. It is not. <span class="kitA">Then the screen lights, on its own. That is the station card doing it; on a plain BeagleBoard card the screen stays dark, and that is correct too.</span></p>`},
 
 {s:'counting',talk:1,build:1,side:'left',html:`<div class="kick">step four</div>
   <h2>How to find one socket out of seventy-two</h2>
-  <p>Both long edges are lined with sockets. They look identical. They are not. There is a system.</p>
+  <p>Two strips, P1 and P2, each two rows of eighteen. Seventy-two sockets that look identical. They are not. There is a system.</p>
   <img src="sovereign-weather-station/images/board-pins.svg" alt="The PocketBeagle 2 with P1.14, P1.15, P1.26 and P1.28 marked, and every P1 socket numbered">`},
 {s:'counting',side:'left',html:`<p>Hold the board sockets up. The strip with a tiny printed <span class="a">1</span> and <span class="a">2</span> at the USB-C end is P1. From there the numbers zig-zag: odd numbers along the outer row, evens along the inner row.</p>`},
 {s:'counting',side:'left',html:`<p>To find <span class="a">pin 14</span>, count sockets along the inner row from the USB-C end: 2, 4, 6, 8, 10, 12, 14. Seven sockets.</p>`},
-{s:'counting',side:'left',html:`<p><span class="a">Pin 15</span> is the next one along on the outer row, diagonal from 14. <span class="a">26</span> and <span class="a">28</span> are the 13th and 14th along the inner row. And the corner socket by the USB-C port, outer row, is pin 1: five volts. Nothing ever goes in it.</p>`},
+{s:'counting',side:'left',html:`<p><span class="a">Pin 15</span> is the next one along on the outer row, diagonal from 14. <span class="a">26</span> and <span class="a">28</span> are the 13th and 14th along the inner row.</p>`},
+{s:'counting',side:'left',html:`<p>Three sockets on this strip carry <span class="a">five volts</span>, and they look like all the others. <span class="a">Pin 1</span>, the corner by the USB-C port, outer row. <span class="a">Pin 7</span>, fourth along the outer row. And <span class="a">pin 24</span>, the twelfth along the inner row, one short of 26. Stop at 24 instead of 26 and the blue wire puts five volts into the sensor. Nothing ever goes in any of the three. <a href="https://docs.beagleboard.org/boards/pocketbeagle-2/04-expansion.html">BeagleBoard's own pin table</a> is the source; <a href="sovereign-weather-station/WIRING.md">WIRING.md</a> has the four we use.</p>`},
 {s:'counting',talk:1,build:1,side:'left',html:`<p>Count out loud. Count twice. Almost every mistake in this build is a miscounted pin.</p>`},
 
 {s:'wires',talk:1,build:1,side:'left',html:`<div class="kick">step five</div>
@@ -1841,7 +1842,7 @@ const BEATS=[
 
 {s:'bus',talk:1,build:1,side:'left',html:`<div class="kick">step six</div>
   <h2>Ask what is out there</h2>
-  <p>Plug the power back in. Wait for the boot. On the laptop, <code>ssh student@192.168.7.2</code> (Mac: <code>192.168.6.2</code>), password <code>buildit</code>. Then one command: <code>sws-check</code>. It calls out across the wires and tells you in plain words what answered. The long way is <code>sudo i2cdetect -y -r 2</code>, a grid of dashes.</p>`},
+  <p>Plug the power back in. Wait for the boot. On the laptop, <code>ssh student@192.168.7.2</code> (Mac: <code>192.168.6.2</code>), password <code>buildit</code>. Then one command: <code>sws-check</code>. It calls out across the wires and tells you in plain words what answered. The long way is <code>sudo i2cdetect -y -r 2</code>, a grid of dashes, and it works on any card. If <code>sws-check</code> says <code>command not found</code>, you are on a plain BeagleBoard card, not the station card: use the long way, and see <a href="sovereign-weather-station/FIRST-BUILD.md#part-5-prove-the-wiring-10-minutes">FIRST-BUILD, Part 5</a>.</p>`},
 {s:'bus',side:'left',html:`<p>In the grid almost everything comes back as a dash, meaning nothing there. Then <span class="a">76</span> appears. That is your sensor. It just told you its address.</p>`},
 {s:'bus',side:'left',html:`<p><span class="kitA">And <span class="a">3c</span>. That is your screen.</span><span class="kitB">The screen's <span class="a">3c</span> comes when it takes its turn on the wires.</span></p>`},
 {s:'bus',talk:1,build:1,side:'left',html:`<p>Numbers in a field of dashes. Your circuit is correct. You proved it instead of hoping. Then <code>sws-live</code>, breathe on the sensor, and watch the humidity climb.</p>`},
@@ -1919,9 +1920,9 @@ const BEATS=[
 
 {s:'screen',talk:1,build:1,side:'left',html:`<div class="kick">step eight</div>
   <h2>Reading your own weather</h2>
-  <p>Right now: temperature, humidity, pressure. Press the button and the page changes.</p>`},
-{s:'screen',side:'left',html:`<p>Press again for the running totals. Lowest, highest, average, and how many readings it has taken since you set it up.</p>`},
-{s:'screen',talk:1,build:1,side:'left',html:`<p>Press once more for the <span class="a">month card</span>: the six numbers the reporting form asks for, in the order it asks for them.</p>`},
+  <p>Right now: temperature, humidity, pressure. The screen turns its own pages, <span class="a">five seconds each</span>, no button to press. It takes a reading every five minutes and writes them to the card once an hour, so the card lasts years.</p>`},
+{s:'screen',side:'left',html:`<p>Second page: the running totals. Lowest, highest, average, and how many readings it has taken since you set it up.</p>`},
+{s:'screen',talk:1,build:1,side:'left',html:`<p>Third page, the <span class="a">month card</span>: the six numbers the reporting form asks for, in the order it asks for them. Then back to now. <a href="sovereign-weather-station/README.md">What the station does, and when</a>.</p>`},
 
 {s:'sunpath',talk:1,side:'left',html:`<div class="kick">step nine</div>
   <h2>The sun is the problem</h2>
