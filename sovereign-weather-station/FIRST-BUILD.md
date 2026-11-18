@@ -297,7 +297,8 @@ the screen, in the pin order you wrote down: red to `VCC`, black to `GND`,
 blue to `SDA`, yellow to `SCL`. Plug in, wait 40 seconds, `ssh` in and run
 `sudo i2cdetect -y -r 2` again: `3c` now, and no `76`. Both parts proven,
 all four pins proven. The screen stays dark on this image; it lights in
-Part 6, and `sws-check` there lists `0x3C` and no sensor.
+Part 6. On its own it shows the station's name, both USB addresses and
+`SCREEN OK`, and `sws-check` there lists `0x3C` and no sensor.
 
 ## Part 3: put a system on the card (25 minutes, mostly waiting)
 
@@ -582,6 +583,11 @@ A line every two seconds. Cup your hand over the sensor, or breathe on it:
 the temperature and humidity move within a few readings. `Control-C` stops
 it.
 
+**If the screen shows snow** (random dots, or a smear across part of it):
+unplug the USB cable, count to ten, plug it back in. These screens have no
+reset pin, so a full power off is the only real reset. It happens most
+often after a wire moved with the power on, which is one more reason not to.
+
 **If it doesn't:** screen dark but `sws-check` found `0x3C`:
 
 ```
@@ -624,11 +630,14 @@ as is):
 
 ```
 sudo date -u -s "2026-10-01 14:30:00"
-sudo hwclock -w --utc
+sudo hwclock -f /dev/rtc-ds3231 -w --utc
 ```
 
 The first line sets the board's clock; the second copies it into the
-DS3231, which keeps it on the coin cell.
+DS3231, which keeps it on the coin cell. The `-f` matters: without it,
+`hwclock` writes to the board's own clock (`/dev/rtc0`), which has no battery
+and forgets at power off. `/dev/rtc-ds3231` is a name `sws-rtc` makes at
+boot for whichever rtc the DS3231 turned out to be, usually `/dev/rtc1`.
 
 From now on the board keeps time through power cuts.
 

@@ -31,15 +31,17 @@ also take apart on paper."
 the room and check only two things at each table before the USB goes in: 3V3
 is on VCC, GND is on GND. Say it out loud at each table. Then let them plug in.
 
-**Minutes 8 to 12, watch it boot.** Screen comes up in about 40 seconds. A team
-whose screen stays dark: unplug, recheck SDA and SCL, replug. Do not debug
+**Minutes 8 to 12, watch it boot.** Screen comes up in about 40 seconds and
+shows the station's name and both USB addresses, then the weather. A team
+whose screen shows snow: unplug, count to ten, replug. A team whose screen
+stays dark: unplug, recheck SDA and SCL, replug. Do not debug
 past two attempts; swap the kit for a spare and move on. Debugging is not the
 lesson.
 
 **Minutes 12 to 20, talk to it.** Teams with laptops:
 
 ```
-ssh student@192.168.7.2       # or .6.2 on a Mac. password: buildit
+ssh student@192.168.7.2       # hangs? try .6.2. varies by laptop. password: buildit
 sws-check
 sws-live
 ```
@@ -77,6 +79,7 @@ using this board. Most hardware stops them at the userland layer.
 4. Card not seated. Board LEDs never blink.
 5. Laptop firewall or VPN blocking the USB network. Turn the VPN off.
 6. BMP280 in a BME280's clothing. Works, no humidity. `sws-check` says so. Move on.
+7. Screen shows snow. A wire moved with power on, or it powered up dirty. Unplug, count to ten, replug. The module has no reset pin, so power is the reset.
 
 ## After
 

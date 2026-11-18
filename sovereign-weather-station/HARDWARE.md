@@ -3,7 +3,8 @@
 What one station is, what was ordered on each side of the Atlantic, and what
 to check on each part before you trust it. The software only cares that the
 sensor is a BME280, the screen is an SSD1306 and the optional clock is a
-DS3231, all on I2C at 3.3 V. Any vendor's breakout works.
+DS3231, all on I2C at 3.3 V. Any vendor's breakout works. To buy a kit from scratch,
+see [BUY.md](../BUY.md).
 
 ## The board
 

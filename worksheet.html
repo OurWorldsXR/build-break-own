@@ -177,9 +177,9 @@
   <div class="step"><div class="n">6</div><div class="b"><b>Kit B: four wires straight to the sensor</b>
     <span>Pin end in the board, socket end on the module. 14 &rarr; VIN, 15 &rarr; GND, 26 &rarr; SDA, 28 &rarr; SCL. The screen gets the same four wires later, on its own.</span></div><div class="tick"></div></div>
   <div class="step"><div class="n">7</div><div class="b"><b>Card in, then plug in, then wait</b>
-    <span>Card slot is on the socket side, next to the USB-C end, label facing out. Lights are on the underside. About 40 seconds before anything happens. Kit A: the screen comes on by itself.</span></div><div class="tick"></div></div>
+    <span>Card slot is on the socket side, next to the USB-C end, label facing out. Lights are on the underside. About 40 seconds before anything happens. Then the screen shows your station's name. Snow on the screen? Unplug, count to ten, plug in.</span></div><div class="tick"></div></div>
   <div class="step"><div class="n">8</div><div class="b"><b>Reach it from the laptop</b>
-    <span><code>ssh student@192.168.7.2</code> (Mac: <code>192.168.6.2</code>), password <code>buildit</code>.</span></div><div class="tick"></div></div>
+    <span><code>ssh student@192.168.7.2</code>. Hangs? Try <code>192.168.6.2</code>. Password <code>buildit</code>. The screen shows both after boot.</span></div><div class="tick"></div></div>
   <div class="step"><div class="n">9</div><div class="b"><b>Prove it</b>
     <span>Run <code>sws-check</code>. Five questions in plain language. Question 2 should list 0x76 (the sensor) and, Kit A, 0x3C (the screen). Question 3 should say "real BME280". The long way: <code>sudo i2cdetect -y -r 2</code>.</span></div><div class="tick"></div></div>
   <div class="step"><div class="n">10</div><div class="b"><b>Read your own weather</b>

@@ -255,7 +255,7 @@ function grain(){
 /* which movement each scene belongs to, so the reader always knows where they are */
 const ACT={
  opening:0,replica:0,paths:0,journey:0,land:0,
- kit:1,why:1,freedoms:1,card:1,power:1,counting:1,wires:1,bus:1,q1:1,q2:1,q3:1,recapA:1,
+ kit:1,why:1,freedoms:1,counting:1,wires:1,card:1,power:1,bus:1,q1:1,q2:1,q3:1,recapA:1,
  shiprock:2,code:2,cylinder:2,missing:2,verify:2,recapB:2,screen:2,
  sunpath:2,shield:2,proof:2,q4:2,q5:2,q6:2,recapB:2,q7:2,q8:2,q9:2,recapC:2,
  trace:3,databack:3,care:3,tension:3,reo:3,spectrum:3,q10:3,q11:3,q12:3,recapD:3,next:3,yours:3,closing:3
@@ -798,7 +798,7 @@ SC.kit=(p,t)=>{
       x0,H*0.26+2*(ch+px(28))+px(10),W*0.46,C.accent,14,21);x.restore()}
 };
 
-/* ---- 2. the card goes in first ---- */
+/* ---- the card, after the wires ---- */
 SC.card=(p,t)=>{
   const bw=W*0.28,bx=W*0.48,by=H*0.38;
   const slid=ease(clampP(p,1));
@@ -845,7 +845,7 @@ SC.power=(p,t)=>{
     const wait=Math.min(30,Math.floor((p-2)*30));
     x.save();x.globalAlpha=ease(clampP(p,2));
     mono('booting  '+String(wait).padStart(2,'0')+' s',bx+bw+px(40),by+bh*0.34,C.warm,16);
-    wrapTxt('Nothing happens for about thirty seconds. That is normal. Linux is starting.',
+    wrapTxt('Nothing happens for about forty seconds. That is normal. Linux is starting.',
       bx+bw+px(40),by+bh*0.34+px(30),W*0.20,C.mut,13,19);
     x.restore();
   }
@@ -904,7 +904,7 @@ SC.wires=(p,t)=>{
 
 /* ---- 6. the bus answers ---- */
 SC.bus=(p,t)=>{
-  const B=stageBox('$ sudo i2cdetect -y 1');
+  const B=stageBox('$ sudo i2cdetect -y -r 2');
   const cols=8, rows=4, cw=px(40), chh=px(34);
   const gx=B.x+px(40), gy=B.y+px(56);
   for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
@@ -1416,8 +1416,8 @@ SC.missing=(p,t)=>{
 
 /* ---- 8. verify the part ---- */
 SC.verify=(p,t)=>{
-  const B=stageBox('$ i2cget -y 1 0x76 0xD0');
-  const lines=[['$ i2cget -y 1 0x76 0xD0',C.mut],['0x60',C.good],
+  const B=stageBox('$ i2cget -y 2 0x76 0xD0');
+  const lines=[['$ i2cget -y 2 0x76 0xD0',C.mut],['0x60',C.good],
     ['   BME280. temperature, pressure, humidity.',C.mut],['0x58',C.bad],
     ['   BMP280. no humidity. wrong part, right package.',C.bad]];
   const shown=Math.min(lines.length,Math.floor(p)+1);
@@ -1805,19 +1805,7 @@ const BEATS=[
 {s:'freedoms',side:'left',html:`<p><span class="a">Freedom two.</span> Give a copy to someone else. <span class="a">Freedom three.</span> Give away your changed version, so your fix becomes everybody's fix.</p>`},
 {s:'freedoms',talk:1,side:'left',html:`<p>Freedom one is the one this workshop stands on. Every question you are about to answer about who controls this board is answerable <span class="a">only because somebody published the answer</span>. On most hardware, freedom one does not exist.</p>`},
 
-{s:'card',talk:1,build:1,side:'left',html:`<div class="kick">step two</div>
-  <h2>The card goes in first</h2>
-  <p>Before power. Before wires. The slot is on the socket side of the board, next to the USB-C end, under the big metal plate.</p>`},
-{s:'card',side:'left',html:`<p>Label facing out, away from the board. Push until it clicks. It should sit almost flush. If it sticks out, it is the wrong way round.</p>`},
-{s:'card',talk:1,build:1,side:'left',html:`<p>You are holding the whole computer in your hand. Move this card to another board and your station moves with it.</p>`},
-
-{s:'power',talk:1,build:1,side:'left',html:`<div class="kick">step three</div>
-  <h2>Now plug it in</h2>
-  <p>USB-C. The same connector as a phone charger. It only fits one way, so you cannot get this wrong.</p>`},
-{s:'power',side:'left',html:`<p>Small lights come on. They are on the underside, the side without sockets, so you see a glow at the USB-C end rather than the lights themselves. One flickers unevenly. That is the card being read. Flickering is good.</p>`},
-{s:'power',talk:1,build:1,side:'left',html:`<p>Then wait. <span class="a">Nothing visible happens for about forty seconds.</span> The computer is starting up. This is the moment most people decide it is broken. It is not. <span class="kitA">Then the screen lights, on its own. That is the station card doing it; on a plain BeagleBoard card the screen stays dark, and that is correct too.</span></p>`},
-
-{s:'counting',talk:1,build:1,side:'left',html:`<div class="kick">step four</div>
+{s:'counting',talk:1,build:1,side:'left',html:`<div class="kick">step two</div>
   <h2>How to find one socket out of seventy-two</h2>
   <p>Two strips, P1 and P2, each two rows of eighteen. Seventy-two sockets that look identical. They are not. There is a system.</p>
   <img src="sovereign-weather-station/images/board-pins.svg" alt="The PocketBeagle 2 with P1.14, P1.15, P1.26 and P1.28 marked, and every P1 socket numbered">`},
@@ -1827,9 +1815,9 @@ const BEATS=[
 {s:'counting',side:'left',html:`<p>Three sockets on this strip carry <span class="a">five volts</span>, and they look like all the others. <span class="a">Pin 1</span>, the corner by the USB-C port, outer row. <span class="a">Pin 7</span>, fourth along the outer row. And <span class="a">pin 24</span>, the twelfth along the inner row, one short of 26. Stop at 24 instead of 26 and the blue wire puts five volts into the sensor. Nothing ever goes in any of the three. <a href="https://docs.beagleboard.org/boards/pocketbeagle-2/04-expansion.html">BeagleBoard's own pin table</a> is the source; <a href="sovereign-weather-station/WIRING.md">WIRING.md</a> has the four we use.</p>`},
 {s:'counting',talk:1,build:1,side:'left',html:`<p>Count out loud. Count twice. Almost every mistake in this build is a miscounted pin.</p>`},
 
-{s:'wires',talk:1,build:1,side:'left',html:`<div class="kick">step five</div>
+{s:'wires',talk:1,build:1,side:'left',html:`<div class="kick">step three</div>
   <h2>Four wires, one at a time</h2>
-  <p>Unplug the board first. Never move a wire while it has power. That is the one action that can permanently damage it.</p>
+  <p>The USB cable stays in the bag until all four wires are in. Never move a wire while the board has power. That is the one action that can permanently damage it.</p>
   <img class="kitA" src="sovereign-weather-station/images/bench-A-step4.svg" alt="Kit A: sensor and screen in the mini breadboard, four shared columns, four wires from the board">
   <img class="kitB" src="sovereign-weather-station/images/bench-B-step1.svg" alt="Kit B: four wires from the board straight to the sensor">`},
 {s:'wires',side:'left',html:`<p class="kitA">Seat the sensor in the breadboard's top row, columns 1 to 4, and the screen in columns 9 to 12. Columns 14 to 17 stay empty: they become the four shared wires. First wire: <span class="a">pin 14 to column 14</span>. That is the power line. It carries 3.3 volts. The modules do not survive 5.</p>
@@ -1840,9 +1828,22 @@ const BEATS=[
 {s:'wires',talk:1,build:1,side:'left',html:`<p class="kitA">Now the sensor's four legs to the same four columns, and the screen's four legs too, in the order printed on your screen. Red ends at VIN or VCC, black at GND, every time. Two devices, one set of wires. That is the whole trick of how this works.</p>
   <p class="kitB">The screen would go to the same four pins, and it will, after the sensor has answered: unplug, move the four wires across, plug in again. Two devices, one set of wires, taking turns. With a breadboard they would share.</p>`},
 
+{s:'card',talk:1,build:1,side:'left',html:`<div class="kick">step four</div>
+  <h2>Now the card</h2>
+  <p>After the wires, before power. The slot is on the socket side of the board, next to the USB-C end, under the big metal plate.</p>`},
+{s:'card',side:'left',html:`<p>Label facing out, away from the board. Push until it clicks. It should sit almost flush. If it sticks out, it is the wrong way round.</p>`},
+{s:'card',talk:1,build:1,side:'left',html:`<p>You are holding the whole computer in your hand. Move this card to another board and your station moves with it.</p>`},
+
+{s:'power',talk:1,build:1,side:'left',html:`<div class="kick">step five</div>
+  <h2>Now plug it in</h2>
+  <p>USB-C. The same connector as a phone charger. It only fits one way, so you cannot get this wrong.</p>`},
+{s:'power',side:'left',html:`<p>Small lights come on. They are on the underside, the side without sockets, so you see a glow at the USB-C end rather than the lights themselves. One flickers unevenly. That is the card being read. Flickering is good.</p>`},
+{s:'power',talk:1,build:1,side:'left',html:`<p>Then wait. <span class="a">Nothing visible happens for about forty seconds.</span> The computer is starting up. This is the moment most people decide it is broken. It is not. <span class="kitA">Then the screen lights, on its own: your station's name and address first, then the weather. That is the station card doing it; on a plain BeagleBoard card the screen stays dark, and that is correct too.</span></p>`},
+{s:'power',side:'left',html:`<p>Screen full of snow instead? Unplug, <span class="a">count to ten</span>, plug back in. These little screens have no reset button. Taking the power away is the reset, and it works.</p>`},
+
 {s:'bus',talk:1,build:1,side:'left',html:`<div class="kick">step six</div>
   <h2>Ask what is out there</h2>
-  <p>Plug the power back in. Wait for the boot. On the laptop, <code>ssh student@192.168.7.2</code> (Mac: <code>192.168.6.2</code>), password <code>buildit</code>. Then one command: <code>sws-check</code>. It calls out across the wires and tells you in plain words what answered. The long way is <code>sudo i2cdetect -y -r 2</code>, a grid of dashes, and it works on any card. If <code>sws-check</code> says <code>command not found</code>, you are on a plain BeagleBoard card, not the station card: use the long way, and see <a href="sovereign-weather-station/FIRST-BUILD.md#part-5-prove-the-wiring-10-minutes">FIRST-BUILD, Part 5</a>.</p>`},
+  <p>Once it has booted, on the laptop: <code>ssh student@192.168.7.2</code>. If that hangs, <code>192.168.6.2</code>; which one answers depends on the laptop. Password <code>buildit</code>. Then one command: <code>sws-check</code>. It calls out across the wires and tells you in plain words what answered. The long way is <code>sudo i2cdetect -y -r 2</code>, a grid of dashes, and it works on any card. If <code>sws-check</code> says <code>command not found</code>, you are on a plain BeagleBoard card, not the station card: use the long way, and see <a href="sovereign-weather-station/FIRST-BUILD.md#part-5-prove-the-wiring-10-minutes">FIRST-BUILD, Part 5</a>.</p>`},
 {s:'bus',side:'left',html:`<p>In the grid almost everything comes back as a dash, meaning nothing there. Then <span class="a">76</span> appears. That is your sensor. It just told you its address.</p>`},
 {s:'bus',side:'left',html:`<p><span class="kitA">And <span class="a">3c</span>. That is your screen.</span><span class="kitB">The screen's <span class="a">3c</span> comes when it takes its turn on the wires.</span></p>`},
 {s:'bus',talk:1,build:1,side:'left',html:`<p>Numbers in a field of dashes. Your circuit is correct. You proved it instead of hoping. Then <code>sws-live</code>, breathe on the sensor, and watch the humidity climb.</p>`},

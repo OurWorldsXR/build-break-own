@@ -20,8 +20,8 @@ This half uses nothing from this repo. If it passes, the hardware is right.
 
 4. **Connect.**
    ```
-   ssh <yourname>@192.168.6.2        # Mac
-   ssh <yourname>@192.168.7.2        # Windows, Linux
+   ssh <yourname>@192.168.7.2        # try this first
+   ssh <yourname>@192.168.6.2        # if the first hangs. varies by laptop, Macs included
    ```
    First time: answer `yes` to the host key question.
 
@@ -141,9 +141,9 @@ Half two passed. Now flash the rest: [FLASHING.md](FLASHING.md).
 | `sws-check` finds no buses at all | not our image, or not a PocketBeagle 2 |
 | `sws-check` question 2: nothing answered | wiring. go back to half one |
 | `sws-check` says BMP280 | wrong part from the vendor. still runs, no humidity |
-| screen shows garbage | loose SDA or SCL wire. reseat, `sudo systemctl restart station` |
+| screen shows garbage or snow | usually a wire moved with power on, or the screen powered up dirty. unplug the USB cable, count to ten, plug back in. that is the only reset these screens have. if it comes back every boot, reseat SDA and SCL |
 | readings are absurd (pressure 0, temperature -40) | run `python3 /opt/sws/test/test_station.py` and open an issue with the output of `sws-live` |
-| clock is 1970 or stale | expected on a board with no DS3231. fit one (see HARDWARE.md, battery note first), then `sudo systemctl restart sws-rtc` and set it once: `sudo date -u -s '2026-10-14 09:00:00' && sudo hwclock -w --utc` |
+| clock is 1970 or stale | expected on a board with no DS3231. fit one (see HARDWARE.md, battery note first), then `sudo systemctl restart sws-rtc` and set it once: `sudo date -u -s '2026-10-14 09:00:00' && sudo hwclock -f /dev/rtc-ds3231 -w --utc`. without `-f` it writes to the board's own clock, which forgets at power off |
 
 Open an issue at https://github.com/OurWorldsXR/build-break-own/issues with
 the output of `sws-check` pasted in. That output is designed to be the bug report.

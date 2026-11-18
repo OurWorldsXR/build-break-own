@@ -25,12 +25,16 @@ The card image is built by GitHub Actions from the official PocketBeagle 2
 Debian image and this directory, and attached to each `station-v*` release:
 https://github.com/OurWorldsXR/build-break-own/releases
 
+Use **station-v2 or newer**. A card flashed with station-v1 makes new ssh
+keys on every boot, can set the clock to 1970, and can leave the screen
+showing snow; reflashing fixes all three. What changed: [CHANGES.md](CHANGES.md).
+
 1. Download `sovereign-weather-station-pocketbeagle2.img.xz` and check it
    against the `.sha256sum` next to it.
 2. Write it with the [BeagleBoard Imaging Utility](https://www.beagleboard.org/bb-imager)
    or `xzcat ....img.xz | sudo dd of=/dev/sdX bs=4M status=progress`.
 3. Card in, USB-C to your laptop, wait about 30 seconds.
-4. `ssh student@192.168.7.2`  (or `192.168.6.2` on a Mac). Password `buildit`.
+4. `ssh student@192.168.7.2`. If that hangs for more than ten seconds, `Control-C` and try `192.168.6.2`; which one answers depends on the laptop, not the operating system. The screen shows both for twenty seconds after boot. Password `buildit`.
    Change it: `passwd`. The login is set on first boot from
    `sysconf.txt` on the card, so you can edit it there before booting too.
 5. `sws-check`, then `sws-live` to watch the numbers move.
@@ -41,7 +45,7 @@ https://github.com/OurWorldsXR/build-break-own/releases
    [BeagleBoard Imaging Utility](https://www.beagleboard.org/bb-imager).
    Use its **Edit** button to set your username and password before writing.
 2. Card in, USB-C to your laptop, wait about 30 seconds.
-3. `ssh <you>@192.168.7.2`  (or `192.168.6.2` on a Mac)
+3. `ssh <you>@192.168.7.2`  (or `192.168.6.2` if that hangs)
 4. Copy this repo to the board, then:
    ```
    sudo ./setup.sh
@@ -121,7 +125,7 @@ Or on a board, by hand:
    [beagleboard.org/distros](https://www.beagleboard.org/distros) using the
    [BeagleBoard Imaging Utility](https://www.beagleboard.org/bb-imager).
    Use its **Edit** button to set the username and password first.
-2. Boot, connect over USB-C, `ssh <you>@192.168.7.2` (`192.168.6.2` on a Mac).
+2. Boot, connect over USB-C, `ssh <you>@192.168.7.2` (or `192.168.6.2` if that hangs).
 3. Copy this directory to the board and run `sudo ./setup.sh`, then reboot.
 4. `sws-check`. Record what it prints; that output settles the bus number, the
    addresses and the chip ID in one go.
