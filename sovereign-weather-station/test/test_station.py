@@ -79,12 +79,23 @@ s.clear(); s.text('MONTH CARD  NOV', 2, 0)
 check('text writes something', any(v for v in s.buf))
 s.clear(); s.text('12.4 C', 2, 14, 2)
 check('double-size text stays in the buffer', len(s.buf) == 1024)
-missing = [c for c in 'NOW SINCE MIN MAX MEAN LAST MONTH CARD RH HPA 0123456789.-:%'
+missing = [c for c in 'NOW SINCE MIN MAX MEAN LAST MONTH CARD RH HPA 0123456789.-:% '
+           'SWS-ABCDEF SSH STUDENT AT SCREEN OK NO SENSOR ON WIRES UNWRITTEN'
            if c.upper() not in FONT]
 check('every character the screen uses has a glyph', not missing, str(missing))
-s.show()
+s.bus.writes.clear(); s.show()
 blocks = [w for w in s.bus.writes if isinstance(w[2], tuple)]
 check('show() sends 8 pages of 128 bytes', len(blocks) == 8*8, '%d blocks' % len(blocks))
+
+fb = FakeBus(); SSD1306(fb)
+on_at = [i for i, w in enumerate(fb.writes) if w == (0x3C, 0x00, 0xAF)]
+data_at = [i for i, w in enumerate(fb.writes) if isinstance(w[2], tuple)]
+check('display-on is sent exactly once, at the end', on_at == [len(fb.writes) - 1])
+check('the whole screen memory is written before display-on (no noise at power up)',
+      len(data_at) == 64 and max(data_at) < on_at[0])
+s.pixel(3, 3); s.bus.writes.clear(); s.init()
+check('init() can run again on a live screen and keeps what was drawn',
+      s.buf[3] == 0x08 and s.bus.writes[-1] == (0x3C, 0x00, 0xAF))
 
 print('\nlogging and stats')
 import station as st
@@ -96,7 +107,8 @@ class FakeStation(st.Station):
         self.sensor = BME280(self.bus); self.screen = SSD1306(self.bus)
         self.pending = []; self.page = 0; self.last_flush = 0
         self.n_total, self.tmin, self.tmax, self.tsum = 0, None, None, 0.0
-        self.last = None
+        self.last = None; self.id = 'SWS-ABCDEF'; self.hello_until = 0
+        self.last_init = 0
         os.makedirs(st.DATA_DIR, exist_ok=True); self._load_totals()
 S = FakeStation()
 for _ in range(5): S.take_reading()
@@ -120,6 +132,28 @@ n_before, pend_before = S.n_total, len(S.pending)
 S.peek(); S.draw()
 check('a live peek shows on screen but is not logged or counted',
       S.n_total == n_before and len(S.pending) == pend_before and S.last is not None)
+
+
+print('\nparts that come and go')
+st.usb_addresses = lambda: ['192.168.7.2']
+S3 = FakeStation()
+S3.bus.present = (0x3C,); S3.sensor = None
+S3.take_reading(); S3.peek(); S3.draw()
+check('screen alone (Kit B): no reading, no crash, screen still drawn',
+      S3.pending == [] and S3.screen is not None and any(S3.screen.buf))
+S3.bus.present = (0x76, 0x3C); S3.look()
+check('a sensor wired in later is found without a reboot', S3.sensor is not None)
+S3.bus.present = (0x3C,); S3.take_reading()
+check('a sensor that vanishes mid-run is dropped, not fatal', S3.sensor is None)
+S3.bus.present = (0x76,); S3.peek(); S3.draw()
+check('a screen that stops answering is dropped, not fatal', S3.screen is None)
+S3.bus.present = (0x76, 0x3C); S3.look()
+check('a screen that comes back is set up again', S3.screen is not None)
+n_writes = len(S3.bus.writes); S3.last_init = 0; S3.look()
+check('the screen is set up again on a timer, noise or not',
+      S3.bus.writes[-1] == (0x3C, 0x00, 0xAF) and len(S3.bus.writes) > n_writes)
+S3.hello_until = 10**12; S3.screen.clear(); S3.draw()
+check('the station name shows after boot', any(S3.screen.buf))
 
 print('\nfinding the bus')
 import glob as _glob
@@ -148,10 +182,14 @@ st.header_bus = lambda: None
 n, bus, addr = st.find_bus()
 check('without sysfs help it still finds the sensor by looking', n == 2 and addr == 0x76)
 FakeSMBus.layout = {0: (0x20, 0x50), 2: (), 3: ()}
+st.header_bus = lambda: 2
+n, bus, addr = st.find_bus()
+check('header bus with no sensor yet: use it and wait', n == 2 and addr is None)
+st.header_bus = lambda: None
 try:
-    st.find_bus(); check('no sensor anywhere exits with a message', False)
+    st.find_bus(); check('no header bus and no sensor anywhere exits with a message', False)
 except SystemExit:
-    check('no sensor anywhere exits with a message', True)
+    check('no header bus and no sensor anywhere exits with a message', True)
 glob.glob = _orig
 
 print('\n' + ('ALL PASS' if not FAILED else 'FAILURES: ' + ', '.join(FAILED)))

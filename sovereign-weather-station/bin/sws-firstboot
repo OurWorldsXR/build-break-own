@@ -7,7 +7,10 @@ rm -f /etc/ssh/ssh_host_*
 ssh-keygen -A                                    # fresh host keys per board
 rm -f /etc/machine-id /var/lib/dbus/machine-id
 systemd-machine-id-setup
-ID="sws-$(tr -dc a-z0-9 </dev/urandom | head -c6)"
+# Not `tr </dev/urandom | head`: under pipefail, head closing the pipe kills
+# tr with SIGPIPE, the script exits, .firstboot-done is never written, and the
+# board gets new ssh keys on every boot. od reads exactly three bytes and stops.
+ID="sws-$(od -An -N3 -tx1 /dev/urandom | tr -d ' \n')"
 echo "$ID" > /data/station-id
 hostnamectl set-hostname "$ID" || echo "$ID" > /etc/hostname
 touch /data/.firstboot-done

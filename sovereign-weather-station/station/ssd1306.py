@@ -24,14 +24,30 @@ def _glyph(ch):
 class SSD1306:
     W, H = 128, 64
 
+    # Display off, page addressing, then the panel geometry and charge pump.
+    # 0xAF (display on) is NOT in this list: see init().
+    SETUP = (0xAE, 0x20, 0x02, 0xB0, 0xC8, 0x00, 0x10, 0x40, 0x81, 0x7F,
+             0xA1, 0xA6, 0xA8, 0x3F, 0xA4, 0xD3, 0x00, 0xD5, 0xF0, 0xD9,
+             0x22, 0xDA, 0x12, 0xDB, 0x20, 0x8D, 0x14)
+
     def __init__(self, bus, addr=0x3C):
         self.bus, self.addr = bus, addr
         self.buf = bytearray(self.W * self.H // 8)
-        # 0x20 0x02: page addressing mode. show() sets page and column itself.
-        for c in (0xAE, 0x20, 0x02, 0xB0, 0xC8, 0x00, 0x10, 0x40, 0x81, 0x7F,
-                  0xA1, 0xA6, 0xA8, 0x3F, 0xA4, 0xD3, 0x00, 0xD5, 0xF0, 0xD9,
-                  0x22, 0xDA, 0x12, 0xDB, 0x20, 0x8D, 0x14, 0xAF):
+        self.init()
+
+    def init(self):
+        """Put the screen into a known state. Safe to call again at any time.
+
+        The screen's memory holds random noise at power up, and keeps whatever
+        a glitch left there if a wire moves with power on. So: display off,
+        set it up, write the whole of its memory from our buffer, and only then
+        turn it on. These 4-pin modules have no reset pin; if this does not
+        clear it, only a full power off will.
+        """
+        for c in self.SETUP:
             self.cmd(c)
+        self.show()
+        self.cmd(0xAF)
 
     def cmd(self, c):
         self.bus.write_byte_data(self.addr, 0x00, c)

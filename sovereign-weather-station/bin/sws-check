@@ -94,16 +94,28 @@ if not hit:
     print(BAD + "no sensor at 0x76 or 0x77.")
 
 print("\n4. what time does this board think it is, and how does it know?")
-rtc = os.path.exists("/dev/rtc0")
+# /dev/rtc0 is the board's own clock, which has no battery and forgets at
+# power off. A DS3231 shows up as another rtc whose device is the chip at 0x68.
+ds = None
+for r in sorted(glob.glob("/sys/class/rtc/rtc*")):
+    try:
+        if os.path.basename(os.readlink(r + "/device")).endswith("-0068"):
+            ds = "/dev/" + os.path.basename(r)
+    except OSError:
+        pass
 print(INFO + "system clock: " + subprocess.run(["date", "-u", "+%Y-%m-%d %H:%M:%S UTC"],
                                               capture_output=True, text=True).stdout.strip())
-if rtc:
-    hw = subprocess.run(["hwclock", "-r", "--utc"], capture_output=True, text=True).stdout.strip()
-    print(OK + "a hardware clock is bound (/dev/rtc0). it says: " + (hw or "?"))
-    print(INFO + "that is the DS3231 on your breadboard, keeping time on a coin cell.")
+if ds:
+    hw = subprocess.run(["hwclock", "-f", ds, "-r", "--utc"], capture_output=True, text=True)
+    print(OK + "a DS3231 is bound (%s). it says: %s" % (ds, hw.stdout.strip() or "?"))
+    print(INFO + "that is the clock module on your breadboard, keeping time on a coin cell.")
+    if hw.returncode != 0:
+        print(BAD + "but it could not be read. set it once: FIRST-BUILD Part 7.")
 else:
-    print(INFO + "no hardware clock. the time came from fake-hwclock: whatever it was at the")
+    print(INFO + "no DS3231. the time came from fake-hwclock: whatever it was at the")
     print(INFO + "last shutdown. it is wrong by however long the power was off.")
+    if os.path.exists("/dev/rtc0"):
+        print(INFO + "/dev/rtc0 is the board's own clock. it has no battery, so it cannot help.")
     if any(0x68 in a for a in found.values()):
         print(BAD + "but something answers at 0x68. run: sudo systemctl restart sws-rtc")
 
@@ -118,6 +130,6 @@ if radio:
 else:
     print(OK + "no wifi, no bluetooth, no cellular. there is no radio on this board.")
 if usb:
-    print(INFO + "the usb cable to your laptop is a network link (192.168.7.2). unplug it")
+    print(INFO + "the usb cable to your laptop is a network link (192.168.7.2 or .6.2). unplug it")
     print(INFO + "and the only way data leaves is you reading the screen and typing it in.")
 print()

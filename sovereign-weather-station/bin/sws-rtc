@@ -5,8 +5,27 @@
 # There is no network, so this is the only source of true time the board has.
 # Without it, fake-hwclock restores the time from the last shutdown and the
 # clock drifts by however long the power was off.
+#
+# The PocketBeagle 2 already has a clock of its own at /dev/rtc0, with no
+# battery behind it, so it forgets everything at power off. The DS3231 arrives
+# as the next rtc (usually /dev/rtc1). Never trust the number: find the rtc
+# whose device is the chip at 0x68 on the header bus, and name it
+# /dev/rtc-ds3231 so every command after this one can use the same path.
 set -u
 ADDR=0x68
+LINK=/dev/rtc-ds3231
+
+ds3231_rtc() {   # prints e.g. rtc1, or nothing
+  local r
+  for r in /sys/class/rtc/rtc*; do
+    [ -e "$r" ] || continue
+    case "$(basename "$(readlink -f "$r/device" 2>/dev/null)")" in
+      "$1-0068") basename "$r"; return 0 ;;
+    esac
+  done
+  return 1
+}
+
 for d in /sys/bus/i2c/devices/i2c-*; do
   node="$(basename "$(readlink -f "$d/of_node" 2>/dev/null || echo none)")"
   [ "$node" = "i2c@20020000" ] || continue          # main_i2c2: the header bus
@@ -17,12 +36,25 @@ for d in /sys/bus/i2c/devices/i2c-*; do
     echo ds3231 $ADDR > "$d/new_device" && echo "sws-rtc: ds3231 found on i2c-$bus at $ADDR"
   else
     echo "sws-rtc: nothing at $ADDR on i2c-$bus. no hardware clock; using fake-hwclock"
+    rm -f "$LINK"
     exit 0
   fi
-  sleep 0.5
-  if [ -e /dev/rtc0 ]; then
-    before="$(date -u +%FT%TZ)"
-    hwclock --hctosys --utc && echo "sws-rtc: system clock $before -> $(date -u +%FT%TZ) (from the DS3231)"
+  # the driver takes a moment to register the rtc after binding
+  rtc=""
+  for _ in $(seq 1 50); do
+    rtc="$(ds3231_rtc "$bus")" && break
+    sleep 0.1
+  done
+  if [ -z "$rtc" ]; then
+    echo "sws-rtc: bound the ds3231 but no rtc appeared for it. leaving the clock alone"
+    exit 0
+  fi
+  ln -sf "$rtc" "$LINK"
+  before="$(date -u +%FT%TZ)"
+  if hwclock -f "/dev/$rtc" --hctosys --utc; then
+    echo "sws-rtc: system clock $before -> $(date -u +%FT%TZ) (from the DS3231 at /dev/$rtc)"
+  else
+    echo "sws-rtc: could not read /dev/$rtc. has its time been set? see FIRST-BUILD Part 7"
   fi
   exit 0
 done
